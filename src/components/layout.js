@@ -1,17 +1,15 @@
 import React from 'react'
 import {Footer} from './footer'
 import Header from './header'
-import {Main,Layout} from '../css/layout'
+import {Main,Layout as LayoutX} from '../css/layout'
 
-export default ({children}) => {
+ const Layout = ({children}) => {
     return (
-        <Layout>
+        <LayoutX>
             <Header />
             <Main>{children}</Main>
             <Footer/>
-        </Layout>
-
-
-
+        </LayoutX>
     )
 }
+export default Layout

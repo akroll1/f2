@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import {Link} from '@reach/router'
 
-export const AboveHeader = styled.div`
+export const AboveNavigation = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -9,6 +9,34 @@ export const AboveHeader = styled.div`
     background: #333;
     border-bottom: 1px solid #9e1212;
     line-height: 50px;
+`;
+export const NavLinks = styled(Link)`
+    margin-left: 2rem;
+    font-size: 22px;
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+    color: #333;
+    font-weight: bold;
+    &:hover {
+        color: #b9413e;
+        text-decoration: none;
+    }
+`;
+export const NavLinkLive = styled(Link)`
+    color: #9e1212;
+    font-weight: bold;
+    font-style: italic;
+    margin-left: 2rem;
+    font-size: 22px;
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+    font-weight: bold;
+    &:hover {
+        color: #b9413e;
+        text-decoration: none;
+    }
 `;
 export const Signin = styled(Link)`
     font-weight: bold;
@@ -21,6 +49,8 @@ export const Signin = styled(Link)`
     }
 `;
 export const Navigation = styled.div`
+    width: 100%;
+    display: inline-flex;
     list-style: none;
     margin: 0;
     justify-content: flex-start;
@@ -28,8 +58,9 @@ export const Navigation = styled.div`
     text-align: center; 
 `;
 export const Header = styled.header`
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 `;
 export const FooterLinks = styled.ul`
@@ -55,8 +86,8 @@ export const Layout = styled.div`
     flex-direction: column;
 `;
 export const Main = styled.main`
-    padding: 1%;
-    margin: 1%;
+    width: 100%;
+    font-family: Lato, Helvetica Neue;
     display: flex;
     flex-direction: column;
     min-height: 90vh;
@@ -64,7 +95,6 @@ export const Main = styled.main`
 export const Footer = styled.footer`
     width: 100%;
     bottom: 0;
-    padding: 7px;
     display: flex;
     justify-content: space-around;
     align-items: center;

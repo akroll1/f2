@@ -1,15 +1,17 @@
 import React from 'react'
-import {Header,Navigation,AboveHeader,Signin} from '../css/layout'
-import {Link} from '@reach/router'
+import {Header as HeaderX,Navigation,AboveNavigation,NavLinks,Signin,NavLinkLive} from '../css/layout'
 
-export default (props) => {
-
-    return (
-        <Header>
-            <AboveHeader>
-                <Signin style={props.userSub ? {display: 'none'} : {display:'block'}} to="/api/dashboard">Signin</Signin>
-            </AboveHeader>
-        </Header>
-    )
-}
-
+const Header = (props) => (
+    <HeaderX>
+        <AboveNavigation>
+            <Signin style={props.userSub ? {display: 'none'} : {display:'block'}} to="/api/dashboard">Signin</Signin>
+        </AboveNavigation>
+        <Navigation>
+            <NavLinks to="/home">Home</NavLinks>
+            <NavLinks to="/news">News</NavLinks>
+            <NavLinks to="/boxers">Boxers</NavLinks>
+            <NavLinkLive to="/live">Live</NavLinkLive>
+        </Navigation>
+    </HeaderX>
+)
+export default Header

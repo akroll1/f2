@@ -1,8 +1,9 @@
 import React from 'react'
+import {Title} from '../components/title'
 
-export default () => {
-
+const Home = () => {
     return (
-        <h1>home</h1>
+        <Title/>
     )
 }
+export default Home

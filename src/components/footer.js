@@ -8,7 +8,7 @@ export const Footer = () => {
     <Foot>
       {/*<Social />*/}
       <FooterLinks />
-      <h5 style={{marginTop: '0',color: '#999'}}>&copy;{date}&nbsp;FightSync Media</h5>
+      <h5 style={{letterSpacing: '1.3px',marginTop: '0',color: '#999'}}>&copy;{date}&nbsp;FightSync Media</h5>
     </Foot>
   )
 }
