@@ -3,10 +3,10 @@ import {Router} from '@reach/router'
 import Layout from '../components/layout'
 import Home from './home';
 import News from './news';
-// import Boxers from '../Boxers';
+import Live from './live';
+import Boxers from './boxers';
 // import About from '../../Components/About';
 // import GymsPage from '../Gyms';
-// import LivePage from '../Live';
 // import ShowsPage from '../Shows';
 // import Show from '../Shows/Show';
 // import Article from '../Articles/Article';
@@ -20,11 +20,11 @@ import News from './news';
 const App = () => (
 	<Layout>
 		<Router>
-			<Home exact path="/home" />
+			<Home exact path="/" />
 			<News exact path="/news" />
-			{/*<Boxers exact path="/boxers" />
-			<LivePage exact path="/live" />
-			<About exact path="/about" />
+			<Live exact path="/live" />
+			<Boxers exact path="/boxers" />
+			{/*<About exact path="/about" />
 			<GymsPage exact path="/gyms" />
 			<ShowsPage exact path="/shows" />
 			<Article exact path="/article/:article" />

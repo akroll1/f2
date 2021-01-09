@@ -20,3 +20,15 @@ export const TitleSpan = styled.span`
     color: #9e1212;
     margin-left: 2px;
 `;
+export const HeroDiv = styled.div`
+    border-top: 1px solid #9e1212;
+    position: relative;
+    min-height: 350px;
+    background-image: url("../boxer.jpg");
+    background-size: cover;
+    width: 85%;
+    margin: auto;
+    border-radius: 5px;
+    will-change: transform, opacity;
+    opacity: 0.92;
+`;

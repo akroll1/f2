@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import CreatableSelect from 'react-select/creatable';
-import { Button } from '@material-ui/core';
+import { B as Button } from '../css/core';
 import {Heading, Loader,Spinner} from '../css/core'
 import {SearchWrapper,NewsCard,NewsWrapper,TagsContainer,TagUl,Tag} from '../css/news'
 import axios from 'axios'
+import {shortenBody} from '../helpers'
 
 const News = () => {
 	const bingUrl = `https://api.cognitive.microsoft.com/bing/v7.0/news/search/?q=boxing&count=30&jsonp`;
@@ -20,7 +21,7 @@ const News = () => {
 	const [searchInputs, setSearchInputs] = useState([]);
 	const [query, setQuery] = useState('');
 
-	useState(() => {
+	useEffect(() => {
 		const getArticles = async () => {
 			await axios(bingUrl, bingConfig)
 				.then(res => setNews(res.data.value))
@@ -117,7 +118,7 @@ const News = () => {
 
 	const stories = news && news.length > 0 
 		? news.map((story, i) => (
-			<NewsCard key={i}>
+			<NewsCard key={i} style={{borderBottom: '1px solid #eee'}}>
 				<a style={{textDecoration: 'none'}} href={story.url} target="_blank" rel="noopener noreferrer">
 					<h2 style={{paddingTop: '1rem',paddingLeft: '1rem',color: '#333'}}>{story.name}</h2>
 					<div>
@@ -127,7 +128,7 @@ const News = () => {
 							// alt={boxerPic}
 							src={story.image ? story.image.thumbnail.contentUrl : ''}
 							/>
-						<p style={{textAlign: 'left',color: '#333',margin: '0 auto'}}>{story.description}</p>
+						<p style={{textAlign: 'left',color: '#333',margin: '0 auto'}}>{shortenBody(story.description)}</p>
 						<h5 style={{textAlign: 'left',color: '#bf6f6d'}}>{story.provider ? story.provider[0].name : ''}</h5>
 					</div>
 				</a>
