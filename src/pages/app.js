@@ -5,6 +5,7 @@ import Home from './home';
 import News from './news';
 import Live from './live';
 import Boxers from './boxers';
+import NotFound from './not-found';
 import { animated, useTransition } from "react-spring";
 
 // import About from '../../Components/About';
@@ -15,7 +16,6 @@ import { animated, useTransition } from "react-spring";
 // import Dashboard from '../Dashboard';
 // import Books from '../Books';
 // import AdminDashboard from '../../Admin/AdminDashboard';
-// import NotFound from '../../Components/NotFound';
 // import Api from '../../Components/API/Api';
 // import ReactGA from 'react-ga';
 
@@ -46,7 +46,8 @@ const App = () => {
 						<Api exact path="/api" />
 						<Dashboard exact path="/api/dashboard" />
 						<AdminDashboard exact path="/api/dashboard/admin/videoform" />
-						<NotFound path="*" /> */}
+						*/}
+						<Route path="*" component={NotFound}/> 
 					</Switch>
 				</animated.div>
 			))}	
