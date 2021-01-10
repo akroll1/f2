@@ -93,7 +93,7 @@ export const Main = styled.main`
     min-height: 90vh;
 `;
 export const Footer = styled.footer`
-    margin-top: 3rem;
+    margin-top: 5rem;
     width: 100%;
     bottom: 0;
     display: flex;
