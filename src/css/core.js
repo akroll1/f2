@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import {Typography,Button} from '@material-ui/core'
 
 export const B = styled(Button)`
-
+    color: #333;
 `;
 export const PageWrapper = styled.div`
     margin: 2%;
