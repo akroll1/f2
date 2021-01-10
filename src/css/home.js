@@ -1,5 +1,8 @@
 import styled from '@emotion/styled'
 
+export const FrontImage = styled.div`
+    background-image: url(/boxer_in_ring.jpg);
+`;
 export const TitleWrapper = styled.div`
     width: 100%;
     text-align: center;
