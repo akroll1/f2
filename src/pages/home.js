@@ -23,8 +23,8 @@ const Home = () => {
                 {tonight &&<Tonight>Tonight! <br /><span style={{fontSize: '2rem'}}>Garcia vs Campbell</span></Tonight>}
             </div>
             <div style={{marginTop: '2rem'}} onClick={() => set(state => !state)}>
-                <a.div className="c front" style={{width: '100%', backgroundImage: 'url(/boxer_in_ring.jpg)',opacity: opacity.interpolate(o => 1 - o), transform }} />
-                <a.div className="c back" style={{ backgroundImage: 'url(/garcia-vs-campbell.png)',opacity, transform: transform.interpolate(t => `${t} rotateX(180deg)`) }} />
+                <a.div className="c front" style={{ marginBottom: '2rem',width: '100%', backgroundImage: 'url(/boxer_in_ring.jpg)',opacity: opacity.interpolate(o => 1 - o), transform }} />
+                <a.div className="c back" style={{ marginBottom: '2rem',backgroundImage: 'url(/garcia-vs-campbell.png)',opacity, transform: transform.interpolate(t => `${t} rotateX(180deg)`) }} />
             </div>
         </>
     )

@@ -14,9 +14,10 @@ export const shortenTitle = (title) => {
 export const shortenBody = (body) => {
     if(body.length > 200){
         body = body.slice(0,200);
+        body += '...';
         return body;
     }
-    return body;
+    return body += '...';
 };
 
 export const signOut = async () => (
