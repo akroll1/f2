@@ -117,7 +117,7 @@ export const PageBreak = styled.div`
   width: 50%;
   margin: auto;
   margin-top: 3rem;
-  border-top: 3px solid #950451;
+  border-top: 3px solid #c13c43;
 `;
 
 export const AnswersWrapper = styled.div`
