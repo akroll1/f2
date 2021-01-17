@@ -111,7 +111,7 @@ const News = () => {
 
 	const stories = news && news.length > 0 
 		? news.map((story, i) => (
-			<NewsCard key={i} style={{borderBottom: '1px solid #eee'}}>
+			<NewsCard key={i}>
 				<a style={{textDecoration: 'none'}} href={story.url} target="_blank" rel="noopener noreferrer">
 					<h2 style={{paddingTop: '1rem',paddingLeft: '1rem',color: '#333'}}>{story.name}</h2>
 					<div>

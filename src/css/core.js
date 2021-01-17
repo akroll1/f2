@@ -17,7 +17,7 @@ export const Loader = styled.div`
     display: flex;
 `;
 export const Spinner = styled.img`
-    height: 5rem;
+    height: 10rem;
     margin: 1rem auto;
     animation: spinner-spin infinite 5s linear;
 `;

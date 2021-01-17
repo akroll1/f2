@@ -7,14 +7,24 @@ export const SearchWrapper = styled.div`
 export const NewsCard = styled.div`
     flex-wrap: nowrap;
 	align-items: center;
-	margin: 10px auto;
 	padding: 1rem;
 	border-radius: 5px;
-	margin-bottom: 1rem;
-
+    border-bottom: 1px solid #ddd;
+    // border-left: 2px solid red;
+    height: 100%;
+    position: relative;
     &:hover {
-	background: #f1f1f1;
-	opacity: 0.9;
+        background: #f1f1f1;
+        opacity: 0.9;
+    }
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 25%;
+        height: 60%;
+        left: 0;
+        border-left: 1px solid #f2f2f2;
     }
 `;
 export const NewsWrapper = styled.div`
