@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {ButtonWrapper,PageHeaderText,VideoOverlayDiv,VideoOverlayText,PageBreak,TimerText,ScoreAndTimerDiv,LeaderboardWrapper, LeaderboardUl, Li,PlayerWrapper,Button,QuestionText,Text,AnswersWrapper} from '../css/live';
+import {ButtonWrapper,GameText,VideoOverlayDiv,VideoOverlayText,PageBreak,TimerText,ScoreAndTimerDiv,LeaderboardWrapper, LeaderboardUl, Li,PlayerWrapper,Button,QuestionText,Text,AnswersWrapper} from '../css/live';
 import Player from '../components/player-components/player';
 import Timer from '../components/player-components/timer';
 import jwt_decode from 'jwt-decode'
 import {slicedGame, getGameType} from '../helpers'
 import {CSSTransition} from 'react-transition-group'
+import '../css/transitions.css'
 
 const Live = ({location}) => {
     // const gameType = getGameType(location.pathname);
@@ -141,7 +142,7 @@ const Live = ({location}) => {
 
             <VideoOverlayDiv style={{margin: 'auto'}}>
                 {startBroadcast === false 
-                ? <VideoOverlayText>Your Buzz will start soon!</VideoOverlayText>
+                ? <VideoOverlayText>Your BUZZ will start soon!</VideoOverlayText>
                 : <VideoOverlayText style={{color: '#c13c43'}}>IMPULSE</VideoOverlayText>
                 }
                 {gameOverMessaging && !startBroadcast && <VideoOverlayText>Game Over</VideoOverlayText>}
@@ -154,7 +155,7 @@ const Live = ({location}) => {
                 classNames={"form"}
                 unmountOnExit
             >
-            <PageHeaderText style={{margin: '0 auto'}}>Game: {slicedGame(game)}</PageHeaderText>
+            <GameText>Game: {slicedGame(game)}</GameText>
             </CSSTransition>
                 <ScoreAndTimerDiv>
                     <TimerText>Score: {score}</TimerText>

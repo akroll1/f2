@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 
 
 export const PlayerWrapper = styled.div`
-
     position: relative;
     width: 100%;
     margin: 5px auto;
@@ -19,13 +18,9 @@ export const PlayerWrapperPlayer = styled.div`
 `;
 
 export const VideoOverlayDiv = styled.div`
-    // border-radius: 5px;
-    // z-index: 999;
-    background: rgba(0,0,0, 0.25);
-    // background-size: cover;
-    margin: auto;
+    background: rgba(0,0,0, 0.5);
+    margin: 0.5rem auto;
     min-height: 2rem;
-    // top: 6rem;
     border-radius: 10px;
     width: 50%;
 `;
@@ -34,10 +29,10 @@ export const VideoOverlayText = styled.h1`
   position: relative;
   z-index: 11000;
   color: #FFF;
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
-  margin: auto;
-  font-size: 2.5rem;
+  margin: 0.5rem auto;
+  font-size: 2rem;
 //   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   @media(max-width: 768px){
     font-size: 2rem;
@@ -61,8 +56,8 @@ export const TimerDiv = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0rem 1rem;
-    margin: auto;
-    margin-bottom: -5rem;
+    margin: 0.5rem auto;
+    // margin-bottom: -5rem;
 `;
 export const TimerText = styled.h2`
   color: #333;
@@ -70,7 +65,7 @@ export const TimerText = styled.h2`
   padding: 0.5rem;
 `;
 export const ScoreAndTimerDiv = styled.div`
-  margin: auto;
+  margin: 0rem auto;
   width: 50%;
   display: flex;
   flex-direction: row;
@@ -80,10 +75,9 @@ export const ScoreAndTimerDiv = styled.div`
     width: 90%;
   }
 `;
-export const PageHeaderText = styled.h1`
+export const GameText = styled.h1`
   text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin: 1rem auto;
 `;
 
 export const Button = styled.button`
@@ -115,8 +109,8 @@ export const Button = styled.button`
 
 export const PageBreak = styled.div`
   width: 50%;
-  margin: auto;
-  margin-top: 3rem;
+  margin: 0.5rem auto;
+  margin-top: 1.5rem;
   border-top: 3px solid #c13c43;
 `;
 

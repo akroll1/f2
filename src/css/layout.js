@@ -91,9 +91,11 @@ export const Main = styled.main`
     font-family: Lato, Helvetica Neue;
     display: flex;
     flex-direction: column;
-    min-height: 90vh;
+    // min-height: 90vh;
+    height: auto;
 `;
 export const Footer = styled.footer`
+    position: fixed;
     margin-top: 5rem;
     width: 100%;
     bottom: 0;
