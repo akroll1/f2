@@ -1,5 +1,20 @@
 import {Auth} from 'aws-amplify'
 
+export const slicedGame = (str) => {
+    let index = str.indexOf('-');
+    if(index > -1){
+        return str.slice(0,index);
+    } else {
+        return str;
+    }
+};
+
+export const getGameType = (path) => {
+    if(path.includes('poll')) return 'poll';
+    if(path.includes('quiz')) return 'quiz';
+    if(path.includes('predictive')) return 'predictive';
+};
+
 export const createMarkup = text => ({ __html: text });
 
 export const shortenTitle = (title) => {
@@ -77,14 +92,3 @@ export const makeUrl = (title) => {
     let url = '/article/' + makeUrl;
     return url;
 };
-
-export const createBingHeaders = () => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-        'Ocp-Apim-Subscription-Key',
-        'a894e8ffde684fb7916fd1152b055e2e'
-    );
-    myHeaders.append('data', 'jsonp');
-    myHeaders.append('Access-Control-Allow-Origin', 'localhost:3000/news');
-    return myHeaders;
-}
