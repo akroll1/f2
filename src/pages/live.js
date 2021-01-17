@@ -7,7 +7,8 @@ import {slicedGame, getGameType} from '../helpers'
 import {CSSTransition} from 'react-transition-group'
 
 const Live = ({location}) => {
-    const gameType = getGameType(location.pathname);
+    // const gameType = getGameType(location.pathname);
+    const gameType = 'quiz';
     // const {game, playbackUrl} = location;
     // const game = window.location.pathname.split("/").pop();
     // need to put game and playback url in localStorage...
@@ -47,11 +48,12 @@ const Live = ({location}) => {
     const [predictiveData,setPredictiveData] = useState({});
     
     useEffect(() => {
-        let idToken = jwt_decode(localStorage.getItem('id_token'));
-        let token = localStorage.getItem('id_token');
-        setToken(token);
-        setUser({sub: idToken.sub, email: idToken.email, game});
-        setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
+        // let idToken = jwt_decode(localStorage.getItem('id_token'));
+        // let token = localStorage.getItem('id_token');
+        // setToken(token);
+        // setUser({sub: idToken.sub, email: idToken.email, game});
+        setUser({sub: '123-456-789', email: 'idToken.email', game});
+        // setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
     },[]);
     
     websocket.onclose = (closeEvent) => {
@@ -137,71 +139,74 @@ const Live = ({location}) => {
     return (
         <>
 
-                <VideoOverlayDiv>
-                    {startBroadcast === false && <VideoOverlayText>Your {gameType === 'poll' ? 'poll' : 'game'} will start soon!</VideoOverlayText>}
-                    {gameOverMessaging && !startBroadcast && <VideoOverlayText>Game Over</VideoOverlayText>}
-                </VideoOverlayDiv>
+            <VideoOverlayDiv style={{margin: 'auto'}}>
+                {startBroadcast === false 
+                ? <VideoOverlayText>Your Buzz will start soon!</VideoOverlayText>
+                : <VideoOverlayText style={{color: '#c13c43'}}>IMPULSE</VideoOverlayText>
+                }
+                {gameOverMessaging && !startBroadcast && <VideoOverlayText>Game Over</VideoOverlayText>}
+            </VideoOverlayDiv>
 
-                <CSSTransition
-                    appear
-                    timeout={400}
-                    in={true}
-                    classNames={"form"}
-                    unmountOnExit
-                >
-                <PageHeaderText style={{margin: '0 auto'}}>Game: {slicedGame(game)}</PageHeaderText>
-                </CSSTransition>
-                    <ScoreAndTimerDiv>
-                        <TimerText>Score: {score}</TimerText>
-                        {gameType !== 'predictive' &&
-                            <Timer 
-                                gameType={gameType}
-                                setStartTimer={setStartTimer}
-                                startTimer={startTimer}
-                                setShowScore={setShowScore}
-                                showScore={showScore}
-                                setButtonsDisabled={setButtonsDisabled}
-                                counter={counter}
-                                setCounter={setCounter}
-                            />
-                        }
-                    </ScoreAndTimerDiv>
-                <PlayerWrapper>
-                    <Player 
-                        setStartTimer={setStartTimer}
-                        setButtonsDisabled={setButtonsDisabled}
-                        setQuestion={setQuestion}
-                        setStartBroadcast={setStartBroadcast}
-                        startBroadcast={startBroadcast}
-                    />
-                    <AnswersWrapper buttonsDisabled={buttonsDisabled}>
-                        {wrongAnswerMessaging && <Text style={{color: '#FFF'}}>Sorry, Wrong Answer!</Text>}
-                        {!wrongAnswerMessaging && showScore && <Text style={{color: '#FFF'}}>Correct! Score: <span>{displayTime}</span></Text>}
-                            <QuestionText>{gameType !== 'predictive' ? question.question : predictiveQuestion.question}</QuestionText>
-                            <ButtonWrapper>
-                                {
-                                    gameType === 'poll' && question && question.answersArray.length > 0 && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendPollAnswer(e)}>{answer}</Button>)
-                                }
-                                {
-                                    gameType === 'quiz' && question && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendQuizAnswer(e)}>{answer}</Button>)
-                                }
-                                {
-                                    gameType === 'predictive' && predictiveQuestion && predictiveQuestion && predictiveQuestion.answersArray.map((answer,i) => <Button width={predictiveQuestion.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={predictiveQuestion.id} key={i} onClick={i => setPredictiveAnswer({id:predictiveQuestion.id,answerIndex:i})}>{answer}</Button>)
-                                }
-                            </ButtonWrapper>
-                    </AnswersWrapper>
-                </PlayerWrapper>
-                <PageBreak />
-                <LeaderboardWrapper>
-                    <Text>{gameType === 'poll' ? 'Poll Results' : 'Leader Board'}</Text>
-                    <LeaderboardUl>
-                    {
-                        leaders && leaders.length > 0 
-                        ? leaders.map(({email,score},i) => <Li key={i}>{i+1}. {email}: {score}</Li>)
-                        : null
+            <CSSTransition
+                appear
+                timeout={400}
+                in={true}
+                classNames={"form"}
+                unmountOnExit
+            >
+            <PageHeaderText style={{margin: '0 auto'}}>Game: {slicedGame(game)}</PageHeaderText>
+            </CSSTransition>
+                <ScoreAndTimerDiv>
+                    <TimerText>Score: {score}</TimerText>
+                    {gameType !== 'predictive' &&
+                        <Timer 
+                            gameType={gameType}
+                            setStartTimer={setStartTimer}
+                            startTimer={startTimer}
+                            setShowScore={setShowScore}
+                            showScore={showScore}
+                            setButtonsDisabled={setButtonsDisabled}
+                            counter={counter}
+                            setCounter={setCounter}
+                        />
                     }
-                    </LeaderboardUl>
-                </LeaderboardWrapper>
+                </ScoreAndTimerDiv>
+            <PlayerWrapper>
+                <Player 
+                    setStartTimer={setStartTimer}
+                    setButtonsDisabled={setButtonsDisabled}
+                    setQuestion={setQuestion}
+                    setStartBroadcast={setStartBroadcast}
+                    startBroadcast={startBroadcast}
+                />
+                <AnswersWrapper buttonsDisabled={buttonsDisabled}>
+                    {wrongAnswerMessaging && <Text style={{color: '#FFF'}}>Sorry, Wrong Answer!</Text>}
+                    {!wrongAnswerMessaging && showScore && <Text style={{color: '#FFF'}}>Correct! Score: <span>{displayTime}</span></Text>}
+                        <QuestionText>{gameType !== 'predictive' ? question.question : predictiveQuestion.question}</QuestionText>
+                        <ButtonWrapper>
+                            {
+                                gameType === 'poll' && question && question.answersArray.length > 0 && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendPollAnswer(e)}>{answer}</Button>)
+                            }
+                            {
+                                gameType === 'quiz' && question && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendQuizAnswer(e)}>{answer}</Button>)
+                            }
+                            {
+                                gameType === 'predictive' && predictiveQuestion && predictiveQuestion && predictiveQuestion.answersArray.map((answer,i) => <Button width={predictiveQuestion.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={predictiveQuestion.id} key={i} onClick={i => setPredictiveAnswer({id:predictiveQuestion.id,answerIndex:i})}>{answer}</Button>)
+                            }
+                        </ButtonWrapper>
+                </AnswersWrapper>
+            </PlayerWrapper>
+            <PageBreak />
+            <LeaderboardWrapper>
+                <Text>{gameType === 'poll' ? 'Poll Results' : 'Leader Board'}</Text>
+                <LeaderboardUl>
+                {
+                    leaders && leaders.length > 0 
+                    ? leaders.map(({email,score},i) => <Li key={i}>{i+1}. {email}: {score}</Li>)
+                    : null
+                }
+                </LeaderboardUl>
+            </LeaderboardWrapper>
         </>
     );
 }

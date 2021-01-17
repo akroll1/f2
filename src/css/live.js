@@ -21,11 +21,13 @@ export const PlayerWrapperPlayer = styled.div`
 export const VideoOverlayDiv = styled.div`
     // border-radius: 5px;
     // z-index: 999;
-    // background: rgba(0,0,0, 0.2);
+    background: rgba(0,0,0, 0.25);
     // background-size: cover;
-    position: absolute;
-    min-height: 3rem;
-    top: 6rem;
+    margin: auto;
+    min-height: 2rem;
+    // top: 6rem;
+    border-radius: 10px;
+    width: 50%;
 `;
 
 export const VideoOverlayText = styled.h1`
@@ -36,7 +38,7 @@ export const VideoOverlayText = styled.h1`
   text-align: center;
   margin: auto;
   font-size: 2.5rem;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+//   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   @media(max-width: 768px){
     font-size: 2rem;
   }
@@ -68,6 +70,7 @@ export const TimerText = styled.h2`
   padding: 0.5rem;
 `;
 export const ScoreAndTimerDiv = styled.div`
+  margin: auto;
   width: 50%;
   display: flex;
   flex-direction: row;
@@ -112,7 +115,7 @@ export const Button = styled.button`
 
 export const PageBreak = styled.div`
   width: 50%;
-  margin: 1rem 0rem;
+  margin: auto;
   margin-top: 3rem;
   border-top: 3px solid #950451;
 `;

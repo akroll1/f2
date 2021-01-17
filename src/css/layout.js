@@ -86,6 +86,7 @@ export const Layout = styled.div`
     flex-direction: column;
 `;
 export const Main = styled.main`
+    position: relative;
     width: 100%;
     font-family: Lato, Helvetica Neue;
     display: flex;
