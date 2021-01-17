@@ -22,9 +22,9 @@ export const NewsCard = styled.div`
         display: block;
         position: absolute;
         top: 25%;
-        height: 60%;
+        height: 50%;
         left: 0;
-        border-left: 1px solid #f2f2f2;
+        border-left: 1px solid #bf6f6d;
     }
 `;
 export const NewsWrapper = styled.div`

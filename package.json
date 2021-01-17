@@ -11,8 +11,10 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "amazon-ivs-player": "^1.2.0",
     "aws-amplify": "^3.3.13",
     "dotenv": "^8.2.0",
+    "jwt-decode": "^3.1.2",
     "react": "^17.0.1",
     "react-coverflow": "^0.2.20",
     "react-dom": "^17.0.1",
@@ -22,6 +24,7 @@
     "react-scripts": "4.0.1",
     "react-select": "^3.1.1",
     "react-spring": "^8.0.27",
+    "react-transition-group-v2": "^4.3.0",
     "react-twitter-embed": "^3.0.3",
     "web-vitals": "^0.2.4"
   },
