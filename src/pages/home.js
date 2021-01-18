@@ -22,7 +22,7 @@ const Home = () => {
             <HeroContainer>
                 <HeroDiv style={{}}>
                     <HeroText>Latest Boxing News</HeroText>
-                    <NewsButton>News<span style={{marginLeft: '1rem',marginTop: '8px'}}><RiArrowRightSLine /></span></NewsButton>
+                    <NewsButton to="/news">News<span style={{marginLeft: '1rem',marginTop: '8px'}}><RiArrowRightSLine /></span></NewsButton>
                 </HeroDiv>
                 <HeroDiv style={{}}>
                     <HeroImg src="/boxer_in_ring.jpg"></HeroImg>
