@@ -42,7 +42,7 @@ const Home = () => {
             <HeroWrapper>
                 <HeroDiv>
                     <HeroText>Latest Boxing News</HeroText>
-                    <HeroSubtext>Updated by the second</HeroSubtext>
+                    <HeroSubtext>Updated in Real Time</HeroSubtext>
                     <NewsButton to="/news">News<span style={{marginLeft: '1rem',marginTop: '8px'}}><RiArrowRightSLine /></span></NewsButton>
                 </HeroDiv>
                 <HeroDiv>
