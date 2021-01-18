@@ -6,17 +6,15 @@ export const HeroContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
     width: 100%;
-    padding: 1rem;
     min-height: 50vh;
-    margin: 1rem auto;
 `;
 export const HeroDiv = styled.div`
     display: flex;
     flex-direction: column;
-    width: 45%;
-    padding: 1rem;
-    padding-left: 2rem;
+    width: 40%;
+    padding: 3rem 1rem;
 `;
 export const HeroText = styled.h1`
     font-size: 3rem;
@@ -26,13 +24,15 @@ export const HeroImg = styled.img`
     border-radius: 10px;
 `;
 export const NewsButton = styled(Link)`
+    font-weight: bold;
+    margin-top: 2rem;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     width: 16rem;
     font-size: 2rem;
-    height: 4rem;
+    height: 3.5rem;
     text-decoration: none;
     background: #d22509;
     color: #FFF;
