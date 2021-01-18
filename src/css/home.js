@@ -36,9 +36,9 @@ export const VideoContainer = styled.article`
     // flex-direction: row;
     // align-items: center;
     // justify-content: center;
-    margin: 0.5rem auto;
-    width: 23%;
-    padding: 16px;
+    margin: 1.5rem 0.5rem auto;
+    width: 25%;
+    padding: 1rem;
     border: 1px solid rgba(0,0,0,0.08);
     background-color:#fff;
     box-shadow: 0 5px 10px rgba(0,0,0,0.05);

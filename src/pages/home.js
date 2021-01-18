@@ -49,8 +49,8 @@ const Home = () => {
                     <HeroImg src="/boxer_in_ring.jpg"></HeroImg>
                 </HeroDiv>
             </HeroWrapper>
-            <HeroText style={{paddingLeft:'3rem'}}>Latest Boxing Videos</HeroText>
             <VideoWrapper>
+            <HeroText style={{display: 'block',width: '100%',padding:'2rem',marginLeft: '2rem',paddingBottom:'0'}}>Latest Boxing Videos</HeroText>
                 <VideoThumbs videos={videos}/>
             </VideoWrapper>
         </>
