@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { useSpring, animated as a } from 'react-spring'
 import {Title} from '../components/title'
-import {Tonight} from '../css/home'
+import {Tonight,HeroContainer,HeroDiv,HeroText,HeroImg,NewsButton} from '../css/home'
 import '../css/spring.css'
+import { RiArrowRightSLine } from "react-icons/ri"
 
 const Home = () => {
     const [flipped, set] = useState(false);
@@ -13,19 +14,23 @@ const Home = () => {
         config: { mass: 5, tension: 400, friction: 80 }
     })
     useEffect(() => {
-        setTimeout(() => set(state => !state),5000);
-        setTimeout(() => showTonight(state => !state), 5500);
+
     },[]);
     return (
         <>
             <Title/>
-            <div style={{height: '3rem'}}>
-                {tonight &&<Tonight>Tonight! <br /><span style={{fontSize: '2rem'}}>Garcia vs Campbell</span></Tonight>}
-            </div>
-            <div style={{marginTop: '2rem'}} onClick={() => set(state => !state)}>
-                <a.div className="c front" style={{ marginBottom: '2rem',width: '100%', backgroundImage: 'url(/boxer_in_ring.jpg)',opacity: opacity.interpolate(o => 1 - o), transform }} />
-                <a.div className="c back" style={{ marginBottom: '2rem',backgroundImage: 'url(/garcia-vs-campbell.png)',opacity, transform: transform.interpolate(t => `${t} rotateX(180deg)`) }} />
-            </div>
+            <HeroContainer>
+                <HeroDiv style={{}}>
+                    <HeroText>Latest Boxing News</HeroText>
+                    <NewsButton>News<span style={{marginLeft: '1rem',marginTop: '8px'}}><RiArrowRightSLine /></span></NewsButton>
+                </HeroDiv>
+                <HeroDiv style={{}}>
+                    <HeroImg src="/boxer_in_ring.jpg"></HeroImg>
+                </HeroDiv>
+            </HeroContainer>
+            <HeroContainer>
+                <HeroText>Upcoming Fights Go Here</HeroText>
+            </HeroContainer>
         </>
     )
 }
