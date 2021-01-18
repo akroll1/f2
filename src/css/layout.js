@@ -9,6 +9,8 @@ export const AboveNavigation = styled.div`
     background: #333;
     border-bottom: 1px solid #9e1212;
     line-height: 50px;
+    background: rgb(165,23,0);
+    background: linear-gradient(90deg, rgba(165,23,0,0.923406862745098) 1%, rgba(173,8,44,1) 86%);
 `;
 export const NavLinks = styled(Link)`
     margin-left: 2rem;
@@ -86,6 +88,7 @@ export const Layout = styled.div`
     flex-direction: column;
 `;
 export const Main = styled.main`
+    background: #F9F9F9;
     position: relative;
     width: 100%;
     font-family: Lato, Helvetica Neue;

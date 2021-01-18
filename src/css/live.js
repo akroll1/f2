@@ -18,7 +18,6 @@ export const PlayerWrapperPlayer = styled.div`
 `;
 
 export const VideoOverlayDiv = styled.div`
-    background: rgba(0,0,0, 0.5);
     margin: 0.5rem auto;
     min-height: 2rem;
     border-radius: 10px;
@@ -31,8 +30,8 @@ export const VideoOverlayText = styled.h1`
   color: #FFF;
   padding: 0.5rem;
   text-align: center;
-  margin: 0.5rem auto;
-  font-size: 2rem;
+  margin: 0rem auto;
+  font-size: 2.5rem;
 //   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   @media(max-width: 768px){
     font-size: 2rem;
@@ -77,14 +76,14 @@ export const ScoreAndTimerDiv = styled.div`
 `;
 export const GameText = styled.h1`
   text-align: center;
-  margin: 1rem auto;
+  margin: 0rem auto;
 `;
 
 export const Button = styled.button`
   font-weight: ${props => props.buttonsDisabled ? `400` : `600`};
   border-radius: 3px; 
   cursor: ${props => props.buttonsDisabled ? 'unset' : 'pointer'};
-  width: ${props => props.width === 4 ? `12%` : `16%`};
+  width: ${props => props.width === 4 ? `14%` : `17%`};
   border: ${props => props.buttonsDisabled ? `#950451` : `1px solid #FFF`};
   background: ${props => props.buttonsDisabled ? `#85787f` :`#c13c43`};
   color: #FFF;
@@ -110,8 +109,11 @@ export const Button = styled.button`
 export const PageBreak = styled.div`
   width: 50%;
   margin: 0.5rem auto;
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
   border-top: 3px solid #c13c43;
+  @media(max-width: 767px){
+      margin-top: 1rem;
+  }
 `;
 
 export const AnswersWrapper = styled.div`
@@ -179,7 +181,7 @@ export const TableText = styled.h2`
 `;
 
 export const LeaderboardWrapper = styled.div`
-  margin-bottom: 3rem;
+  margin-bottom: 7rem;
   text-align: center;
 `;
 export const LeaderboardUl = styled.ul`

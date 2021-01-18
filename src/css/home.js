@@ -1,7 +1,75 @@
 import styled from '@emotion/styled'
 import {Link} from 'react-router-dom'
 
-export const HeroContainer = styled.div`
+export const VideoPublisher = styled.h6`
+    position: absolute;
+    bottom: 0;
+    color: #bf6f6d;
+`;
+export const VideoTitle = styled.h2`
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+`;
+export const VideoDescription = styled.p`
+    text-align: left;
+`;
+export const VideoWrapper = styled.section`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    background: #FFF;
+    // padding: 1rem;
+    border-radius: 5px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 7rem;
+    width: 100%;
+`;
+export const VideoContainer = styled.article`
+    box-shadow: 0 0.05rem 0.15rem rgba(0,0,0,.2);
+    position: relative; 
+    min-height: 400px;
+    cursor: pointer;
+    // display: inline-flex;
+    // flex-direction: row;
+    // align-items: center;
+    // justify-content: center;
+    margin: 0.5rem auto;
+    width: 23%;
+    padding: 16px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background-color:#fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    transition: box-shadow .15s linear;
+    &:hover {
+        background: #f1f1f1;
+        opacity: 0.9;
+        box-shadow: 0 0.15rem 0.25rem rgba(0,0,0,.2);;
+    }
+`;
+export const VideoLink = styled.a`
+    text-decoration: none;
+    color: #333;
+`;
+export const VideoImg = styled.img`
+    // position: absolute;
+    // top: 0px;
+    // left: 0px;
+    // width: 100%;
+    // height: 500%;
+    // object-fit: cover;
+    // object-position: center center;
+    // opacity: 1;
+    // transition: opacity 500ms ease 0s;
+
+    width: 100%;
+    padding: 1rem auto;
+    background: cover;
+`;
+export const HeroWrapper = styled.section`
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
     display: flex;
     flex-direction: row;
@@ -11,6 +79,7 @@ export const HeroContainer = styled.div`
     min-height: 50vh;
 `;
 export const HeroDiv = styled.div`
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     width: 40%;
@@ -18,6 +87,12 @@ export const HeroDiv = styled.div`
 `;
 export const HeroText = styled.h1`
     font-size: 3rem;
+    margin: 0;
+`;
+export const HeroSubtext = styled.h2`
+    font-size: 1.5rem;
+    margin: 0;
+    color: gray;
 `;
 export const HeroImg = styled.img`
     width: 100%;
