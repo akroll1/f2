@@ -86,13 +86,16 @@ export const Layout = styled.div`
     flex-direction: column;
 `;
 export const Main = styled.main`
+    position: relative;
     width: 100%;
     font-family: Lato, Helvetica Neue;
     display: flex;
     flex-direction: column;
-    min-height: 90vh;
+    // min-height: 90vh;
+    height: auto;
 `;
 export const Footer = styled.footer`
+    position: fixed;
     margin-top: 5rem;
     width: 100%;
     bottom: 0;
