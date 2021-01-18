@@ -10,7 +10,7 @@ export const AboveNavigation = styled.div`
     border-bottom: 1px solid #9e1212;
     line-height: 50px;
     background: rgb(165,23,0);
-    background: linear-gradient(90deg, rgba(165,23,0,0.923406862745098) 1%, rgba(173,8,44,1) 86%);
+    background: linear-gradient(90deg, rgba(158,18,18,1) 1%, rgba(173,8,44,1) 86%);
 `;
 export const NavLinks = styled(Link)`
     margin-left: 2rem;
@@ -73,10 +73,10 @@ export const FooterLinks = styled.ul`
     list-style: none; 
 `;
 export const FooterLinksLi = styled.li`
-    margin: 1rem;
+    margin: 0.5rem;
 `;
 export const FooterLinksLiA = styled(Link)`
-    font-size: 18px;
+    font-size: 16px;
     color: #ffffff;
     text-decoration: none;
     &:hover {
@@ -98,6 +98,7 @@ export const Main = styled.main`
     height: auto;
 `;
 export const Footer = styled.footer`
+    height: 4.5rem;
     position: fixed;
     margin-top: 5rem;
     width: 100%;
