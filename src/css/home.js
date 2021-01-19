@@ -28,7 +28,7 @@ export const VideoWrapper = styled.section`
     width: 100%;
 `;
 export const VideoContainer = styled.article`
-    box-shadow: 0 0.05rem 0.15rem rgba(0,0,0,.2);
+    box-shadow: 0 0.05rem 0.15rem rgba(0,0,0,0.2);
     position: relative; 
     min-height: 400px;
     cursor: pointer;
@@ -47,7 +47,7 @@ export const VideoContainer = styled.article`
     &:hover {
         background: #f1f1f1;
         opacity: 0.9;
-        box-shadow: 0 0.15rem 0.25rem rgba(0,0,0,.2);;
+        box-shadow: 0 0.15rem 0.25rem rgba(0,0,0,0.2);;
     }
 `;
 export const VideoLink = styled.a`
@@ -95,6 +95,7 @@ export const HeroSubtext = styled.h2`
     color: gray;
 `;
 export const HeroImg = styled.img`
+    box-shadow: 0 0.15rem 0.25rem rgba(0,0,0,0.2);
     width: 100%;
     border-radius: 10px;
 `;
@@ -111,12 +112,14 @@ export const NewsButton = styled(Link)`
     text-decoration: none;
     background: #d22509;
     color: #FFF;
+    box-shadow: 0 0.05rem 0.15rem rgba(0,0,0,0.2);
     &:hover {
         background: #ff2805;
         -webkit-transition: background 0.2s ease-in-out;
         -moz-transition: background 0.2s ease-in-out;
         transition: background-color 0.2s ease-in-out;
         color: #FFF;
+        box-shadow: 0 0.15rem 0.25rem rgba(0,0,0,0.2);
       }
 `;
 export const Tonight = styled.h2`

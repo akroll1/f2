@@ -40,12 +40,12 @@ const Home = () => {
         <>
             <Title/>
             <HeroWrapper>
-                <HeroDiv>
+                <HeroDiv style={{paddingTop:'6rem'}}>
                     <HeroText>Latest Boxing News</HeroText>
                     <HeroSubtext>Updated in Real Time</HeroSubtext>
                     <NewsButton to="/news">News<span style={{marginLeft: '1rem',marginTop: '8px'}}><RiArrowRightSLine /></span></NewsButton>
                 </HeroDiv>
-                <HeroDiv>
+                <HeroDiv style={{width: '50%'}}>
                     <HeroImg src="/boxer_in_ring.jpg"></HeroImg>
                 </HeroDiv>
             </HeroWrapper>
