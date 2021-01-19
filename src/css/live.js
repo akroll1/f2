@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import {Link} from 'react-router-dom'
 
-
 export const PlayerWrapper = styled.div`
     position: relative;
     width: 100%;
@@ -9,29 +8,26 @@ export const PlayerWrapper = styled.div`
     text-align: center;
     height: 300px;
 `;
-
 export const PlayerWrapperPlayer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `;
-
 export const VideoOverlayDiv = styled.div`
     margin: 0.5rem auto;
     min-height: 2rem;
     border-radius: 10px;
     width: 50%;
 `;
-
 export const VideoOverlayText = styled.h1`
   position: relative;
   z-index: 11000;
-  color: #FFF;
+  color: #c13c43;
   padding: 0.5rem;
   text-align: center;
   margin: 0rem auto;
-  font-size: 2.5rem;
+  font-size: 2rem;
 //   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   @media(max-width: 768px){
     font-size: 2rem;
@@ -78,7 +74,6 @@ export const GameText = styled.h1`
   text-align: center;
   margin: 0rem auto;
 `;
-
 export const Button = styled.button`
   font-weight: ${props => props.buttonsDisabled ? `400` : `600`};
   border-radius: 3px; 
@@ -105,7 +100,6 @@ export const Button = styled.button`
     width: ${props => props.width === 4 ? `35%` : `28%`};
   }
 `;
-
 export const PageBreak = styled.div`
   width: 50%;
   margin: 0.5rem auto;
@@ -115,7 +109,6 @@ export const PageBreak = styled.div`
       margin-top: 1rem;
   }
 `;
-
 export const AnswersWrapper = styled.div`
   position: absolute;
   top: 30%;
@@ -146,7 +139,6 @@ export const AnswersWrapper = styled.div`
     top: 15%;
   }
 `;
-
 export const TableWrapper = styled.div`
   border: 1px solid gray;
   border-radius: 2px;
@@ -179,7 +171,6 @@ export const TableText = styled.h2`
   font-weight: 400;
   margin: 0;
 `;
-
 export const LeaderboardWrapper = styled.div`
   margin-bottom: 7rem;
   text-align: center;
@@ -195,7 +186,7 @@ export const Li = styled.li`
 export const ButtonWrapper = styled.div`
   margin: 1.5rem auto;
   position: absolute;
-  top: 30%;
+  top: 50%;
   width: 100%;
   @media(min-width: 768px){
     margin: 3rem auto;

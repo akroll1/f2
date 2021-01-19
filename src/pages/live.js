@@ -54,7 +54,8 @@ const Live = ({location}) => {
         // setToken(token);
         // setUser({sub: idToken.sub, email: idToken.email, game});
         setUser({sub: '123-456-789', email: 'idToken.email', game});
-        // setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
+        let token = '1234';
+        setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
     },[]);
     
     websocket.onclose = (closeEvent) => {
@@ -138,13 +139,16 @@ const Live = ({location}) => {
     // console.log('buttonsDisabled: ',buttonsDisabled);
     // console.log('predictiveAnswer: ',predictiveAnswer);
     return (
-        <>
+        <div style={{position: 'relative'}}>
 
             <VideoOverlayDiv style={{margin: 'auto'}}>
-                {startBroadcast === false 
-                ? <VideoOverlayText>Your BUZZ will start soon!</VideoOverlayText>
-                : <VideoOverlayText style={{color: '#c13c43'}}>IMPULSE</VideoOverlayText>
-                }
+                <div style={{minHeight:'3rem'}}>
+                    {wrongAnswerMessaging && <VideoOverlayText>Sorry, wrong answer!</VideoOverlayText>}
+                    {!wrongAnswerMessaging && showScore && <VideoOverlayText>Correct! Score: <span>{displayTime}</span></VideoOverlayText>}
+                    {!wrongAnswerMessaging && !showScore &&<VideoOverlayText>IMPULSE</VideoOverlayText>}
+
+                </div>
+                
                 {gameOverMessaging && !startBroadcast && <VideoOverlayText>Game Over</VideoOverlayText>}
             </VideoOverlayDiv>
 
@@ -157,22 +161,22 @@ const Live = ({location}) => {
             >
             <GameText>Game: {slicedGame(game)}</GameText>
             </CSSTransition>
-                <ScoreAndTimerDiv>
-                    <TimerText>Score: {score}</TimerText>
-                    {gameType !== 'predictive' &&
-                        <Timer 
-                            gameType={gameType}
-                            setStartTimer={setStartTimer}
-                            startTimer={startTimer}
-                            setShowScore={setShowScore}
-                            showScore={showScore}
-                            setButtonsDisabled={setButtonsDisabled}
-                            counter={counter}
-                            setCounter={setCounter}
-                        />
-                    }
+            <ScoreAndTimerDiv>
+                <TimerText>Score: {score}</TimerText>
+                {gameType !== 'predictive' &&
+                    <Timer 
+                        gameType={gameType}
+                        setStartTimer={setStartTimer}
+                        startTimer={startTimer}
+                        setShowScore={setShowScore}
+                        showScore={showScore}
+                        setButtonsDisabled={setButtonsDisabled}
+                        counter={counter}
+                        setCounter={setCounter}
+                    />
+                }
                 </ScoreAndTimerDiv>
-            <PlayerWrapper>
+            <PlayerWrapper style={startBroadcast ? {pointerEvents:'none'} : {pointerEvents:'auto'}}>
                 <Player 
                     setStartTimer={setStartTimer}
                     setButtonsDisabled={setButtonsDisabled}
@@ -180,21 +184,19 @@ const Live = ({location}) => {
                     setStartBroadcast={setStartBroadcast}
                     startBroadcast={startBroadcast}
                 />
-                <AnswersWrapper buttonsDisabled={buttonsDisabled}>
-                    {wrongAnswerMessaging && <Text style={{color: '#FFF'}}>Sorry, Wrong Answer!</Text>}
-                    {!wrongAnswerMessaging && showScore && <Text style={{color: '#FFF'}}>Correct! Score: <span>{displayTime}</span></Text>}
-                        <QuestionText>{gameType !== 'predictive' ? question.question : predictiveQuestion.question}</QuestionText>
-                        <ButtonWrapper>
-                            {
-                                gameType === 'poll' && question && question.answersArray.length > 0 && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendPollAnswer(e)}>{answer}</Button>)
-                            }
-                            {
-                                gameType === 'quiz' && question && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendQuizAnswer(e)}>{answer}</Button>)
-                            }
-                            {
-                                gameType === 'predictive' && predictiveQuestion && predictiveQuestion && predictiveQuestion.answersArray.map((answer,i) => <Button width={predictiveQuestion.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={predictiveQuestion.id} key={i} onClick={i => setPredictiveAnswer({id:predictiveQuestion.id,answerIndex:i})}>{answer}</Button>)
-                            }
-                        </ButtonWrapper>
+                <AnswersWrapper style={{marginTop:'0'}} buttonsDisabled={buttonsDisabled}>
+                    <QuestionText>{gameType !== 'predictive' ? question.question : predictiveQuestion.question}</QuestionText>
+                    <ButtonWrapper>
+                        {
+                            gameType === 'poll' && question && question.answersArray.length > 0 && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendPollAnswer(e)}>{answer}</Button>)
+                        }
+                        {
+                            gameType === 'quiz' && question && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendQuizAnswer(e)}>{answer}</Button>)
+                        }
+                        {
+                            gameType === 'predictive' && predictiveQuestion && predictiveQuestion && predictiveQuestion.answersArray.map((answer,i) => <Button width={predictiveQuestion.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={predictiveQuestion.id} key={i} onClick={i => setPredictiveAnswer({id:predictiveQuestion.id,answerIndex:i})}>{answer}</Button>)
+                        }
+                    </ButtonWrapper>
                 </AnswersWrapper>
             </PlayerWrapper>
             <PageBreak />
@@ -208,7 +210,7 @@ const Live = ({location}) => {
                 }
                 </LeaderboardUl>
             </LeaderboardWrapper>
-        </>
+        </div>
     );
 }
 
