@@ -1,22 +1,27 @@
 import React, {useEffect, useState} from 'react';
-import {ButtonWrapper,GameText,VideoOverlayDiv,VideoOverlayText,PageBreak,TimerText,ScoreAndTimerDiv,LeaderboardWrapper, LeaderboardUl, Li,PlayerWrapper,Button,QuestionText,Text,AnswersWrapper} from '../css/live';
+import {LiveAside,LiveSection,LiveWrapper,ButtonWrapper,GameText,VideoOverlayDiv,VideoOverlayText,PageBreak,TimerText,ScoreAndTimerDiv,LeaderboardWrapper, LeaderboardUl, Li,PlayerWrapper,Button,QuestionText,Text,AnswersWrapper} from '../css/live';
 import Player from '../components/player-components/player';
 import Timer from '../components/player-components/timer';
 import jwt_decode from 'jwt-decode'
 import {slicedGame, getGameType} from '../helpers'
 import {CSSTransition} from 'react-transition-group'
 import '../css/transitions.css'
+import Chat from '../components/chat'
 
 const Live = ({location}) => {
     // const gameType = getGameType(location.pathname);
     const gameType = 'quiz';
     // const {game, playbackUrl} = location;
     // const game = window.location.pathname.split("/").pop();
-    // need to put game and playback url in localStorage...
-    // put in a check for if game + playbackUrl are undefined, get from local storage...
 
     const game = "kroll-7";
     // only need access token, ID token can immediately be rolled over into user, in useEffect...
+    const [messages,setMessages] = useState([{
+        id: '1234-5678-90',
+        message: 'here is a message',
+        senderName: 'Bobby'
+    }]);
+    const [isTyping, setIsTyping] = useState(true);
     const [token, setToken] = useState('');
     const [user, setUser] = useState({});    
 
@@ -38,15 +43,8 @@ const Live = ({location}) => {
             answerIndex: 1,
             questionId: '12345-678910-1223'
         });
-    const [predictiveQuestion, setPredictiveQuestion] = useState({
-        question: 'Make your Pick',
-        answersArray: ['Pass','Run','Score','Defense/ST'],
-        predictiveQuestionId: '12345-678-91011'
-    });
     
     const [websocket, setWebsocket] = useState({});
-    const [predictiveAnswer, setPredictiveAnswer] = useState({});
-    const [predictiveData,setPredictiveData] = useState({});
     
     useEffect(() => {
         // let idToken = jwt_decode(localStorage.getItem('id_token'));
@@ -78,7 +76,6 @@ const Live = ({location}) => {
         if(leaders && leaders.length > 0)setLeaders(leaders);
         if(data && gameStatus === 'started') setStartBroadcast(true);
         if(data && gameStatus === 'over') setGameOverMessaging(true);
-        if(data && predictive && predictive.predictiveId) setPredictiveData(predictive);
     }
 
     const sendUserData = () => {
@@ -98,9 +95,9 @@ const Live = ({location}) => {
         } else {
             setWrongAnswerMessaging(true);
         }
-        setButtonsDisabled(true);
-        setStartTimer(false);
-        setShowScore(true);
+        setButtonsDisabled(x => !x);
+        setStartTimer(x => !x);
+        setShowScore(x => !x);
         setDisplayTime(time);
         getLeaders();
     };
@@ -111,11 +108,6 @@ const Live = ({location}) => {
             pollAnswerIndex: e.target.id 
         }
         websocket.send(JSON.stringify({ action: 'routePoll', data: {...user,...userAnswer}}));
-    };
-    const scorePredictive = (e) => {
-        const answer = predictiveQuestion[e.target.id];
-        console.log('answer: ',answer);
-        const {questionId} = predictiveQuestion;
     };
 
     const getLeaders = () => {
@@ -135,36 +127,37 @@ const Live = ({location}) => {
         timer.innerHTML = time;
         return time;
     }
-    // console.log('predictiveData: ',predictiveData);
-    // console.log('buttonsDisabled: ',buttonsDisabled);
-    // console.log('predictiveAnswer: ',predictiveAnswer);
+
     return (
-        <div style={{position: 'relative'}}>
+        <LiveWrapper>
+            <LiveAside>
+                <p>aside</p>
+            </LiveAside>
+            <LiveSection>
+                <VideoOverlayDiv style={{margin: 'auto'}}>
+                    <div style={{minHeight:'3rem'}}>
+                        {wrongAnswerMessaging && <VideoOverlayText>Sorry, wrong answer!</VideoOverlayText>}
+                        {!wrongAnswerMessaging && showScore && <VideoOverlayText>Correct! Score: <span>{displayTime}</span></VideoOverlayText>}
+                        {!wrongAnswerMessaging && !showScore &&<VideoOverlayText>IMPULSE</VideoOverlayText>}
 
-            <VideoOverlayDiv style={{margin: 'auto'}}>
-                <div style={{minHeight:'3rem'}}>
-                    {wrongAnswerMessaging && <VideoOverlayText>Sorry, wrong answer!</VideoOverlayText>}
-                    {!wrongAnswerMessaging && showScore && <VideoOverlayText>Correct! Score: <span>{displayTime}</span></VideoOverlayText>}
-                    {!wrongAnswerMessaging && !showScore &&<VideoOverlayText>IMPULSE</VideoOverlayText>}
+                    </div>
+                    
+                    {gameOverMessaging && !startBroadcast && <VideoOverlayText>Game Over</VideoOverlayText>}
+                </VideoOverlayDiv>
 
-                </div>
-                
-                {gameOverMessaging && !startBroadcast && <VideoOverlayText>Game Over</VideoOverlayText>}
-            </VideoOverlayDiv>
-
-            <CSSTransition
-                appear
-                timeout={400}
-                in={true}
-                classNames={"form"}
-                unmountOnExit
-            >
-            <GameText>Game: {slicedGame(game)}</GameText>
-            </CSSTransition>
-            <ScoreAndTimerDiv>
-                <TimerText>Score: {score}</TimerText>
-                {gameType !== 'predictive' &&
-                    <Timer 
+                <CSSTransition
+                    appear
+                    timeout={400}
+                    in={true}
+                    classNames={"form"}
+                    unmountOnExit
+                    >
+                <GameText>Game: {slicedGame(game)}</GameText>
+                </CSSTransition>
+                <ScoreAndTimerDiv>
+                    <TimerText>Score: {score}</TimerText>
+                    {gameType !== 'predictive' &&
+                        <Timer 
                         gameType={gameType}
                         setStartTimer={setStartTimer}
                         startTimer={startTimer}
@@ -173,44 +166,42 @@ const Live = ({location}) => {
                         setButtonsDisabled={setButtonsDisabled}
                         counter={counter}
                         setCounter={setCounter}
-                    />
-                }
-                </ScoreAndTimerDiv>
-            <PlayerWrapper style={startBroadcast ? {pointerEvents:'none'} : {pointerEvents:'auto'}}>
-                <Player 
-                    setStartTimer={setStartTimer}
-                    setButtonsDisabled={setButtonsDisabled}
-                    setQuestion={setQuestion}
-                    setStartBroadcast={setStartBroadcast}
-                    startBroadcast={startBroadcast}
-                />
-                <AnswersWrapper style={{marginTop:'0'}} buttonsDisabled={buttonsDisabled}>
-                    <QuestionText>{gameType !== 'predictive' ? question.question : predictiveQuestion.question}</QuestionText>
-                    <ButtonWrapper>
-                        {
-                            gameType === 'poll' && question && question.answersArray.length > 0 && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendPollAnswer(e)}>{answer}</Button>)
-                        }
-                        {
-                            gameType === 'quiz' && question && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendQuizAnswer(e)}>{answer}</Button>)
-                        }
-                        {
-                            gameType === 'predictive' && predictiveQuestion && predictiveQuestion && predictiveQuestion.answersArray.map((answer,i) => <Button width={predictiveQuestion.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={predictiveQuestion.id} key={i} onClick={i => setPredictiveAnswer({id:predictiveQuestion.id,answerIndex:i})}>{answer}</Button>)
-                        }
-                    </ButtonWrapper>
-                </AnswersWrapper>
-            </PlayerWrapper>
-            <PageBreak />
-            <LeaderboardWrapper>
-                <Text>{gameType === 'poll' ? 'Poll Results' : 'Leader Board'}</Text>
-                <LeaderboardUl>
-                {
-                    leaders && leaders.length > 0 
-                    ? leaders.map(({email,score},i) => <Li key={i}>{i+1}. {email}: {score}</Li>)
-                    : null
-                }
-                </LeaderboardUl>
-            </LeaderboardWrapper>
-        </div>
+                        />
+                    }
+                    </ScoreAndTimerDiv>
+                <PlayerWrapper style={startBroadcast ? {pointerEvents:'none'} : {pointerEvents:'auto'}}>
+                    <Player 
+                        setStartTimer={setStartTimer}
+                        setButtonsDisabled={setButtonsDisabled}
+                        setQuestion={setQuestion}
+                        setStartBroadcast={setStartBroadcast}
+                        startBroadcast={startBroadcast}
+                        />
+                    <AnswersWrapper style={{marginTop:'0'}} buttonsDisabled={buttonsDisabled}>
+                        <QuestionText>{question.question}</QuestionText>
+                        <ButtonWrapper>
+                            {
+                                gameType === 'quiz' && question && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendQuizAnswer(e)}>{answer}</Button>)
+                            }
+                        </ButtonWrapper>
+                    </AnswersWrapper>
+                </PlayerWrapper>
+                <PageBreak />
+                <LeaderboardWrapper>
+                    <Text>{gameType === 'poll' ? 'Poll Results' : 'Leader Board'}</Text>
+                    <LeaderboardUl>
+                    {
+                        leaders && leaders.length > 0 
+                        ? leaders.map(({email,score},i) => <Li key={i}>{i+1}. {email}: {score}</Li>)
+                        : null
+                    }
+                    </LeaderboardUl>
+                </LeaderboardWrapper>
+            </LiveSection>
+            <LiveAside>
+                <Chat messages={messages} isTyping={isTyping} />
+            </LiveAside>
+        </LiveWrapper>
     );
 }
 
