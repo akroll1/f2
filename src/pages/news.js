@@ -129,7 +129,7 @@ const News = () => {
 		// console.log('tags: ',tags);
 	return (
 		<>
-			<Heading variant="h3" style={{margin: '1rem'}}>The Latest Boxing News</Heading>
+			<Heading variant="h3" style={{fontWeight:'bold',margin: '1rem'}}>The Latest Boxing News</Heading>
 			<SearchWrapper>
 				<form onSubmit={e => e.preventDefault()} className="search">
 					<label htmlFor="shows-page-search-input">

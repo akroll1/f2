@@ -1,6 +1,23 @@
 import styled from '@emotion/styled'
 import {Link} from 'react-router-dom'
 
+export const LiveWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    position: relative;
+`;
+export const LiveSection = styled.section`
+    width: 60%;
+`;
+export const LiveAside = styled.section`
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+`;
 export const PlayerWrapper = styled.div`
     position: relative;
     width: 100%;
@@ -71,6 +88,7 @@ export const ScoreAndTimerDiv = styled.div`
   }
 `;
 export const GameText = styled.h1`
+  width: 100%;
   text-align: center;
   margin: 0rem auto;
 `;
@@ -101,7 +119,7 @@ export const Button = styled.button`
   }
 `;
 export const PageBreak = styled.div`
-  width: 50%;
+  width: 90%;
   margin: 0.5rem auto;
   margin-top: 2.5rem;
   border-top: 3px solid #c13c43;
