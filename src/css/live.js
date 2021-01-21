@@ -1,6 +1,42 @@
 import styled from '@emotion/styled'
 import {Link} from 'react-router-dom'
 
+export const ChatButton = styled.button`
+    font-weight: bold;
+    margin-top: 0.3rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 40%;
+    font-size: 0.8rem;
+    height: 1.5rem;
+    text-decoration: none;
+    background: #d22509;
+    color: #FFF;
+    &:hover {
+        cursor: pointer;
+        background: #ff2805;
+        -webkit-transition: background 0.2s ease-in-out;
+        -moz-transition: background 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;
+        color: #FFF;
+      }
+`
+export const ChatForm = styled.form`
+    width: 90%;
+`;
+export const ChatInput = styled.input`
+    width: 100%;
+    border: 1px solid #ccc;
+    background: #FFF;
+    margin: 0 0 5px;
+    margin-bottom: 1rem;
+    padding: 10px;
+    placeholder {
+    color: #888;
+}
+`;
 export const LiveWrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -11,11 +47,14 @@ export const LiveWrapper = styled.div`
 `;
 export const LiveSection = styled.section`
     width: 60%;
+    height: 100%;
 `;
-export const LiveAside = styled.section`
+export const LiveAside = styled.aside`
     width: 20%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     padding: 1rem;
 `;
 export const PlayerWrapper = styled.div`
@@ -96,7 +135,7 @@ export const Button = styled.button`
   font-weight: ${props => props.buttonsDisabled ? `400` : `600`};
   border-radius: 3px; 
   cursor: ${props => props.buttonsDisabled ? 'unset' : 'pointer'};
-  width: ${props => props.width === 4 ? `14%` : `17%`};
+  width: ${props => props.width === 4 ? `20%` : `28%`};
   border: ${props => props.buttonsDisabled ? `#950451` : `1px solid #FFF`};
   background: ${props => props.buttonsDisabled ? `#85787f` :`#c13c43`};
   color: #FFF;
@@ -106,7 +145,7 @@ export const Button = styled.button`
   } 
   margin-bottom: 1rem;
   padding: 10px;
-  font-size: 15px;
+  font-size: 14px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
   &:hover {
     background: #d60000;
@@ -132,7 +171,7 @@ export const AnswersWrapper = styled.div`
   top: 30%;
   z-index: 1000;
   pointer-events: ${props => props.buttonsDisabled ? `none` : `auto`};
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -211,7 +250,7 @@ export const ButtonWrapper = styled.div`
   }
 `;
 export const QuestionText = styled.h2`
-  width: 50%;
+  width: 85%;
   background: rgba(0,0,0,0.4);
   border-radius: 5px;
   color: #FFF;
