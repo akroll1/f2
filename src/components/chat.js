@@ -1,10 +1,10 @@
 import React from 'react'
 import { ChatFeed, Message } from 'react-chat-ui'
 
-const Chat = ({messages, isTyping}) => {
+const Chat = ({chatMessages, isTyping}) => {
     return (
         <ChatFeed
-            messages={messages} // Array: list of message objects
+            messages={chatMessages} // Array: list of message objects
             isTyping={isTyping} 
             hasInputField={false} 
             showSenderName 
@@ -12,13 +12,13 @@ const Chat = ({messages, isTyping}) => {
             bubbleStyles={
                 {
                     text: {
-                        fontSize: '1rem',
+                        fontSize: '0.7rem',
                         color: '#333'
                     },
                     chatbubble: {
                         borderRadius: '10px',
                         padding: '0.5rem',
-                        marginBottom:'5rem'
+                        marginBottom:'5px'
                     }
                 }
             }

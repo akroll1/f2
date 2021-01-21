@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {LiveAside,LiveSection,LiveWrapper,ButtonWrapper,GameText,VideoOverlayDiv,VideoOverlayText,PageBreak,TimerText,ScoreAndTimerDiv,LeaderboardWrapper, LeaderboardUl, Li,PlayerWrapper,Button,QuestionText,Text,AnswersWrapper} from '../css/live';
+import {ChatButton,ChatForm,ChatInput,LiveAside,LiveSection,LiveWrapper,ButtonWrapper,GameText,VideoOverlayDiv,VideoOverlayText,PageBreak,TimerText,ScoreAndTimerDiv,LeaderboardWrapper, LeaderboardUl, Li,PlayerWrapper,Button,QuestionText,Text,AnswersWrapper} from '../css/live';
 import Player from '../components/player-components/player';
 import Timer from '../components/player-components/timer';
 import jwt_decode from 'jwt-decode'
@@ -16,11 +16,20 @@ const Live = ({location}) => {
 
     const game = "kroll-7";
     // only need access token, ID token can immediately be rolled over into user, in useEffect...
-    const [messages,setMessages] = useState([{
+    const [chatMessages,setChatMessages] = useState([{
         id: '1234-5678-90',
         message: 'here is a message',
         senderName: 'Bobby'
+    },{
+        id: '1234-5678-90',
+        message: 'here is a second message',
+        senderName: 'Mike'
+    },{
+        id: '1234-5678-90',
+        message: 'here is a third message',
+        senderName: 'Bobby'
     }]);
+    const [chatInput, setChatInput] = useState('');
     const [isTyping, setIsTyping] = useState(true);
     const [token, setToken] = useState('');
     const [user, setUser] = useState({});    
@@ -118,7 +127,7 @@ const Live = ({location}) => {
             let timer = document.getElementById('timer');
             timer.innerText = 100;
             setCounter(100);
-        }.bind(this),11000)
+        }.bind(this),8000)
     };
     
     const getTime = () => {
@@ -127,11 +136,25 @@ const Live = ({location}) => {
         timer.innerHTML = time;
         return time;
     }
+    const onChatSubmit = (e) => {
+        e.preventDefault();
+        let message = {
+            id: 'here is id',
+            senderName:'name here',
+            message: chatInput
+        };
+        setChatInput('');
+        setChatMessages([...chatMessages,message]);
+    }
+    const handleChatInput = (e) => {
+        setChatInput(e.target.value);
+    };
 
+    console.log('chatMessages: ',chatMessages);
     return (
         <LiveWrapper>
             <LiveAside>
-                <p>aside</p>
+                <p>List of Games goes here.</p>
             </LiveAside>
             <LiveSection>
                 <VideoOverlayDiv style={{margin: 'auto'}}>
@@ -198,8 +221,17 @@ const Live = ({location}) => {
                     </LeaderboardUl>
                 </LeaderboardWrapper>
             </LiveSection>
-            <LiveAside>
-                <Chat messages={messages} isTyping={isTyping} />
+            <LiveAside style={{maxHeight:'50%',border:'1px solid lightgray',overflow:'scroll'}}>
+                <Chat chatMessages={chatMessages} isTyping={isTyping} />
+                <ChatForm  onSubmit={onChatSubmit}>
+                    <ChatInput 
+                        id="chat"
+                        onChange={(e) => handleChatInput(e)}
+                        placeholder="Message" 
+                        value={chatInput}
+                    />
+                    <ChatButton>Send</ChatButton>
+                </ChatForm>
             </LiveAside>
         </LiveWrapper>
     );

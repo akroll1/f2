@@ -20,7 +20,7 @@ export const NewsButton = styled(Link)`
         -moz-transition: background 0.2s ease-in-out;
         transition: background-color 0.2s ease-in-out;
         color: #FFF;
-      }
+    }
 `;
 export const SearchWrapper = styled.div`
     width: 25%;
