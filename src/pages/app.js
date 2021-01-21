@@ -7,6 +7,7 @@ import Live from './live';
 import Boxers from './boxers';
 import NotFound from './not-found';
 import { animated, useTransition } from "react-spring";
+import TagManager from 'react-gtm-module'
 
 // import About from '../../Components/About';
 // import GymsPage from '../Gyms';
@@ -18,6 +19,10 @@ import { animated, useTransition } from "react-spring";
 // import AdminDashboard from '../../Admin/AdminDashboard';
 // import Api from '../../Components/API/Api';
 // import ReactGA from 'react-ga';
+const tagManagerArgs = {
+    gtmId: 'GTM-WCHF53X'
+};
+TagManager.initialize(tagManagerArgs)
 
 const App = () => {
 	const location = useLocation();
