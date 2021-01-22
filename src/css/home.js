@@ -92,7 +92,7 @@ export const HeroDiv1 = styled.div`
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 27%;
     padding: 3rem 1rem;
     @media(max-width: 767px){
         margin-top: 1rem;
@@ -103,7 +103,7 @@ export const HeroDiv1 = styled.div`
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 53%;
     padding: 3rem 1rem;
     @media(max-width: 767px){
         margin-top: 1rem;
