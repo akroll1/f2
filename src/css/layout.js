@@ -24,6 +24,10 @@ export const NavLinks = styled(Link)`
         color: #b9413e;
         text-decoration: none;
     }
+    @media(max-width: 499px){
+        padding: 5px;
+        font-size: 1rem;
+    }
 `;
 export const NavLinkLive = styled(Link)`
     color: #9e1212;
@@ -38,6 +42,10 @@ export const NavLinkLive = styled(Link)`
     &:hover {
         color: #b9413e;
         text-decoration: none;
+    }
+    @media(max-width: 499px){
+        padding: 5px;
+        font-size: 1rem;
     }
 `;
 export const Signin = styled(Link)`

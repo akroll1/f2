@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useSpring, animated as a } from 'react-spring'
 import {Title} from '../components/title'
-import {VideoWrapper,HeroSubtext,HeroWrapper,HeroDiv,HeroText,HeroImg,NewsButton} from '../css/home'
+import {VideoWrapper,HeroSubtext,HeroWrapper,HeroDiv2,HeroVideoText,HeroDiv1,HeroText,HeroImg,NewsButton} from '../css/home'
 import '../css/spring.css'
 import { RiArrowRightSLine } from "react-icons/ri"
 import axios from 'axios'
@@ -20,8 +20,8 @@ const Home = () => {
 	let bingConfig = {
 		headers: {
 			'Ocp-Apim-Subscription-Key':'6a73128b44654f1fa4495445ffb5b927',
-			'data':'jsonp',
-			'Access-Control-Allow-Origin':'*'
+			'data':'jsonp'
+			// 'Access-Control-Allow-Origin':'*'
 		}
 	};
     useEffect(() => {
@@ -40,17 +40,17 @@ const Home = () => {
         <>
             <Title/>
             <HeroWrapper>
-                <HeroDiv style={{paddingTop:'6rem'}}>
+                <HeroDiv1>
                     <HeroText>Latest Boxing News</HeroText>
                     <HeroSubtext>Updated in Real Time</HeroSubtext>
                     <NewsButton to="/news">News<span style={{marginLeft: '1rem',marginTop: '8px'}}><RiArrowRightSLine /></span></NewsButton>
-                </HeroDiv>
-                <HeroDiv style={{width: '50%'}}>
+                </HeroDiv1>
+                <HeroDiv2>
                     <HeroImg src="/boxer_in_ring.jpg"></HeroImg>
-                </HeroDiv>
+                </HeroDiv2>
             </HeroWrapper>
             <VideoWrapper>
-            <HeroText style={{display: 'block',width: '100%',padding:'2rem',marginLeft: '2rem',paddingBottom:'0'}}>Latest Boxing Videos</HeroText>
+            <HeroVideoText style={{display: 'block',width: '100%',padding:'2rem',marginLeft: '2rem',paddingBottom:'0'}}>Latest Boxing Videos</HeroVideoText>
                 <VideoThumbs videos={videos}/>
             </VideoWrapper>
         </>
