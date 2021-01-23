@@ -78,7 +78,7 @@ const Player = ({startBroadcast, setStartBroadcast, setStartTimer, setButtonsDis
     },[])
 
     const getDeviceWidth = (width) => {
-        if(width > 768) return 325;
+        if(width > 768) return 350;
         if(width > 605) return 300;
         if(width >= 550) return 275;
         if(width >= 500) return 250;

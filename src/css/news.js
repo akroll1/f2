@@ -23,8 +23,17 @@ export const NewsButton = styled(Link)`
     }
 `;
 export const SearchWrapper = styled.div`
-    width: 25%;
+    width: 30%;
     margin: auto;
+    @media(max-width:1099px){
+        width: 40%;
+    }
+    @media(max-width:767px){
+        width: 75%;
+    }
+    @media(max-width:450px){
+        width: 80%;
+    }
 `;
 export const NewsCard = styled.div`
     margin-top: 1rem;
@@ -61,6 +70,12 @@ export const NewsWrapper = styled.div`
     align-items: center;
     flex-direction: column;
     width: 60%;
+    @media(max-width:767px){
+        width: 75%;
+    }
+    @media(max-width:450px){
+        width: 90%;
+    }
 `;
 export const TagsContainer = styled.div`
     padding: 1rem;

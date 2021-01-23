@@ -5,6 +5,7 @@ import Home from './home';
 import News from './news';
 import Live from './live';
 import Boxers from './boxers';
+import Dashboard from './dashboard';
 import NotFound from './not-found';
 import { animated, useTransition } from "react-spring";
 import TagManager from 'react-gtm-module'
@@ -14,7 +15,6 @@ import TagManager from 'react-gtm-module'
 // import ShowsPage from '../Shows';
 // import Show from '../Shows/Show';
 // import Article from '../Articles/Article';
-// import Dashboard from '../Dashboard';
 // import Books from '../Books';
 // import AdminDashboard from '../../Admin/AdminDashboard';
 // import Api from '../../Components/API/Api';
@@ -34,6 +34,7 @@ const App = () => {
 				<Route exact path="/news" component={News} />
 				<Route exact path="/boxers" component={Boxers} />
 				<Route exact path="/live" component={Live} />
+				<Dashboard exact path="/api/dashboard" />
 				{/*<About exact path="/about" />
 				<GymsPage exact path="/gyms" />
 				<ShowsPage exact path="/shows" />
@@ -42,7 +43,6 @@ const App = () => {
 				<Books exact path="/books" />
 				<Books exact path="/book/:book" />
 				<Api exact path="/api" />
-				<Dashboard exact path="/api/dashboard" />
 				<AdminDashboard exact path="/api/dashboard/admin/videoform" />
 				*/}
 				<Route path="*" component={NotFound}/> 

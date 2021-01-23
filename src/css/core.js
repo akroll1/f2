@@ -1,6 +1,11 @@
 import styled from '@emotion/styled'
 import {Typography,Button} from '@material-ui/core'
 
+export const SelectWrapper = styled.div`
+    width: 30%;
+    margin: 1rem auto;
+    cursor: pointer;
+`;
 export const B = styled(Button)`
     color: #333;
 `;

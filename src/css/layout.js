@@ -55,7 +55,7 @@ export const Signin = styled(Link)`
     color: #FFF;
     text-decoration: none; 
     &:hover {
-        color: #b9413e;
+        color: #ebe9e9;
     }
 `;
 export const Navigation = styled.div`

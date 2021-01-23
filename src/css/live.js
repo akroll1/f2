@@ -250,7 +250,7 @@ export const ButtonWrapper = styled.div`
   }
 `;
 export const QuestionText = styled.h2`
-  width: 85%;
+  width: 80%;
   background: rgba(0,0,0,0.4);
   border-radius: 5px;
   color: #FFF;
