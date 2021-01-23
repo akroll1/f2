@@ -29,12 +29,13 @@ export const TextArea = styled.textarea`
   }
 `;
 export const EditorInput = styled.input`
+  font-size: 1rem;
   width: 100%;
   border: 1px solid #ccc;
   background: #FFF;
-  margin: 0 0 5px;
+  margin: 0 0 2px;
   margin-bottom: 1rem;
-  padding: 10px;
+  padding: 0.5rem;
   placeholder {
     color: #888;
   }
@@ -94,22 +95,45 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  width: 250px;
-  height: 35px;
-  background-color: #5995ef;
-  color: #fff;
-  border-radius: 3px;
-  margin: 1rem;
-  font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 35%;
+    height: 2.5rem;
+    color: #fff;
+    border-radius: 3px;
+    margin: 1rem auto;
+    font-weight: 600;
+    background: #d22509;
+    color: #FFF;
+    box-shadow: 0 0.05rem 0.15rem rgba(0,0,0,0.2);
+    &:hover {
+        background: #ff2805;
+        -webkit-transition: background 0.2s ease-in-out;
+        -moz-transition: background 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;
+        color: #FFF;
+        box-shadow: 0 0.15rem 0.25rem rgba(0,0,0,0.2);
+    }
 `;
 export const SaveDraftButton = styled.button`
-  width: 250px;
-  height: 35px;
-  background-color: #9e9e9e;
-  color: #fff;
-  border-radius: 3px;
-  margin: 1rem;
-  font-weight: 600;
+    box-shadow: 0 0.05rem 0.15rem rgba(0,0,0,0.2);
+    font-size: 1rem;
+    cursor: pointer;
+    width: 35%;
+    height: 2.5rem;
+    background: #9e9e9e;
+    color: #fff;
+    border-radius: 3px;
+    margin: 1rem auto;
+    font-weight: 600;
+    &:hover {
+        background: darkgray;
+        -webkit-transition: background 0.2s ease-in-out;
+        -moz-transition: background 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;
+        color: #FFF;
+        box-shadow: 0 0.15rem 0.25rem rgba(0,0,0,0.2);
+}
 `;
 
 export const Title = styled.h1`

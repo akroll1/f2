@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
-import ReactQuill from "react-quill";
+import ReactQuill from 'react-quill'; 
+import 'react-quill/dist/quill.snow.css'; 
 import Amplify, {API, Auth, graphqlOperation} from "aws-amplify";
 // import aws_exports from "../../aws-exports";
 // import { createArticle } from "../../graphql/mutations";
@@ -22,60 +23,62 @@ const Editor = () => {
     useEffect(() => {
         setLoading(false);
     },[]);
-    const articleTitle = 'article title';
-    const articleSubtitle = 'article subtitle';
-    const articleAuthor = 'article author';
-    const articleBody = 'article body';
     const editorChange = html => {
         setArticle({...article, articleBody: html});
     };
     const handleChange = (e) => {
-        console.log('handleChange, e: ',e);
+        console.log('handleChange, e: ',e.target.id);
+        setArticle({...article,[e.target.id]: e.target.value})
     }
+    let {articleTitle,articleSubtitle,articleAuthor,articleBody} = article;
     return (
-        <div id="quill">
+        <div id="quill" style={{marginBottom: '5rem'}}>
           <Form>
             <Label>Title</Label>
             <Input
+              id='articleTitle'
               value={articleTitle}
               type="text"
-              onChange={e => handleChange(e)}
+              onChange={handleChange}
               label="Title"
-              placeholder="Enter Article title"
+              placeholder="Article Title"
             />
 
             <Label>Sub-Title</Label>
             <Input
+              id='articleSubtitle'
               value={articleSubtitle}
               type="text"
-              onChange={e => handleChange(e)}
+              onChange={handleChange}
               label="Sub-title"
-              placeholder="Enter Article Sub-title"
+              placeholder="Sub-Title"
             />
 
             <Label>Author</Label>
             <Input
+              id='articleAuthor'
               value={articleAuthor}
               type="text"
-              onChange={e => handleChange(e)}
+              onChange={handleChange}
               label="Author"
-              placeholder="Author Name"
+              placeholder="Author"
             //   ref={input => (this.author = input)}
             />
 
             <Label>Content</Label>
-            <div className="_quill">
               <ReactQuill
+                id='quill'
+                theme='snow'
                 value={articleBody}
-                style={{width: '100%'}}
+                style={{width: '100%', height: '15rem',marginBottom:'3rem'}}
                 // ref={editorRef}
-                onChange={html => editorChange(html)}
-                rows={3}
+                onChange={editorChange}
+                placeholder='Article body...'
               />
-            </div>
             <br />
             <Button
               type="button"
+              style={{marginBottom:'0.5rem'}}
             //   onClick={() => handleArticleSubmit()}
             >
               Publish

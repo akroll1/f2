@@ -57,10 +57,10 @@ const Dashboard = () => {
         { value: 'SHOW', label: 'Post a Show', type: 'Show' }
         // {value: "USER",label:"Your Profile Info",type: "User" },
     ];
-    const onSelectChange = e => {
-        let { value } = e;
-        console.log('change: ',value);
-        setSelectValue(e);
+    const onSelectChange = selectObj => {
+        let { value } = selectObj;
+        // console.log('change: ',value);
+        setSelectValue(selectObj);
 		// this.handleSelectedForm(value);
 		// let { userSub } = this.state;
 		// this.getClientImages(userSub, value);
