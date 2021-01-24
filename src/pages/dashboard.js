@@ -81,7 +81,7 @@ const Dashboard = () => {
                     options={options}
                 />
             </SelectWrapper>
-            <Editor />
+            {selectValue.value === 'ARTICLE' && <Editor />}
         </>
     )
 }

@@ -35,13 +35,13 @@ const Live = ({location}) => {
     const [user, setUser] = useState({});    
 
     const [score, setScore] = useState(0);
+    const [time, setTime] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [displayTime, setDisplayTime] = useState(null);
     const [startTimer, setStartTimer] = useState(false);
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     
     const [leaders, setLeaders] = useState(null);
-    const [counter, setCounter] = useState(100);
     const [startBroadcast,setStartBroadcast] = useState(false);
     const [wrongAnswerMessaging, setWrongAnswerMessaging] = useState(false);
     const [gameOverMessaging, setGameOverMessaging] = useState(false);
@@ -91,6 +91,7 @@ const Live = ({location}) => {
         websocket.send(JSON.stringify({ action: 'routeUserData', data: {...user}}));
     };
     const sendQuizAnswer = e => {
+        console.log('yo');
         setButtonsDisabled(true);
         let time = getTime();
         if(e.target.id == question.answerIndex){
@@ -106,35 +107,28 @@ const Live = ({location}) => {
         }
         setButtonsDisabled(x => !x);
         setStartTimer(x => !x);
-        setShowScore(x => !x);
+        // setShowScore(x => !x);
         setDisplayTime(time);
         getLeaders();
     };
-    const sendPollAnswer = e => {
-        setButtonsDisabled(true);
-        let userAnswer = {
-            id: question.questionId,
-            pollAnswerIndex: e.target.id 
-        }
-        websocket.send(JSON.stringify({ action: 'routePoll', data: {...user,...userAnswer}}));
-    };
 
     const getLeaders = () => {
-        setTimeout(function() {
+        setTimeout(() => {
             websocket.send(JSON.stringify({action: 'leaderboard',data: {...user}}));
             setShowScore(false);
             setWrongAnswerMessaging(false);
-            let timer = document.getElementById('timer');
-            timer.innerText = 100;
-            setCounter(100);
-        }.bind(this),8000)
+            // let timer = document.getElementById('timer');
+            // timer.innerText = 100;
+        },8000);
     };
     
-    const getTime = () => {
-        let timer = document.getElementById("timer");
-        let time = parseInt(timer.innerText);
-        timer.innerHTML = time;
-        return time;
+    const getTime = (time) => {
+        console.log('time 125: ',time);
+        setTime(time);
+        // let timer = document.getElementById("timer");
+        // let time = parseInt(timer.innerText);
+        // timer.innerHTML = time;
+        // return time;
     }
     const onChatSubmit = (e) => {
         e.preventDefault();
@@ -178,17 +172,15 @@ const Live = ({location}) => {
                 <GameText>Game: {slicedGame(game)}</GameText>
                 </CSSTransition>
                 <ScoreAndTimerDiv>
-                    <TimerText>Score: {score}</TimerText>
                     {gameType !== 'predictive' &&
                         <Timer 
-                        gameType={gameType}
-                        setStartTimer={setStartTimer}
-                        startTimer={startTimer}
-                        setShowScore={setShowScore}
-                        showScore={showScore}
-                        setButtonsDisabled={setButtonsDisabled}
-                        counter={counter}
-                        setCounter={setCounter}
+                            score={score}
+                            time={time}
+                            getTime={getTime}
+                            gameType={gameType}
+                            setStartTimer={setStartTimer}
+                            startTimer={startTimer}
+                            setButtonsDisabled={setButtonsDisabled}
                         />
                     }
                     </ScoreAndTimerDiv>
@@ -199,7 +191,7 @@ const Live = ({location}) => {
                         setQuestion={setQuestion}
                         setStartBroadcast={setStartBroadcast}
                         startBroadcast={startBroadcast}
-                        />
+                    />
                     <AnswersWrapper style={{marginTop:'0'}} buttonsDisabled={buttonsDisabled}>
                         <QuestionText>{question.question}</QuestionText>
                         <ButtonWrapper>
@@ -222,7 +214,10 @@ const Live = ({location}) => {
                 </LeaderboardWrapper>
             </LiveSection>
             <LiveAside style={{maxHeight:'50%',border:'1px solid lightgray',overflow:'scroll'}}>
-                <Chat chatMessages={chatMessages} isTyping={isTyping} />
+                <Chat 
+                    chatMessages={chatMessages} 
+                    isTyping={isTyping} 
+                />
                 <ChatForm  onSubmit={onChatSubmit}>
                     <ChatInput 
                         id="chat"
