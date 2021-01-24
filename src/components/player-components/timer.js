@@ -1,34 +1,44 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useRef} from 'react'
 import {TimerText} from '../../css/live'
 
-const Timer = ({gameType,counter, setCounter,setStartTimer, startTimer, setShowScore, showScore, setButtonsDisabled}) => {
-
+const Timer = ({getTime,score,gameType,setStartTimer, startTimer, setButtonsDisabled}) => {
+    const [counter, setCounter] = useState(100);
+    const timer = useRef(counter);
     useEffect(() => {
         if(startTimer){
             var timers;
-            if(gameType === 'quiz'){
-                timers =
-                counter > 0 && setInterval(() => setCounter(counter-1), 50);
-            } else {
-                timers =
-                counter > 0 && setInterval(() => setCounter(counter-1), 1000);
+            // if(gameType === 'quiz'){
+                timers = setInterval(() => setCounter(x => x-1), 75);
+            // } 
+            // else {
+            //     timers =
+            //     counter > 0 && setInterval(() => setCounter(counter-1), 1000);
             }
             return () => {
                 clearInterval(timers);
             }
-        }
-    }, [counter,startTimer]);  
+        // }
+    }, [startTimer, counter]);  
 
-    if(counter == 0){
+    if(startTimer == false && counter != 0){
+        console.log('getTime');
+        getTime(counter);
+    }
+
+    if(counter === 0){
         setButtonsDisabled(true);
         setStartTimer(false);
-        setShowScore(false);
-        setCounter(100);
+        setTimeout(() => {
+            setCounter(100);
+        },3000);
     } 
+    // console.log('counter: ',counter);
+    let t = timer.current = counter;
     return (
-        <div style={{display: 'inline-flex'}}>
-            <TimerText>Timer:</TimerText>
-            <TimerText id="timer">{counter}</TimerText>
+        <div style={{display: 'inline-flex',justifyContent: 'space-around'}}>
+            <TimerText id="timer">Score: {score}</TimerText>
+            <TimerText>Timer: {t}</TimerText>
+            {/* <TimerText>Score: {score}</TimerText> */}
         </div>
     )
 };

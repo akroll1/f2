@@ -74,7 +74,7 @@ export const VideoOverlayDiv = styled.div`
     margin: 0.5rem auto;
     min-height: 2rem;
     border-radius: 10px;
-    width: 50%;
+    width: 90%;
 `;
 export const VideoOverlayText = styled.h1`
   position: relative;
