@@ -38,6 +38,9 @@ export const ChatInput = styled.input`
 }
 `;
 export const LiveWrapper = styled.div`
+    width: 98%;
+    margin: 0.5rem auto;
+    min-height: 75vmin;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,11 +49,17 @@ export const LiveWrapper = styled.div`
     position: relative;
 `;
 export const LiveSection = styled.section`
-    width: 60%;
+    width: 55%;
     height: 100%;
 `;
 export const LiveAside = styled.aside`
+    overflow-x: hidden;
+    overflow-y: scroll;
     width: 20%;
+    border: 1px solid lightgray;
+    // margin: 0.5rem auto;
+    overflow: scroll;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -135,7 +144,7 @@ export const Button = styled.button`
   font-weight: ${props => props.buttonsDisabled ? `400` : `600`};
   border-radius: 3px; 
   cursor: ${props => props.buttonsDisabled ? 'unset' : 'pointer'};
-  width: ${props => props.width === 4 ? `20%` : `28%`};
+  width: ${props => props.width === 4 ? `19%` : `25%`};
   border: ${props => props.buttonsDisabled ? `#950451` : `1px solid #FFF`};
   background: ${props => props.buttonsDisabled ? `#85787f` :`#c13c43`};
   color: #FFF;
@@ -160,7 +169,7 @@ export const Button = styled.button`
 export const PageBreak = styled.div`
   width: 90%;
   margin: 0.5rem auto;
-  margin-top: 2.5rem;
+  margin-top: 4.5rem;
   border-top: 3px solid #c13c43;
   @media(max-width: 767px){
       margin-top: 1rem;

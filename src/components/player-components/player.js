@@ -15,8 +15,8 @@ import {PlayerWrapperPlayer, QuestionText} from '../../css/live';
 const Player = ({startBroadcast, setStartBroadcast, setStartTimer, setButtonsDisabled, setQuestion}) => {
 
     const videoSrc = 'https://player.live-video.net/1.0.0/amazon-ivs-player.min.js';
-    const stream = "https://fcc3ddae59ed.us-west-2.playback.live-video.net/api/video/v1/us-west-2.893648527354.channel.xhP3ExfcX8ON.m3u8";
-    // const stream = 'https://31c84084a50b.us-east-1.playback.live-video.net/api/video/v1/us-east-1.896748474789.channel.INm8ucGR84N2.m3u8';
+    // const stream = "https://fcc3ddae59ed.us-west-2.playback.live-video.net/api/video/v1/us-west-2.893648527354.channel.xhP3ExfcX8ON.m3u8";
+    const stream = 'https://31c84084a50b.us-east-1.playback.live-video.net/api/video/v1/us-east-1.896748474789.channel.INm8ucGR84N2.m3u8';
     const divEl = useRef(null);
     const videoEl = useRef(null);
     const [streamUrl, setStreamUrl] = useState(stream);

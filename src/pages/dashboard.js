@@ -14,8 +14,10 @@ import {
 } from '@aws-amplify/ui-react';
 // import { loader } from '../../Components/PageComponents/loader';
 import Editor from '../components/utilities/editor'
+import LiveAdmin from '../components/utilities/live-admin'
 import Select from 'react-select';
 import {SelectWrapper,Heading} from '../css/core'
+import {DashboardHeading} from '../css/dashboard'
 // import * as Query from '../../graphql/queries';
 // import * as Mutation from '../../graphql/mutations';
 // import Media from '../Media';
@@ -50,7 +52,7 @@ const Dashboard = () => {
         { value: 'BOXER', label: 'Create a Boxer Profile', type: 'Boxer' },
         { value: 'GYM', label: 'Create a Gym Profile', type: 'Gym' },
         {
-            value: 'PODCAST',
+            value: 'LIVE',
             label: 'Live Stream video or audio podcast',
             type: 'Livestream'
         },
@@ -73,7 +75,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <Heading variant='h3' style={{margin: '1rem auto',fontWeight: 'bold'}}>Dashboard</Heading>
+            <DashboardHeading variant='h3'>Dashboard</DashboardHeading>
             <SelectWrapper>
                 <Select
                     onChange={onSelectChange}
@@ -82,6 +84,7 @@ const Dashboard = () => {
                 />
             </SelectWrapper>
             {selectValue.value === 'ARTICLE' && <Editor />}
+            {selectValue.value === 'LIVE' && <LiveAdmin />}
         </>
     )
 }

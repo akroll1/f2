@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ChatButton,ChatForm,ChatInput,LiveAside,LiveSection,LiveWrapper,ButtonWrapper,GameText,VideoOverlayDiv,VideoOverlayText,PageBreak,TimerText,ScoreAndTimerDiv,LeaderboardWrapper, LeaderboardUl, Li,PlayerWrapper,Button,QuestionText,Text,AnswersWrapper} from '../css/live';
+import {LiveAside,LiveSection,LiveWrapper,ButtonWrapper,GameText,VideoOverlayDiv,VideoOverlayText,PageBreak,TimerText,ScoreAndTimerDiv,LeaderboardWrapper, LeaderboardUl, Li,PlayerWrapper,Button,QuestionText,Text,AnswersWrapper} from '../css/live';
 import Player from '../components/player-components/player';
 import Timer from '../components/player-components/timer';
 import jwt_decode from 'jwt-decode'
@@ -7,8 +7,9 @@ import {slicedGame, getGameType} from '../helpers'
 import {CSSTransition} from 'react-transition-group'
 import '../css/transitions.css'
 import Chat from '../components/chat'
+import GamesAside from '../components/page-components/games-aside'
 
-const Live = ({location}) => {
+const Live = () => {
     // const gameType = getGameType(location.pathname);
     const gameType = 'quiz';
     // const {game, playbackUrl} = location;
@@ -56,15 +57,16 @@ const Live = ({location}) => {
     const [websocket, setWebsocket] = useState({});
     
     useEffect(() => {
+        // this token stuff needs to be integrated with the cognito service...
         // let idToken = jwt_decode(localStorage.getItem('id_token'));
         // let token = localStorage.getItem('id_token');
         // setToken(token);
         // setUser({sub: idToken.sub, email: idToken.email, game});
-        setUser({sub: '123-456-789', email: 'idToken.email', game});
+        setUser({sub: '123-456-789', email: 'idTokenDotEmail', game});
         let token = '1234';
         setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
     },[]);
-    
+
     websocket.onclose = (closeEvent) => {
         setTimeout(() => setReopenSocket(true),2000);
     };
@@ -143,13 +145,13 @@ const Live = ({location}) => {
     const handleChatInput = (e) => {
         setChatInput(e.target.value);
     };
-
-    console.log('chatMessages: ',chatMessages);
+    const handleGameClick = e => {
+        console.log('e.target.id: ',e.target.id);
+    };
+    // console.log('chatMessages: ',chatMessages);
     return (
         <LiveWrapper>
-            <LiveAside>
-                <p>List of Games goes here.</p>
-            </LiveAside>
+            <GamesAside handleGameClick={handleGameClick}/>
             <LiveSection>
                 <VideoOverlayDiv style={{margin: 'auto'}}>
                     <div style={{minHeight:'3rem'}}>
@@ -213,20 +215,14 @@ const Live = ({location}) => {
                     </LeaderboardUl>
                 </LeaderboardWrapper>
             </LiveSection>
-            <LiveAside style={{maxHeight:'50%',border:'1px solid lightgray',overflow:'scroll'}}>
+            <LiveAside>
                 <Chat 
                     chatMessages={chatMessages} 
                     isTyping={isTyping} 
+                    handleChatInput={handleChatInput}
+                    chatInput={chatInput}
+                    onChatSubmit={onChatSubmit}
                 />
-                <ChatForm  onSubmit={onChatSubmit}>
-                    <ChatInput 
-                        id="chat"
-                        onChange={(e) => handleChatInput(e)}
-                        placeholder="Message" 
-                        value={chatInput}
-                    />
-                    <ChatButton>Send</ChatButton>
-                </ChatForm>
             </LiveAside>
         </LiveWrapper>
     );

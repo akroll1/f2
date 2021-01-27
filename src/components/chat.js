@@ -1,17 +1,27 @@
 import React from 'react'
 import { ChatFeed, Message } from 'react-chat-ui'
-
-const Chat = ({chatMessages, isTyping}) => {
+import {ChatButton,ChatForm,ChatInput} from '../css/live'
+const Chat = ({onChatSubmit,handleChatInput,chatInput,chatMessages, isTyping}) => {
     return (
-        <ChatFeed
+    <>
+        <ChatForm onSubmit={onChatSubmit}>
+            <ChatInput 
+                id="chat"
+                onChange={(e) => handleChatInput(e)}
+                placeholder="Message" 
+                value={chatInput}
+            />
+            <ChatButton>Send</ChatButton>
+        </ChatForm>
+         <ChatFeed
+            style={{width: '100%'}}
             messages={chatMessages} // Array: list of message objects
             isTyping={isTyping} 
             hasInputField={false} 
             showSenderName 
             bubblesCentered={false} 
-            bubbleStyles={
-                {
-                    text: {
+            bubbleStyles={{
+                text: {
                         fontSize: '0.7rem',
                         color: '#333'
                     },
@@ -23,6 +33,7 @@ const Chat = ({chatMessages, isTyping}) => {
                 }
             }
         />
+    </>
     )
 }
 export default Chat
