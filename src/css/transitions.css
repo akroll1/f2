@@ -1,0 +1,46 @@
+.form-enter,
+.form-appear {
+    opacity:0;
+  /*We give the list the initial dimension of the list button*/
+}
+/* This is where we can add the transition*/
+.form-enter-active,
+.form-appear-active {
+    opacity: 1;
+    transition: all 200ms;
+}
+.form-button-enter,
+.form-button-appear {
+    opacity:0;
+}
+.form-button-enter-active,
+.form-button-appear-active {
+    opacity: 1;
+    transition: all 800ms;
+}
+.table-enter,
+.table-appear {
+    opacity:0;
+}
+.table-enter-active,
+.table-appear-active {
+    opacity: 1;
+    transition: all 800ms;
+}
+
+/* This fires as soon as the this.state.showList is false */
+/* .form-exit { */
+  /* top: 45px;
+  width: 200px;
+  max-height: 200px;
+  background-color: #9e8949; */
+/* } */
+/* fires as element leaves the DOM*/
+/* .form-exit-active { */
+  /* top: 0;
+  width: 120px;
+  max-height: 40px;
+  color: transparent;
+  background-color: #5a564c;
+  transition: all 400ms; */
+/* } */

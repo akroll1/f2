@@ -1,0 +1,26 @@
+
+.c {
+  position: absolute;
+  /* max-width: 500px; */
+  width: 100%;
+  max-height: 550px;
+  width: 50ch;
+  height: 50ch;
+  cursor: pointer;
+  will-change: transform, opacity;
+}
+
+.front,
+.back {
+  width: 100%;
+  background-size: cover;
+}
+
+.back {
+  width: 100%;
+}
+
+.front {
+  width: 100%;
+  /* background-image: url(https://images.unsplash.com/photo-1540206395-68808572332f?ixlib=rb-1.2.1&w=1181&q=80&auto=format&fit=crop); */
+}

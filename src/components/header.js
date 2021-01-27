@@ -7,9 +7,9 @@ const Header = (props) => (
             <Signin style={props.userSub ? {display: 'none'} : {display:'block'}} to="/api/dashboard">Signin</Signin>
         </AboveNavigation>
         <Navigation>
-            <NavLinks to="/home">Home</NavLinks>
+            <NavLinks to="/">Home</NavLinks>
             <NavLinks to="/news">News</NavLinks>
-            <NavLinks to="/boxers">Boxers</NavLinks>
+            <NavLinks to="/#">Boxers</NavLinks>
             <NavLinkLive to="/live">Live</NavLinkLive>
         </Navigation>
     </HeaderX>
