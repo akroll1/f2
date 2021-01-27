@@ -151,9 +151,11 @@ const Live = () => {
     // console.log('chatMessages: ',chatMessages);
     return (
         <LiveWrapper>
-            <GamesAside handleGameClick={handleGameClick}/>
+            <GamesAside 
+                handleGameClick={handleGameClick}
+            />
             <LiveSection>
-                <VideoOverlayDiv style={{margin: 'auto'}}>
+                {/* <VideoOverlayDiv style={{margin: 'auto'}}>
                     <div style={{minHeight:'3rem'}}>
                         {wrongAnswerMessaging && <VideoOverlayText>Sorry, wrong answer!</VideoOverlayText>}
                         {!wrongAnswerMessaging && showScore && <VideoOverlayText>Correct! Score: <span>{displayTime}</span></VideoOverlayText>}
@@ -161,9 +163,9 @@ const Live = () => {
 
                     </div>
                     {gameOverMessaging && !startBroadcast && <VideoOverlayText>Game Over</VideoOverlayText>}
-                </VideoOverlayDiv>
+                </VideoOverlayDiv> */}
 
-                <CSSTransition
+                {/* <CSSTransition
                     appear
                     timeout={400}
                     in={true}
@@ -171,8 +173,8 @@ const Live = () => {
                     unmountOnExit
                     >
                 <GameText>Game: {slicedGame(game)}</GameText>
-                </CSSTransition>
-                <ScoreAndTimerDiv>
+                </CSSTransition> */}
+                {/* <ScoreAndTimerDiv>
                     {gameType !== 'predictive' &&
                         <Timer 
                             score={score}
@@ -184,7 +186,7 @@ const Live = () => {
                             setButtonsDisabled={setButtonsDisabled}
                         />
                     }
-                    </ScoreAndTimerDiv>
+                </ScoreAndTimerDiv> */}
                 <PlayerWrapper style={startBroadcast ? {pointerEvents:'none'} : {pointerEvents:'auto'}}>
                     <Player 
                         setStartTimer={setStartTimer}
@@ -193,18 +195,18 @@ const Live = () => {
                         setStartBroadcast={setStartBroadcast}
                         startBroadcast={startBroadcast}
                     />
-                    <AnswersWrapper style={{marginTop:'0'}} buttonsDisabled={buttonsDisabled}>
+                    {/* <AnswersWrapper style={{marginTop:'0'}} buttonsDisabled={buttonsDisabled}>
                         <QuestionText>{question.question}</QuestionText>
                         <ButtonWrapper>
                             {
                                 gameType === 'quiz' && question && question.answersArray.map((answer,i) => <Button width={question.answersArray.length === 4 ? 4 : 3} buttonsDisabled={buttonsDisabled} id={i} key={i} onClick={e => sendQuizAnswer(e)}>{answer}</Button>)
                             }
                         </ButtonWrapper>
-                    </AnswersWrapper>
+                    </AnswersWrapper> */}
                 </PlayerWrapper>
                 <PageBreak />
                 <LeaderboardWrapper>
-                    <Text>{gameType === 'poll' ? 'Poll Results' : 'Leader Board'}</Text>
+                    <Text>Viewer Polls/Tweets Below</Text>
                     <LeaderboardUl>
                     {
                         leaders && leaders.length > 0 

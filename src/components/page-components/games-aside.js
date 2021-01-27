@@ -24,7 +24,7 @@ const GamesAside = ({handleGameClick}) => {
     },[])
     console.log('games; ',games);
     return (
-        <LiveAside style={{justifyContent: 'flex-start', padding: '0'}}>
+        <LiveAside style={{justifyContent: 'flex-start'}}>
             <Heading variant='h3' style={{padding:'0.5rem',fontSize: '1.5rem', fontWeight: 'bold'}}>Choose a Podcast</Heading>
             {games && games.length === 0 && <Heading variant='p'>There are no games at this time.</Heading>}
             <TableWrapper>
