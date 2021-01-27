@@ -160,7 +160,6 @@ const Live = () => {
                         {!wrongAnswerMessaging && !showScore &&<VideoOverlayText>IMPULSE</VideoOverlayText>}
 
                     </div>
-                    
                     {gameOverMessaging && !startBroadcast && <VideoOverlayText>Game Over</VideoOverlayText>}
                 </VideoOverlayDiv>
 
