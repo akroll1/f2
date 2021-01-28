@@ -4,4 +4,5 @@ import {Typography,Button} from '@material-ui/core'
 export const DashboardHeading = styled(Typography)`
     margin: 1rem auto;
     font-weight: bold;
+    text-align: center;
 `;

@@ -57,7 +57,7 @@ export const LiveAside = styled.aside`
     overflow-x: hidden;
     overflow-y: scroll;
     width: 18%;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 2px solid lightgray;
     // margin: 0.5rem auto;
     overflow: scroll;
     height: 60vh;
@@ -67,7 +67,7 @@ export const LiveAside = styled.aside`
     justify-content: center;
 `;
 export const PlayerWrapper = styled.div`
-  margin-top: -2rem;  
+  margin-top: 4rem;  
   position: relative;
   width: 100%;
   text-align: center;
