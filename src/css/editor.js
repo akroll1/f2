@@ -80,7 +80,7 @@ export const TableWrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;

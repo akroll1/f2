@@ -13,8 +13,8 @@ import {
 	S3Image
 } from '@aws-amplify/ui-react';
 // import { loader } from '../../Components/PageComponents/loader';
-import Editor from '../components/utilities/editor'
-import LiveAdmin from '../components/utilities/live-admin'
+import Editor from '../components/forms/editor'
+import Podcast from '../components/forms/podcast'
 import Select from 'react-select';
 import {SelectWrapper,Heading} from '../css/core'
 import {DashboardHeading} from '../css/dashboard'
@@ -84,7 +84,7 @@ const Dashboard = () => {
                 />
             </SelectWrapper>
             {selectValue.value === 'ARTICLE' && <Editor />}
-            {selectValue.value === 'LIVE' && <LiveAdmin />}
+            {selectValue.value === 'LIVE' && <Podcast />}
         </>
     )
 }

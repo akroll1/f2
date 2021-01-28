@@ -2,10 +2,10 @@ import React, {useState, useEffect, useRef} from "react";
 import ReactQuill from 'react-quill'; 
 import 'react-quill/dist/quill.snow.css'; 
 import Amplify, {API, Auth, graphqlOperation} from "aws-amplify";
+import {TableText, Row,Form, EditorInput as Input, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
 // import aws_exports from "../../aws-exports";
 // import { createArticle } from "../../graphql/mutations";
 // import { Icon, Menu, Table } from "semantic-ui-react";
-import {TableText, Row,Form, EditorInput as Input, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
 
 // Amplify.configure(aws_exports);
 const Editor = () => {
