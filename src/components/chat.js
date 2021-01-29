@@ -1,12 +1,12 @@
 import React from 'react'
 import { ChatFeed, Message } from 'react-chat-ui'
 import {ChatButton,ChatForm,ChatInput} from '../css/live'
+import './chat.css'
 const Chat = ({onChatSubmit,handleChatInput,chatInput,chatMessages, isTyping}) => {
     return (
     <>
-        <ChatForm onSubmit={onChatSubmit}>
+        <ChatForm style={{padding: '5px'}} onSubmit={onChatSubmit}>
             <ChatInput 
-                id="chat"
                 onChange={(e) => handleChatInput(e)}
                 placeholder="Message" 
                 value={chatInput}
@@ -14,8 +14,8 @@ const Chat = ({onChatSubmit,handleChatInput,chatInput,chatMessages, isTyping}) =
             <ChatButton>Send</ChatButton>
         </ChatForm>
          <ChatFeed
-            style={{width: '100%'}}
-            messages={chatMessages} // Array: list of message objects
+            id="chat-feed"
+            messages={chatMessages}
             isTyping={isTyping} 
             hasInputField={false} 
             showSenderName 

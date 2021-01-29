@@ -4,34 +4,34 @@ import {LiveAside} from '../../css/live'
 import {Li,TableText,TableWrapper,Ul} from '../../css/components'
 import axios from 'axios'
 
-const GamesAside = ({handleGameClick}) => {
+const GamesAside = ({handlePodcastClick}) => {
 
-    const [games, setGames] = useState([]);
+    const [podcasts, setPodcasts] = useState([]);
     const [showHeader,setShowHeader] = useState(false);
     const [showTable,setShowTable] = useState(false);
     const [showNoGames, setShowNoGames] = useState(false);
 
     useEffect(() => {
-        const getGames = async () => {
+        const getPodcasts = async () => {
             let url = process.env.REACT_APP_GET_GAMES_URL;
             axios(url)
-            .then(data => setGames(data.data))
+            .then(data => setPodcasts(data.data))
             .catch(err => console.log(err));
             setShowHeader(true);
             setShowTable(true);
         }
-        getGames();
+        getPodcasts();
     },[])
-    console.log('games; ',games);
+    console.log('podcasts; ',podcasts);
     return (
-        <LiveAside style={{justifyContent: 'flex-start', padding: '0'}}>
+        <LiveAside style={{justifyContent: 'flex-start'}}>
             <Heading variant='h3' style={{padding:'0.5rem',fontSize: '1.5rem', fontWeight: 'bold'}}>Choose a Podcast</Heading>
-            {games && games.length === 0 && <Heading variant='p'>There are no games at this time.</Heading>}
+            {podcasts && podcasts.length === 0 && <Heading variant='p'>There are no games at this time.</Heading>}
             <TableWrapper>
                 <Ul>
                 {
-                    games && games.length > 0 && games.map(({game},i) =>  {
-                        return <Li id={game} onClick={handleGameClick} key={i}>{game}</Li>
+                    podcasts && podcasts.length > 0 && podcasts.map(({game,playbackUrl},i) =>  {
+                        return <Li data-url={playbackUrl} id={game} onClick={(e,playbackUrl) => handlePodcastClick(e, playbackUrl)} key={i}>{game}</Li>
                     })
                 }
                 </Ul>

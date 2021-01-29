@@ -24,14 +24,15 @@ export const ChatButton = styled.button`
       }
 `
 export const ChatForm = styled.form`
+      padding: 5px;
     width: 90%;
+    margin: auto;
 `;
 export const ChatInput = styled.input`
-    width: 100%;
+    width: 90%;
     border: 1px solid #ccc;
     background: #FFF;
     margin: 0 0 5px;
-    margin-bottom: 1rem;
     padding: 10px;
     placeholder {
     color: #888;
@@ -55,8 +56,8 @@ export const LiveSection = styled.section`
 export const LiveAside = styled.aside`
     overflow-x: hidden;
     overflow-y: scroll;
-    width: 20%;
-    border: 1px solid lightgray;
+    width: 18%;
+    border-bottom: 2px solid lightgray;
     // margin: 0.5rem auto;
     overflow: scroll;
     height: 60vh;
@@ -64,14 +65,13 @@ export const LiveAside = styled.aside`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: 1rem;
 `;
 export const PlayerWrapper = styled.div`
-    position: relative;
-    width: 100%;
-    margin: 5px auto;
-    text-align: center;
-    height: 300px;
+  margin-top: 4rem;  
+  position: relative;
+  width: 100%;
+  text-align: center;
+  height: 300px;
 `;
 export const PlayerWrapperPlayer = styled.div`
     display: flex;
