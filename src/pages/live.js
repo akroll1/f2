@@ -75,7 +75,7 @@ const Live = () => {
     console.log('podcast: ',podcast)
     return (
         <LiveWrapper>
-            <GamesAside 
+            <GamesAside
                 handlePodcastClick={handlePodcastClick}
             />
             <LiveSection>

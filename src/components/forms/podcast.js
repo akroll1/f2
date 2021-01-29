@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import Amplify, {API, Auth, graphqlOperation} from "aws-amplify";
-import {TableText, Row,Form, EditorInput as Input, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
+import {Form, EditorInput as Input, Button, Title, Label, SaveDraftButton} from '../../css/editor'
 import {Datepicker} from '../page-components/date-picker'
 
-const Podcast = ({selected, getTime}) => {
+const Podcast = ({selected, getTime, handleTimeSelect}) => {
     const [loading, setLoading] = useState(false);
     const [podcast, setPodcast] = useState({
         podcastOwner: '',
@@ -16,10 +16,14 @@ const Podcast = ({selected, getTime}) => {
         console.log('handleChange, e: ',e.target.id);
         setPodcast({...podcast,[e.target.id]: e.target.value})
     }
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log('submit');
+    }
     const {podcastOwner,podcastTitle} = podcast;
     return (
         <>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Label>Owner</Label>
                 <Input
                     id='podcastOwner'
@@ -40,12 +44,14 @@ const Podcast = ({selected, getTime}) => {
                     placeholder="Title"
                 />
             </Form>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Datepicker
                     showTimeSelect
                     selected={selected}
                     onChange={getTime} 
+                    handleTimeSelect={handleTimeSelect}
                 />
+            <Button type='submit'>Submit</Button>
             </Form>
         </>
     )

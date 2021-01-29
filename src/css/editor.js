@@ -92,6 +92,7 @@ export const Input = styled.input`
   height: 35px;
   border: 1px solid #ccc;
   background-color: #fff;
+  font-size: 1.2rem;
 `;
 
 export const Button = styled.button`
@@ -137,6 +138,7 @@ export const SaveDraftButton = styled.button`
 `;
 
 export const Title = styled.h1`
+  text-align: center;
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   color: #4d4d4d;

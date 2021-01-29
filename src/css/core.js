@@ -4,7 +4,7 @@ import {Typography,Button} from '@material-ui/core'
 export const SelectWrapper = styled.div`
     width: 30%;
     margin: 1rem auto;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     cursor: pointer;
 `;
 export const B = styled(Button)`
