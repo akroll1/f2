@@ -136,7 +136,7 @@ export const HeroImg = styled.img`
     width: 100%;
     border-radius: 10px;
 `;
-export const NewsButton = styled(Link)`
+export const BigNewsButton = styled(Link)`
     font-weight: bold;
     margin-top: 2rem;
     display: inline-flex;
