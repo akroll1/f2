@@ -80,7 +80,7 @@ export const TableWrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,6 +92,7 @@ export const Input = styled.input`
   height: 35px;
   border: 1px solid #ccc;
   background-color: #fff;
+  font-size: 1.2rem;
 `;
 
 export const Button = styled.button`
@@ -137,6 +138,7 @@ export const SaveDraftButton = styled.button`
 `;
 
 export const Title = styled.h1`
+  text-align: center;
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   color: #4d4d4d;
@@ -156,12 +158,13 @@ export const Text = styled.p`
 `;
 
 export const Label = styled.label`
-  margin: 10px;
+  // margin: 10px;
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   color: #4d4d4d;
   font-size: 1.5rem;  
   text-align: center;  
   margin: auto;
-  width: 60%;  
+  width: 100%;  
+  padding: 5px;
 `;

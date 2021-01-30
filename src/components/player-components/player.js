@@ -12,14 +12,13 @@ import {
 } from 'amazon-ivs-player';
 import {PlayerWrapperPlayer, QuestionText} from '../../css/live';
 
-const Player = ({startBroadcast, setStartBroadcast, setStartTimer, setButtonsDisabled, setQuestion}) => {
+const Player = ({startBroadcast, setStartBroadcast, playbackUrl}) => {
 
     const videoSrc = 'https://player.live-video.net/1.0.0/amazon-ivs-player.min.js';
     // const stream = "https://fcc3ddae59ed.us-west-2.playback.live-video.net/api/video/v1/us-west-2.893648527354.channel.xhP3ExfcX8ON.m3u8";
     const stream = 'https://31c84084a50b.us-east-1.playback.live-video.net/api/video/v1/us-east-1.896748474789.channel.INm8ucGR84N2.m3u8';
     const divEl = useRef(null);
     const videoEl = useRef(null);
-    const [streamUrl, setStreamUrl] = useState(stream);
 
     useEffect(() => {
         const script = document.createElement('script');
@@ -35,29 +34,8 @@ const Player = ({startBroadcast, setStartBroadcast, setStartTimer, setButtonsDis
                 player.attachHTMLVideoElement(document.getElementById('video-player'));
                 player.addEventListener("PlayerTextMetadataCue", (cue) => {
                     let q = JSON.parse(cue.text);
-                    // console.log('CUE: ', q);
-                    //question, answers[] and correctIndex
-
-                    if(q && q.question && q.question.length > 0){
-                        let {question, answers, correctIndex} = q;
-                        let obj = {
-                            question,
-                            answersArray: answers,
-                            answerIndex: correctIndex,
-                            questionId: '1234-5678-910'
-                        }
-                        setStartBroadcast(true);
-                        setQuestion(obj);
-                        setStartTimer(true);
-                        setButtonsDisabled(false);
-                        return;
-                    } else {
-                        // const event = PlayerEventType;
-                        let nextQuestion = JSON.parse(cue.text);
-                        setQuestion(nextQuestion);
-                        setStartTimer(true);
-                        setButtonsDisabled(false);
-                    }
+                    console.log('player cue: ', cue);
+        
                     // console.log('latency: ',player.getLiveLatency());
                 });
                 player.addEventListener("Playing", (data) => {
@@ -68,15 +46,15 @@ const Player = ({startBroadcast, setStartBroadcast, setStartTimer, setButtonsDis
                 // player.addEventListener("PlayerError", (cue) => {
                     // console.log('player error: ',cue);
                 // });
-                player.load(streamUrl);
+                // player.load(podcast);
+                player.load(playbackUrl);
                 player.play();
             }
         }
         return () => {
             document.body.removeChild(script);
         }
-    },[])
-
+    },[playbackUrl,startBroadcast])
     const getDeviceWidth = (width) => {
         if(width > 768) return 320;
         // if(width > 768) return 350;

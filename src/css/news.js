@@ -1,6 +1,10 @@
 import styled from '@emotion/styled'
 import {Link} from 'react-router-dom'
 
+export const Form = styled.form`
+    width: 50%;
+    margin: 1rem auto;
+`;
 export const NewsButton = styled(Link)`
     font-weight: bold;
     margin-top: 0.3rem;
@@ -23,8 +27,8 @@ export const NewsButton = styled(Link)`
     }
 `;
 export const SearchWrapper = styled.div`
-    width: 30%;
-    margin: auto;
+    width: 100%;
+    margin: 1rem auto;
     @media(max-width:1099px){
         width: 40%;
     }

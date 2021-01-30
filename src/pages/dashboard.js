@@ -13,8 +13,10 @@ import {
 	S3Image
 } from '@aws-amplify/ui-react';
 // import { loader } from '../../Components/PageComponents/loader';
-import Editor from '../components/utilities/editor'
-import LiveAdmin from '../components/utilities/live-admin'
+import Editor from '../components/forms/editor'
+import Podcast from '../components/forms/podcast'
+import Gym from '../components/forms/gyms'
+import Boxer from '../components/forms/boxer'
 import Select from 'react-select';
 import {SelectWrapper,Heading} from '../css/core'
 import {DashboardHeading} from '../css/dashboard'
@@ -53,7 +55,7 @@ const Dashboard = () => {
         { value: 'GYM', label: 'Create a Gym Profile', type: 'Gym' },
         {
             value: 'LIVE',
-            label: 'Live Stream video or audio podcast',
+            label: 'Live Stream an audio or video podcast',
             type: 'Livestream'
         },
         { value: 'SHOW', label: 'Post a Show', type: 'Show' }
@@ -72,7 +74,11 @@ const Dashboard = () => {
         // }
     
     };
-
+    const handleTimeSelect = time => {
+        let t = time.getTime()
+        console.log('time: ', t);
+    }
+    const {value} = selectValue;
     return (
         <>
             <DashboardHeading variant='h3'>Dashboard</DashboardHeading>
@@ -83,8 +89,10 @@ const Dashboard = () => {
                     options={options}
                 />
             </SelectWrapper>
-            {selectValue.value === 'ARTICLE' && <Editor />}
-            {selectValue.value === 'LIVE' && <LiveAdmin />}
+            {value === 'ARTICLE' && <Editor />}
+            {value === 'LIVE' && <Podcast handleTimeSelect={handleTimeSelect}/>}
+            {value === 'GYM' && <Gym />}
+            {value === 'BOXER' && <Boxer />}
         </>
     )
 }
