@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Amplify, {API, Auth, graphqlOperation} from "aws-amplify";
-import {Input,Form, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
-
+import {EditorInput as Input,Form, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
+import {Typography} from '@material-ui/core'
 const Gyms = ({selected, getTime}) => {
     const [loading, setLoading] = useState(false);
     const [gym, setGym] = useState({
@@ -25,32 +25,32 @@ const Gyms = ({selected, getTime}) => {
         <>
             <Title style={{margin: '1rem auto'}}>Create a Gym Profile</Title>
             <Form onSubmit={handleSubmit}>
-                <Label>Owner</Label>
+                <Typography variant="overline">Owner</Typography>
                 <Input
                     id='gymOwner'
                     value={gymOwner}
                     type="text"
                     onChange={handleChange}
-                    label="Gym Owner"
+                    label="gymOwner"
                     placeholder="Gym Owner"
                 />
 
-                <Label>Name</Label>
+                <Typography variant="overline">Name</Typography>
                 <Input
                     id='gymName'
                     value={gymName}
                     type="text"
                     onChange={handleChange}
-                    label="Gym Name"
+                    label="GymName"
                     placeholder="Gym Name"
                 />
-                <Label>Address</Label>
+                <Typography variant="overline">Address</Typography>
                 <Input
                     id='gymAddress'
                     value={gymAddress}
                     type="text"
                     onChange={handleChange}
-                    label="Gym Address"
+                    label="gymAddress"
                     placeholder="Gym Address"
                 />
                 <Button type='submit'>Submit</Button>

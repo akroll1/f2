@@ -7,7 +7,9 @@ import moment from 'moment'
 
 export const Datepicker = ({ handleTimeSelect }) => {
     const [time, setTime] = useState(new Date());
+    const [showTime, setShowTime] = useState(false);
     const getTime = (date) => {
+        setShowTime(false);
 		console.log('date: ',date.getTime());
         let momentDate = moment().toDate();
         setTime(date);
@@ -18,14 +20,14 @@ export const Datepicker = ({ handleTimeSelect }) => {
     // console.log('time: ',time.toLocaleString('en-US'));
     return (
         <>
-            <Typography variant='overline' align='left'>Date and Time</Typography>
+            <Label style={{fontSize:'1rem',color: '#727070',margin: '1rem auto',width: '100%'}}>Scheduled Time: &nbsp;&nbsp;&nbsp;<span style={{color:'#4d4d4d'}}>{time.toLocaleString('us-US').replace(',',' at')}</span></Label>
+            {showTime && <Typography variant='overline' align='left'>Date and Time</Typography>}
             <DatePicker
                 showTimeSelect
                 selected={time}
                 onChange={getTime}
                 onSelect={handleTimeSelect}
             />
-            <Label style={{color: '#727070',marginTop: '1rem',width: '100%'}}>Scheduled Time: &nbsp;&nbsp;&nbsp;<span style={{letterSpacing:'0.5px',color:'#4d4d4d'}}>{time.toLocaleString('us-US').replace(',',' at').replace(':00 ',' ')}</span></Label>
         </>
     )
 };

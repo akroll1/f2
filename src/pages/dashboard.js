@@ -16,6 +16,7 @@ import {
 import Editor from '../components/forms/editor'
 import Podcast from '../components/forms/podcast'
 import Gym from '../components/forms/gyms'
+import Boxer from '../components/forms/boxer'
 import Select from 'react-select';
 import {SelectWrapper,Heading} from '../css/core'
 import {DashboardHeading} from '../css/dashboard'
@@ -91,6 +92,7 @@ const Dashboard = () => {
             {value === 'ARTICLE' && <Editor />}
             {value === 'LIVE' && <Podcast handleTimeSelect={handleTimeSelect}/>}
             {value === 'GYM' && <Gym />}
+            {value === 'BOXER' && <Boxer />}
         </>
     )
 }

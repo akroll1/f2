@@ -22,7 +22,7 @@ const GamesAside = ({handlePodcastClick}) => {
         }
         getPodcasts();
     },[])
-    console.log('podcasts; ',podcasts);
+    console.log('podcasts games-aside 25: ',podcasts);
     return (
         <LiveAside style={{justifyContent: 'flex-start'}}>
             <Heading variant='h3' style={{padding:'0.5rem',fontSize: '1.5rem', fontWeight: 'bold'}}>Choose a Podcast</Heading>

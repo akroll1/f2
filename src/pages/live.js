@@ -19,7 +19,9 @@ const Live = () => {
         message: 'here is a third message',
         senderName: 'Bobby'
     }]);
+    // setting podcast.game for DB schema...
     const [podcast, setPodcast] = useState({});
+    const [playbackUrl,setPlaybackUrl] = useState(null);
     const [chatInput, setChatInput] = useState('');
     const [isTyping, setIsTyping] = useState(true);
     const [token, setToken] = useState('');
@@ -27,28 +29,30 @@ const Live = () => {
     const [startBroadcast,setStartBroadcast] = useState(false);
     const [websocket, setWebsocket] = useState({});
     
-    useEffect(() => {
-        setUser({sub: '123-456-789', email: 'idTokenDotEmail', podcast});
-        let token = '1234';
-        setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
-    },[]);
+    // useEffect(() => {
+    //     setUser({sub: '123-456-789', email: 'idTokenDotEmail', podcast});
+    //     let token = '1234';
+    //     setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
+    // },[]);
 
-    websocket.onclose = (closeEvent) => {
-        setTimeout(() => setReopenSocket(true),2000);
-    };
-    const setReopenSocket = () => {
-        console.log('reopening websocket...');
-        setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
-    };
     websocket.onopen = (data) => {
         console.log('websocket: ',data);
-        if(data){
+        if(data && podcast.game){
             sendUserData();
         }
     }
+    websocket.onclose = (closeEvent) => {
+        setTimeout(() => setReopenSocket(true),2000);
+    };
     websocket.onmessage = ({data}) => {
         console.log('data 98: ',data);
     }
+
+    const setReopenSocket = () => {
+        console.log('reopening websocket...');
+        setWebsocket(new WebSocket(process.env.REACT_APP_WS_URL+`?token=${token}`));
+        setUser({sub: '123-456-789', email: 'idTokenDotEmail', podcast});
+    };
 
     const sendUserData = () => {
         websocket.send(JSON.stringify({ action: 'routeUserData', data: {...user}}));
@@ -69,9 +73,12 @@ const Live = () => {
     };
     const handlePodcastClick = (e) => {
         let playbackUrl = e.target.getAttribute('data-url');
-        setPodcast({playbackUrl,podcast:e.target.id});
+        setPlaybackUrl(playbackUrl);
+        // setPodcast({playbackUrl,podcast:e.target.id, game:e.target.id});
+        // setReopenSocket();
     };
     // console.log('chatMessages: ',chatMessages);
+    console.log('playbackUrl: ',playbackUrl);
     console.log('podcast: ',podcast)
     return (
         <LiveWrapper>
@@ -81,7 +88,7 @@ const Live = () => {
             <LiveSection>
                 <PlayerWrapper>
                     <Player 
-                        podcast={podcast} 
+                        playbackUrl={playbackUrl} 
                         startBroadcast={startBroadcast}
                         setStartBroadcast={setStartBroadcast}
                     />
@@ -92,7 +99,7 @@ const Live = () => {
                     <Text>Viewer Polls/Tweets Below</Text>
                 </LeaderboardWrapper>
             </LiveSection>
-            <LiveAside>
+            <LiveAside style={{border: '1px solid lightgray'}}>
                 <Chat 
                     chatMessages={chatMessages} 
                     isTyping={isTyping} 
