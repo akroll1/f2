@@ -3,9 +3,10 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; 
 import Amplify, {API, Auth, graphqlOperation} from "aws-amplify";
 import {TableText, Row,Form, EditorInput as Input, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
+import {Typography} from '@material-ui/core'
 // import aws_exports from "../../aws-exports";
 // import { createArticle } from "../../graphql/mutations";
-// import { Icon, Menu, Table } from "semantic-ui-react";
+
 
 // Amplify.configure(aws_exports);
 const Editor = () => {
@@ -34,7 +35,7 @@ const Editor = () => {
     return (
         <div id="quill" style={{marginBottom: '5rem'}}>
           <Form>
-            <Label>Title</Label>
+            <Typography variant="overline">Title</Typography>
             <Input
               id='articleTitle'
               value={articleTitle}
@@ -44,7 +45,7 @@ const Editor = () => {
               placeholder="Article Title"
             />
 
-            <Label>Sub-Title</Label>
+            <Typography variant="overline">Sub-Title</Typography>
             <Input
               id='articleSubtitle'
               value={articleSubtitle}
@@ -54,7 +55,7 @@ const Editor = () => {
               placeholder="Sub-Title"
             />
 
-            <Label>Author</Label>
+            <Typography variant="overline">Author</Typography>
             <Input
               id='articleAuthor'
               value={articleAuthor}

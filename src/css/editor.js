@@ -158,12 +158,13 @@ export const Text = styled.p`
 `;
 
 export const Label = styled.label`
-  margin: 10px;
+  // margin: 10px;
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   color: #4d4d4d;
   font-size: 1.5rem;  
   text-align: center;  
   margin: auto;
-  width: 60%;  
+  width: 100%;  
+  padding: 5px;
 `;
