@@ -1,17 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import CreatableSelect from 'react-select/creatable';
 import { Heading, Loader,Spinner } from '../css/core';
-import {NewsButton,SearchWrapper,NewsCard,NewsWrapper,TagsContainer,TagUl,Tag} from '../css/news'
+import {Form,NewsButton,SearchWrapper,NewsCard,NewsWrapper,TagsContainer,TagUl,Tag} from '../css/news'
+import {Typography} from '@material-ui/core'
 import axios from 'axios'
 import {shortenBody} from '../helpers'
 
 const News = () => {
-	const bingUrl = `https://api.bing.microsoft.com/v7.0/news/search?q=boxing&count=30`;
+	const bingBaseUrl = `https://api.bing.microsoft.com/v7.0/news/search?count=30&q=boxing+`;
 	const [loading,setLoading] = useState(true);
 	const [news, setNews] = useState([]);
 	const [tags, setTags] = useState([]);
 	const [searchInput, setSearchInput] = useState([]);
 	const [query, setQuery] = useState('');
+
 	let bingConfig = {
 		headers: {
 			'Ocp-Apim-Subscription-Key':'6a73128b44654f1fa4495445ffb5b927',
@@ -19,42 +21,40 @@ const News = () => {
 			'Access-Control-Allow-Origin':'*'
 		}
 	};
+
 	useState(() => {
 		const getArticles = async () => {
-			await axios(bingUrl, bingConfig)
+			await axios(bingBaseUrl, bingConfig)
 				.then(res => setNews(res.data.value))
 				.then(() => setLoading(false))
 				.catch(err => console.log(err));
 		}
 		getArticles()
 	},[])	
-
+	const handleSearchSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(x => !x);
+		console.log('35 searchInput: ',typeof searchInput);
+		let query = searchInput.split(' ').join('+');
+		let url = `${bingBaseUrl}${query}`
+        await axios(url, bingConfig)
+			.then(res => setNews(res.data.value))
+			// .then(() => createTags())
+			.catch(err => console.log(err));
+		setSearchInput(x => !x);
+		setLoading(x => !x);
+	}
     const handleSelectChange = inputs => {
+
         if(inputs == null){
-            return setQuery('');
+            return setSearchInput('');
         }
-        console.log('inputs: ',inputs);
 		return setSearchInput(inputs.label)
 	};
 	const handleInputChange = input => {
+		if(input == null)return;
         setQuery(input)
     };
-    // console.log('query: ',query);
-    // console.log('searchInput: ',searchInput);
-	const handleSearchSubmit = async (e) => {
-		e.preventDefault();
-		let query = searchInput.split(' ').join('+');
-
-		let newQuery = `https://api.cognitive.microsoft.com/bing/v7.0/news/search/?q=boxing+${query}&count=30&jsonp`;
-		let headers = {
-			headers: bingConfig
-		};
-        await axios(newQuery, bingConfig)
-            // .then(res => console.log('res: ',res))
-			.then(res => setNews(res.data.value))
-			.then(() => createTags())
-			.catch(err => console.log(err));
-	}
 
 	const createTags = () => {
 		let array = news;
@@ -129,40 +129,45 @@ const News = () => {
 		// console.log('tags: ',tags);
 	return (
 		<>
-			<Heading variant="h3" style={{fontWeight:'bold',margin: '1rem'}}>The Latest Boxing News</Heading>
-			<SearchWrapper>
-				<form onSubmit={e => e.preventDefault()} className="search">
-					<label htmlFor="shows-page-search-input">
-						Need more boxing News?
-					</label>
+			<Heading variant="h3" style={{fontWeight:'bold',margin: '1rem auto'}}>The Latest Boxing News</Heading>
+			{loading 
+				? <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader>
+				:<>
+					<SearchWrapper>
+						<Form onSubmit={e => e.preventDefault()} className="search">
+							<Typography variant='overline' htmlFor="shows-page-search-input">
+								Need more boxing News?
+							</Typography>
+							<CreatableSelect
+								style={{width: '100%'}}
+								autoFocus
+								isClearable
+								onChange={handleSelectChange}
+								onInputChange={handleInputChange}
+								options={options}
+								placeholder="Select or type to search..."
+								formatCreateLabel={() => query}
+								/>
+							<NewsButton
+								onClick={e => handleSearchSubmit(e)}>
+								Search
+							</NewsButton>
+						</Form>
+					</SearchWrapper>
+					<NewsWrapper>{stories}</NewsWrapper>
+				</>
+			}
+			</>
+		);
+	}
+	export default News
+	{/* {!loading && (
+		<TagsContainer style={{paddingBottom: '0'}}>
+			<TagUl>
+				<Heading style={{margin: '0'}} variant="h5">Trending Now</Heading>
+					{renderTags}
+			</TagUl>
+		</TagsContainer>
+	)} */}
 
-					<CreatableSelect
-                        isClearable
-                        onChange={handleSelectChange}
-                        onInputChange={handleInputChange}
-						options={options}
-                        placeholder="Select or type to search..."
-                        formatCreateLabel={() => query}
-					/>
-					<NewsButton
-						onClick={e => handleSearchSubmit(e)}>
-						Search
-					</NewsButton>
-				</form>
-			</SearchWrapper>
-			{loading && <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader>}
-			{!loading && (
-				<TagsContainer style={{paddingBottom: '0'}}>
-					<TagUl>
-						<Heading style={{margin: '0'}} variant="h5">Trending Now</Heading>
-						{/* {renderTags} */}
-					</TagUl>
-				</TagsContainer>
-			)}
-
-				<NewsWrapper>{stories}</NewsWrapper>
-			{/*<video src="http://dc8ybk017oo9b.cloudfront.net/mactown.mp4" autoPlay></video>*/}
-		</>
-	);
-}
-export default News
+	{/*<video src="http://dc8ybk017oo9b.cloudfront.net/mactown.mp4" autoPlay></video>*/}
