@@ -12,7 +12,7 @@ import {
 } from 'amazon-ivs-player';
 import {PlayerWrapperPlayer, QuestionText} from '../../css/live';
 
-const Player = ({startBroadcast, setStartBroadcast, podcast}) => {
+const Player = ({startBroadcast, setStartBroadcast, playbackUrl}) => {
 
     const videoSrc = 'https://player.live-video.net/1.0.0/amazon-ivs-player.min.js';
     // const stream = "https://fcc3ddae59ed.us-west-2.playback.live-video.net/api/video/v1/us-west-2.893648527354.channel.xhP3ExfcX8ON.m3u8";
@@ -47,15 +47,14 @@ const Player = ({startBroadcast, setStartBroadcast, podcast}) => {
                     // console.log('player error: ',cue);
                 // });
                 // player.load(podcast);
-                player.load(stream);
+                player.load(playbackUrl);
                 player.play();
             }
         }
         return () => {
             document.body.removeChild(script);
         }
-    },[])
-
+    },[playbackUrl,startBroadcast])
     const getDeviceWidth = (width) => {
         if(width > 768) return 320;
         // if(width > 768) return 350;

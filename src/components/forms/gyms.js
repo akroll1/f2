@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Amplify, {API, Auth, graphqlOperation} from "aws-amplify";
-import {Input,Form, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
+import {EditorInput as Input,Form, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
 
 const Gyms = ({selected, getTime}) => {
     const [loading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ const Gyms = ({selected, getTime}) => {
                     value={gymOwner}
                     type="text"
                     onChange={handleChange}
-                    label="Gym Owner"
+                    label="gymOwner"
                     placeholder="Gym Owner"
                 />
 
@@ -41,7 +41,7 @@ const Gyms = ({selected, getTime}) => {
                     value={gymName}
                     type="text"
                     onChange={handleChange}
-                    label="Gym Name"
+                    label="GymName"
                     placeholder="Gym Name"
                 />
                 <Label>Address</Label>
@@ -50,7 +50,7 @@ const Gyms = ({selected, getTime}) => {
                     value={gymAddress}
                     type="text"
                     onChange={handleChange}
-                    label="Gym Address"
+                    label="gymAddress"
                     placeholder="Gym Address"
                 />
                 <Button type='submit'>Submit</Button>
