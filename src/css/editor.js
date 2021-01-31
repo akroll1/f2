@@ -29,6 +29,7 @@ export const TextArea = styled.textarea`
   }
 `;
 export const EditorInput = styled.input`
+  border-radius: 3px;
   font-size: 1rem;
   width: 100%;
   border: 1px solid #ccc;
@@ -88,6 +89,7 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
+  border-radius: 3px;
   width: 60%;
   height: 35px;
   border: 1px solid #ccc;
