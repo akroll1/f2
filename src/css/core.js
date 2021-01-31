@@ -27,3 +27,21 @@ export const Spinner = styled.img`
     margin: 1rem auto;
     animation: spinner-spin infinite 5s linear;
 `;
+export const PagesTitleH1 = styled.h1`
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,segoe ui, arial, sans-serif;
+    margin: 0 !important;
+    padding: 1rem;
+    font-size: 3rem;
+    @media(max-width: 767px){
+        font-size: 4rem;
+    }
+    @media(max-width: 450px){
+        font-size 3rem;
+    }
+`;
+
+export const TitleSpan = styled.span`
+    color: #9e1212;
+    margin-left: 2px;
+`;

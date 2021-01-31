@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {Typography} from '@material-ui/core'
-import {Label} from '../../css/editor'
+import {Label} from '../css/editor'
 import moment from 'moment'
 
 export const Datepicker = ({ handleTimeSelect }) => {

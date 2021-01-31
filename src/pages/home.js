@@ -11,7 +11,6 @@ import axios from 'axios'
 import VideoThumbs from '../components/video-thumbs'
 import CreatableSelect from 'react-select/creatable';
 
-
 const Home = () => {
 
     const bingBaseUrl = `https://api.bing.microsoft.com/v7.0/videos/search?count=30&q=boxing`;

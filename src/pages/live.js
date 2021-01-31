@@ -3,7 +3,7 @@ import {LiveAside,LiveSection,LiveWrapper,ButtonWrapper,GameText,VideoOverlayDiv
 import Player from '../components/player-components/player';
 import {slicedGame, getGameType} from '../helpers'
 import Chat from '../components/chat'
-import GamesAside from '../components/page-components/games-aside'
+import GamesAside from '../components/games-aside'
 
 const Live = () => {
     const [chatMessages,setChatMessages] = useState([{
@@ -78,10 +78,10 @@ const Live = () => {
         // setReopenSocket();
     };
     // console.log('chatMessages: ',chatMessages);
-    console.log('playbackUrl: ',playbackUrl);
-    console.log('podcast: ',podcast)
+    // console.log('playbackUrl: ',playbackUrl);
+    // console.log('podcast: ',podcast)
     return (
-        <LiveWrapper>
+        <LiveWrapper style={{flexBasis:'1 0 auto'}}>
             <GamesAside
                 handlePodcastClick={handlePodcastClick}
             />
