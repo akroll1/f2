@@ -1,5 +1,5 @@
 import React from 'react';
-import {FooterLinks,FooterLinksLi,FooterLinksLiA} from '../../css/layout'
+import {FooterLinks,FooterLinksLi,FooterLinksLiA} from '../css/layout'
 
 export const FootLinks = () => (
 	<FooterLinks>
