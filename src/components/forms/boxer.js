@@ -12,7 +12,8 @@ const Boxer = ({selected, getTime}) => {
         boxerLosses: null,
         boxerDraws: null,
         boxerHometown:'',
-        boxerProfileImg: ''
+        boxerProfileImg: '',
+        boxerVideo: ''
     });
     useEffect(() => {
         setLoading(false);
@@ -25,7 +26,7 @@ const Boxer = ({selected, getTime}) => {
         e.preventDefault();
         console.log('submit');
     }
-    const {boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerProfileImg} = boxer;
+    const {boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerProfileImg,boxerVideo} = boxer;
     return (
         <>
             <Title style={{margin: '1rem auto'}}>Create a Boxer Profile</Title>
@@ -85,7 +86,7 @@ const Boxer = ({selected, getTime}) => {
                     label="boxerHometown"
                     placeholder="Hometown"
                 />
-                <Typography variant="overline">Profile Image Upload</Typography>
+                <Typography variant="overline">Image Upload</Typography>
                 <Input
                     style={{width: '50%'}}
                     id='boxerProfileImg'
@@ -93,6 +94,16 @@ const Boxer = ({selected, getTime}) => {
                     type="file"
                     onChange={handleChange}
                     label="boxerProfileImg"
+                    placeholder="Upload Image"
+                />
+                <Typography variant="overline">Video Upload</Typography>
+                <Input
+                    style={{width: '50%'}}
+                    id='boxerVideo'
+                    value={boxerVideo}
+                    type="file"
+                    onChange={handleChange}
+                    label="boxerVideo"
                     placeholder="Upload Image"
                 />
                 <Button style={{marginBottom:'7rem'}} type='submit'>Submit</Button>

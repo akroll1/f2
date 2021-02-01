@@ -6,7 +6,8 @@ import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 import { getSelectedBoxer, makeImagesArr, makeLabelsArr } from '../helpers'
 import {B as Button,PagesTitleH1, TitleSpan, Loader, Spinner} from '../css/core'
 import {MapContainer, Marker, TileLayer, Popup} from 'react-leaflet'
-import {ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerProfile,BoxerLabel} from '../css/boxers'
+import {RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerProfile,BoxerLabel} from '../css/boxers'
+import {HeroText} from '../css/home'
 import 'leaflet/dist/leaflet.css';
 
 // import * as Query from '../../graphql/queries.js';
@@ -111,11 +112,11 @@ const Boxers = () => {
                     {boxers && boxers.length > 0 
                         ?   <BoxerProfile>
                                 <ProfileImg style={{width:'100%'}} src={boxerProfileImg} />
-                                <p>{boxerName} <span>"{boxerRingname}"</span></p>
-                                <p>Wins: {boxerWins}</p>
-                                <p>Losses: {boxerLosses}</p>
-                                <p>Draws: {boxerDraws}</p>
-                                <p>{boxerHometown}</p>
+                                <ProfileP>{boxerName} <span>"{boxerRingname}"</span></ProfileP>
+                                <ProfileP>Wins: {boxerWins}</ProfileP>
+                                <ProfileP>Losses: {boxerLosses}</ProfileP>
+                                <ProfileP>Draws: {boxerDraws}</ProfileP>
+                                <ProfileP>{boxerHometown}</ProfileP>
                             </BoxerProfile>
                         : []
                     }
@@ -134,6 +135,9 @@ const Boxers = () => {
                         </MapContainer>
                     </MapDiv>
                 </ProfileContainer>
+                <RatingContainer>
+                    <HeroText>Fan Rankings</HeroText>
+                </RatingContainer>
         </div>
     );
 }

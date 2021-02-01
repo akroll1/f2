@@ -7,7 +7,9 @@ const Gyms = ({selected, getTime}) => {
     const [gym, setGym] = useState({
         gymOwner: '',
         gymName: '',
-        gymAddress: ''
+        gymAddress: '',
+        gymProfileImg: '',
+        gymVideo: ''
     });
     useEffect(() => {
         setLoading(false);
@@ -20,7 +22,7 @@ const Gyms = ({selected, getTime}) => {
         e.preventDefault();
         console.log('submit');
     }
-    const {gymOwner,gymName,gymAddress} = gym;
+    const {gymOwner,gymName,gymAddress,gymProfileImg,gymVideo} = gym;
     return (
         <>
             <Title style={{margin: '1rem auto'}}>Create a Gym Profile</Title>
@@ -52,6 +54,26 @@ const Gyms = ({selected, getTime}) => {
                     onChange={handleChange}
                     label="gymAddress"
                     placeholder="Gym Address"
+                />
+                 <Typography variant="overline">Image Upload</Typography>
+                <Input
+                    style={{width: '50%'}}
+                    id='gymProfileImg'
+                    value={gymProfileImg}
+                    type="file"
+                    onChange={handleChange}
+                    label="gymProfileImg"
+                    placeholder="Upload Image"
+                />
+                <Typography variant="overline">Video Upload</Typography>
+                <Input
+                    style={{width: '50%'}}
+                    id='gymVideo'
+                    value={gymVideo}
+                    type="file"
+                    onChange={handleChange}
+                    label="gymVideo"
+                    placeholder="Upload Image"
                 />
                 <Button type='submit'>Submit</Button>
             </Form>

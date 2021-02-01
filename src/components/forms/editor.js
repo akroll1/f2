@@ -74,7 +74,7 @@ const Editor = () => {
                 style={{width: '100%', height: '15rem',marginBottom:'3rem'}}
                 // ref={editorRef}
                 onChange={editorChange}
-                placeholder='Article body...'
+                placeholder='Article...'
               />
             <br />
             <Button
