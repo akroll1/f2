@@ -7,7 +7,7 @@ import axios from 'axios'
 import {shortenBody} from '../helpers'
 
 const News = () => {
-	const bingBaseUrl = `https://api.bing.microsoft.com/v7.0/news/search?count=30&q=boxing+`;
+	const bingBaseUrl = `https://api.bing.microsoft.com/v7.0/news/search?count=30&q=boxing`;
 	const [loading,setLoading] = useState(true);
 	const [news, setNews] = useState([]);
 	const [tags, setTags] = useState([]);
@@ -34,9 +34,9 @@ const News = () => {
 	const handleSearchSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(x => !x);
-		console.log('35 searchInput: ',typeof searchInput);
+		// console.log('35 searchInput: ',typeof searchInput);
 		let query = searchInput.split(' ').join('+');
-		let url = `${bingBaseUrl}${query}`
+		let url = `${bingBaseUrl}+${query}`
         await axios(url, bingConfig)
 			.then(res => setNews(res.data.value))
 			// .then(() => createTags())
@@ -45,7 +45,6 @@ const News = () => {
 		setLoading(x => !x);
 	}
     const handleSelectChange = inputs => {
-
         if(inputs == null){
             return setSearchInput('');
         }
@@ -132,30 +131,30 @@ const News = () => {
 			<Heading variant="h3" style={{fontWeight:'bold',margin: '1rem auto'}}>The Latest Boxing News</Heading>
 			{loading 
 				? <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader>
-				:<>
-					<SearchWrapper>
-						<Form onSubmit={e => e.preventDefault()} className="search">
-							<Typography variant='overline' htmlFor="shows-page-search-input">
-								Need more boxing News?
-							</Typography>
-							<CreatableSelect
-								style={{width: '100%'}}
-								autoFocus
-								isClearable
-								onChange={handleSelectChange}
-								onInputChange={handleInputChange}
-								options={options}
-								placeholder="Select or type to search..."
-								formatCreateLabel={() => query}
-								/>
-							<NewsButton
-								onClick={e => handleSearchSubmit(e)}>
-								Search
-							</NewsButton>
-						</Form>
-					</SearchWrapper>
-					<NewsWrapper>{stories}</NewsWrapper>
-				</>
+				:	<>
+						<SearchWrapper>
+							<Form onSubmit={e => e.preventDefault()} className="search">
+								<Typography variant='overline' htmlFor="shows-page-search-input">
+									Need more boxing News?
+								</Typography>
+								<CreatableSelect
+									style={{width: '100%'}}
+									autoFocus
+									isClearable
+									onChange={handleSelectChange}
+									onInputChange={handleInputChange}
+									options={options}
+									placeholder="Select or type to search..."
+									formatCreateLabel={() => query}
+									/>
+								<NewsButton
+									onClick={e => handleSearchSubmit(e)}>
+									Search
+								</NewsButton>
+							</Form>
+						</SearchWrapper>
+						<NewsWrapper>{stories}</NewsWrapper>
+					</>
 			}
 			</>
 		);

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Amplify, {API, Auth, graphqlOperation} from "aws-amplify";
 import {Form, EditorInput as Input, Button, Title, Label, SaveDraftButton} from '../../css/editor'
-import {Datepicker} from '../page-components/date-picker'
+import {Datepicker} from '../date-picker'
 import {Typography} from '@material-ui/core'
 const Podcast = ({selected, getTime, handleTimeSelect}) => {
     const [loading, setLoading] = useState(false);

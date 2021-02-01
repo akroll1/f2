@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import {Heading} from '../../css/core'
-import {LiveAside} from '../../css/live'
-import {Li,TableText,TableWrapper,Ul} from '../../css/components'
+import {Heading} from '../css/core'
+import {LiveAside} from '../css/live'
+import {Li,TableText,TableWrapper,Ul} from '../css/components'
 import axios from 'axios'
 
 const GamesAside = ({handlePodcastClick}) => {
@@ -22,7 +22,7 @@ const GamesAside = ({handlePodcastClick}) => {
         }
         getPodcasts();
     },[])
-    console.log('podcasts games-aside 25: ',podcasts);
+    // console.log('podcasts games-aside 25: ',podcasts);
     return (
         <LiveAside style={{justifyContent: 'flex-start'}}>
             <Heading variant='h3' style={{padding:'0.5rem',fontSize: '1.5rem', fontWeight: 'bold'}}>Choose a Podcast</Heading>

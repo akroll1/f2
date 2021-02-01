@@ -1,5 +1,5 @@
 import React from "react";
-import { FootLinks as FooterLinks} from './page-components/footer-links'
+import { FootLinks as FooterLinks} from './footer-links'
 import {Footer as Foot} from '../css/layout'
 
 export const Footer = () => {
