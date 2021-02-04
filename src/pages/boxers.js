@@ -6,11 +6,12 @@ import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 import { getSelectedBoxer, makeImagesArr, makeLabelsArr } from '../helpers'
 import {B as Button,PagesTitleH1, TitleSpan, Loader, Spinner} from '../css/core'
 import {MapContainer, Marker, TileLayer, Popup} from 'react-leaflet'
-import {AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerProfile,BoxerLabel} from '../css/boxers'
+import {Last5Container,SocialsContainer,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerProfile,BoxerLabel} from '../css/boxers'
 import {HeroText} from '../css/home'
 import 'leaflet/dist/leaflet.css';
 import Stars from '../components/stars'
 import {Typography} from '@material-ui/core'
+import Last5 from '../components/last5'
 
 // import * as Query from '../../graphql/queries.js';
 // import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton } from 'react-twitter-embed';
@@ -126,7 +127,7 @@ const Boxers = () => {
 
                     </Coverflow>
                 </CoverflowContainer>
-                <ProfileContainer style={{height: 'auto',padding: '1rem',background: '#FFF',margin: '1rem auto'}}>
+                <ProfileContainer>
                     {boxers && boxers.length > 0 
                         ?   <BoxerProfile>
                                 <ProfileImg style={{width:'100%'}} src={boxerProfileImg} />
@@ -138,7 +139,24 @@ const Boxers = () => {
                             </BoxerProfile>
                         : []
                     }
-                    
+                   
+                     <MapDiv> 
+                            <Typography variant='overline'>Hometown</Typography>
+                            <MapContainer style={{height: '325px'}} center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
+                                <TileLayer
+                                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    />
+                                <Marker position={[51.505, -0.09]}>
+                                    <Popup>
+                                    A pretty CSS3 popup. <br /> Easily customizable.
+                                    </Popup>
+                                </Marker>
+                            </MapContainer>
+                            <Last5Container>
+                                <Last5 />
+                            </Last5Container>
+                        </MapDiv>
                    
                 </ProfileContainer>
                 <RankingsContainer>
@@ -160,23 +178,12 @@ const Boxers = () => {
                         </div>
                     </RatingContainer>
                     <RatingReviewContainer>
-                        <p>here</p>
+                        <p>Reviews here</p>
                     </RatingReviewContainer>
                     {/* <RatingContainer> */}
-                        <MapDiv style={{width: '50%'}}> 
-                            <Typography variant='overline'>Hometown</Typography>
-                            <MapContainer style={{height: '325px'}} center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
-                                <TileLayer
-                                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    />
-                                <Marker position={[51.505, -0.09]}>
-                                    <Popup>
-                                    A pretty CSS3 popup. <br /> Easily customizable.
-                                    </Popup>
-                                </Marker>
-                            </MapContainer>
-                        </MapDiv>
+                    {/* <SocialsContainer>
+                        <p>socials</p>
+                    </SocialsContainer> */}
                     {/* </RatingContainer> */}
                 </RankingsContainer>
         </BoxerPageContainer>
