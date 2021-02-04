@@ -9,6 +9,8 @@ import {MapContainer, Marker, TileLayer, Popup} from 'react-leaflet'
 import {RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerProfile,BoxerLabel} from '../css/boxers'
 import {HeroText} from '../css/home'
 import 'leaflet/dist/leaflet.css';
+import Stars from '../components/stars'
+import {Typography} from '@material-ui/core'
 
 // import * as Query from '../../graphql/queries.js';
 // import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton } from 'react-twitter-embed';
@@ -32,32 +34,24 @@ const Boxers = () => {
         boxerHometown:'Yokshire, England',
         boxerProfileImg: '/boxer_in_ring.jpg'
     }]);
+    const [starValue, setStarValue] = useState(0);
+    const [attr, setAttr] = useState('');
+    const [rankings,setRankings] = useState({
+        speed:0,
+        power:0,
+        defense:0,
+        stamina:0,
+        ringGeneralship:0
+    });
 
 	const [selectedBoxer, setSelectedBoxer] = useState({});
     const [loading, setLoading] = useState(false);
 	const [userSub, setUserSub] = useState('');
-    const mapRef = useRef();
+    const starArr = ['speed','power','defense','stamina','ringGeneralship'];
 	useEffect(() => {
         let rand = Math.floor(Math.random() * boxers.length);
         setSelectedBoxer(boxers[rand]);
     },[])
-	// 	const getListOfBoxers = async () => {
-	// 		await API.graphql(graphqlOperation(Query.listBoxers))
-	// 			.then(allBoxers => {
-	// 				let boxers = allBoxers.data.listBoxers.items;
-	// 				let rand = Math.floor(Math.random() * boxers.length);
-	// 				let selectedBoxer = boxers[rand];
-	// 				let index = rand;
-	// 				this.setState(state => ({
-	// 					boxers,
-	// 					selectedBoxer,
-	// 					index,
-	// 					loading: false
-	// 				}));
-	// 			})
-	// 			.catch(err =>
-	// 	}
-
 
 	// const makeImagesArr = boxers => {
 	// 	let arr = [];
@@ -69,7 +63,6 @@ const Boxers = () => {
 	// 	});
 	// };
 
-
     const handleCoverflowClick = (e) => {
         setSelectedBoxer(boxers[e.target.id])
     };
@@ -78,13 +71,27 @@ const Boxers = () => {
         let selectedBoxer = boxers[index];
         setSelectedBoxer(selectedBoxer);
     };
-  
+    const star = useRef();
+    star.current = starValue;
+    const starRating = rating => {
+        setStarValue(rating);
+    };
+    const handleStarDivClick = e => {
+        setAttr(e.currentTarget.id);
+        let t = e.currentTarget.id;
+        setTimeout(() => {
+            let val = star.current;
+            setRankings({...rankings,[t]:val});
+        },10)
+    }
+    // console.log('rankings: ',rankings);
+
     const {boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerProfileImg} = selectedBoxer;
     return (
         <div style={{minHeight:'50rem'}}>
             <PagesTitleH1>Featured <TitleSpan> | </TitleSpan>Boxers</PagesTitleH1>
             {loading && <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader>}
-                <CoverflowContainer style={{height: '350px'}}>
+                <CoverflowContainer style={{ height: '350px'}}>
                     <Coverflow width="100%" height="350"
                         displayQuantityOfSide={1}
                         navigation
@@ -108,7 +115,7 @@ const Boxers = () => {
             
                     </Coverflow>
                 </CoverflowContainer>
-                <ProfileContainer>
+                <ProfileContainer style={{height: 'auto',padding: '1rem',background: '#FFF',margin: '1rem auto'}}>
                     {boxers && boxers.length > 0 
                         ?   <BoxerProfile>
                                 <ProfileImg style={{width:'100%'}} src={boxerProfileImg} />
@@ -122,7 +129,8 @@ const Boxers = () => {
                     }
                     
                     <MapDiv style={{}}> 
-                        <MapContainer style={{height: '100%'}} center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+                        <Typography variant='overline'>Hometown</Typography>
+                        <MapContainer style={{height: '325px'}} center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -137,6 +145,11 @@ const Boxers = () => {
                 </ProfileContainer>
                 <RatingContainer>
                     <HeroText>Fan Rankings</HeroText>
+                        <Stars
+                            starArr={starArr} 
+                            starRating={starRating}
+                            handleStarDivClick={handleStarDivClick}
+                        />
                 </RatingContainer>
         </div>
     );

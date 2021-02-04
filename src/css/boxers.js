@@ -1,9 +1,15 @@
 import styled from '@emotion/styled'
 
+export const StarDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem auto;
+`;
 export const RatingContainer = styled.div`
     width: 50%;
     margin-bottom: 10rem;
-    padding: 2rem;
+    padding: 3rem;
+    background: #FFF;
 `;
 export const ProfileP = styled.p`
     margin: 5px;
@@ -53,7 +59,7 @@ export const ProfileContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10rem;
+    margin-bottom: 3rem;
 `;
 export const BoxerProfile = styled.div`
     margin: 0.5rem auto;
