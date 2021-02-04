@@ -8,11 +8,12 @@ const Stars = ({starRating,handleStarDivClick, starArr}) => {
     const stars = (starArr,getStarValues) => {
         return starArr.map((x,i) => {
             return (
+
                 <StarDiv 
                     onClick={handleStarDivClick}
                     key={i}
                     id={x}>
-                    <Typography style={{width: '25%'}} variant='overline'>{x === 'ringGeneralship' ? 'Ring Generalship' : x}</Typography>
+                    <Typography style={{width: '30%'}} variant='overline'>{x === 'ringGeneralship' ? 'Ring Generalship' : x}</Typography>
                     <ReactStars
                         activeColor="#ffd700"
                         count={5}
@@ -22,6 +23,7 @@ const Stars = ({starRating,handleStarDivClick, starArr}) => {
                     />
 
                 </StarDiv>
+
             )
        });
     };

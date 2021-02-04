@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import CreatableSelect from 'react-select/creatable';
 import { Heading, Loader,Spinner } from '../css/core';
-import {Form,NewsButton,SearchWrapper,NewsCard,NewsWrapper,TagsContainer,TagUl,Tag} from '../css/news'
+import {Form,NewsButton,SearchWrapper,NewsCard,NewsWrapper,Tag} from '../css/news'
 import {Typography} from '@material-ui/core'
 import axios from 'axios'
 import {shortenBody} from '../helpers'
