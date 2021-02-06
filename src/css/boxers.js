@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
 import {Link} from 'react-router-dom'
 
-export const AvgRankingEl = styled.div`
-    width: 100%;
-    height: 0.5rem;
-    border: 2px solid #ffd700;
-    border-radius: 5px;
-    background: #ffd700;
+export const HeroText = styled.h1`
+    font-size: 3rem;
+    margin: 0;
+    @media(max-width: 425px){
+        font-size: 2rem;
+    }
 `;
 export const Last5Link = styled.a`
     text-decoration: none;
@@ -88,7 +88,25 @@ export const AvgRankDiv = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`
+`;
+export const AvgRankingEl = styled.div`
+    position: relative;
+    width: 100%;
+    height: 0.6rem;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background: transparent;
+    margin-bottom: 1px;
+`;
+export const AvgRankingSpan = styled.span`
+    display: block;
+    height: 0.6rem;
+    background: #ffd700;
+    border-radius: 2px;
+    width: ${props => props.width ? props.width+'%' : '0'};
+    // cursor: ${props => props.buttonsDisabled ? 'unset' : 'pointer'};
+
+`;
 export const RankingsContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -129,13 +147,14 @@ export const StarDiv = styled.div`
 `;
 export const RatingContainer = styled.div`
     margin: 1rem auto;
-    margin-bottom: 10rem;
+    margin-bottom: 3rem;
     padding: 1rem;
     background: #FFF;
     margin-top: 3rem;
+    border-radius: 5px;
+    // border: 1px solid #CACACA;
 `;
 export const RatingReviewContainer = styled.div`
-    border: 1px solid #CACACA;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -188,15 +207,12 @@ export const CoverflowContainer = styled.div`
     margin-top: 1.5rem;
 `
 export const ProfileAsideContainer = styled.div`
-    overflow-y: scroll;
     height: auto;
-    // padding: 0.5rem;
+    padding: 0.5rem;
     background: #FFF;
-    margin: 1rem auto;
+    margin: 3rem 1rem auto;
     border-radius: 3px;
     width: 30%;
-    // height: 350px;
-    // margin: 0.5rem auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -210,7 +226,10 @@ export const BoxerProfileContainer = styled.div`
     width: 100%;
 `;
 export const SocialsContainer = styled.div`
-    width: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 3rem 1rem auto;
 
 `;
 export const BoxerReviewContainer = styled.div`
@@ -219,17 +238,32 @@ export const BoxerReviewContainer = styled.div`
     margin-bottom: 10rem;
 `;
 export const BoxerReviewCard = styled.div`
-    // width: 100%;
-    border: 1px solid lightgray;
+    padding: 0.5rem;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 3rem;
+    border-left: red;
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 25%;
+        height: 50%;
+        left: 0;
+        border-left: 1px solid #bf6f6d;
+    }
+    &:last-child {
+        margin-bottom: 6rem;
+    }
 `;
 export const BoxerReviewHeader = styled.div`
+    border-radius: 3px;
     min-height: 75px;
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
     height: 30%;
-    border-bottom: 1px solid gray;
+    border: 1px solid lightgray;
 `;
 export const BoxerReviewBody = styled.div`
     width: 90%;
@@ -237,6 +271,7 @@ export const BoxerReviewBody = styled.div`
     padding: 0.5rem;
 `;
 export const AvatarImg = styled.img`
+    cursor: pointer;
     margin-left: 1rem;
     width: 100%;
     vertical-align: middle;
@@ -244,11 +279,13 @@ export const AvatarImg = styled.img`
     border-radius: 50%;
 `;
 export const BoxerReviewerName = styled.p`
+    cursor: pointer;
     margin: 0;
     margin-left: 1rem
 `;
 export const BoxerReviewText = styled.p`
     padding: 0.5rem;
+    margin-bottom: 0;
 `;
 export const ThumbDiv = styled.div`
     padding: 0.5rem;
