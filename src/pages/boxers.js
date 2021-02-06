@@ -2,17 +2,16 @@ import React, {useState, useEffect, useRef} from 'react';
 import { API, Analytics, Storage, graphqlOperation } from 'aws-amplify';
 import { S3Album, S3Image } from 'aws-amplify';
 import Coverflow from 'react-coverflow';
-import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 import { getSelectedBoxer, makeImagesArr, makeLabelsArr } from '../helpers'
 import {B as Button,PagesTitleH1, TitleSpan, Loader, Spinner} from '../css/core'
 import {MapContainer, Marker, TileLayer, Popup} from 'react-leaflet'
-import {Last5Container,SocialsContainer,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerLabel} from '../css/boxers'
-import {HeroText} from '../css/home'
+import {SocialsContainer,Last5Container,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerLabel} from '../css/boxers'
 import 'leaflet/dist/leaflet.css';
 import Stars from '../components/stars'
 import {Typography} from '@material-ui/core'
 import Last5 from '../components/last5'
 import ProfileAside from '../components/boxers/profile-aside'
+import BoxerSocials from '../components/boxers/boxer-socials'
 
 // import * as Query from '../../graphql/queries.js';
 // import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton } from 'react-twitter-embed';
@@ -27,7 +26,8 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 18,
         boxerHometown:'LA, California, USA',
-        boxerProfileImg: '/garcia-vs-campbell.png'
+        boxerProfileImg: '/garcia-vs-campbell.png',
+        boxerTwitter: '',
     },{
         boxerName: 'Luke Campbell',
         boxerRingname: 'Coolhand',
@@ -36,7 +36,8 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 16,
         boxerHometown:'Hull, Yokshire, United Kingdom',
-        boxerProfileImg: '/boxer_in_ring.jpg'
+        boxerProfileImg: '/boxer_in_ring.jpg',
+        boxerTwitter: 'luke11campbell',
     }, {
         boxerName: 'Mike Tyson',
         boxerRingname: 'Iron',
@@ -45,7 +46,8 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 44,
         boxerHometown:'Brooklyn, New York, USA',
-        boxerProfileImg: '/iron-mike.png'
+        boxerProfileImg: '/iron-mike.png',
+        boxerTwitter: 'MikeTyson',
     }]);
     const [starValue, setStarValue] = useState(0);
     const [attr, setAttr] = useState('');
@@ -102,78 +104,67 @@ const Boxers = () => {
     }
     // console.log('boxers; ',boxers);
     // console.log('selectedBoxer: ',selectedBoxer)
-    const {boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerProfileImg} = selectedBoxer;
+    const {boxerTwitter,boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerHometownLatLong,boxerProfileImg} = selectedBoxer;
     return (
         <BoxerPageContainer>
             {/* <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader> */}
             <PagesTitleH1>Featured <TitleSpan> | </TitleSpan>Boxers</PagesTitleH1>
             {loading && <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader>}
-                <CoverflowContainer>
-                    <Coverflow width="100%" height="350"
-                        displayQuantityOfSide={1}
-                        // navigation
-                        // infiniteScroll
-                        enableScroll
-                        clickable
-                        active={1}>
-                        {boxers && boxers.length > 0 
-                            ? boxers.map((boxer,i) => {
-                                let {boxerProfileImg, boxerRingname, boxerName} = boxer;
-                                return (
-                                    <>
-                                    <ProfileImgDiv id={i} key={i} role='menuitem' tabIndex={i} alt={boxerRingname} onClick={handleCoverflowClick}>
-                                        <ProfileImg id={i} src={boxerProfileImg} alt={boxerRingname} data-action="http://andyyou.github.io/react-coverflow/" />
-                                        <BoxerLabel>{boxerName}</BoxerLabel>
-                                    </ProfileImgDiv>
-                                </>)
-                                })
-                            :[]
-                        }
+            <CoverflowContainer>
+                <Coverflow width="100%" height="350"
+                    displayQuantityOfSide={1}
+                    // navigation
+                    // infiniteScroll
+                    enableScroll
+                    clickable
+                    active={1}>
+                    {boxers && boxers.length > 0 
+                        ? boxers.map((boxer,i) => {
+                            let {boxerProfileImg, boxerRingname, boxerName} = boxer;
+                            return (
+                                <>
+                                <ProfileImgDiv id={i} key={i} role='menuitem' tabIndex={i} alt={boxerRingname} onClick={handleCoverflowClick}>
+                                    <ProfileImg id={i} src={boxerProfileImg} alt={boxerRingname} data-action="http://andyyou.github.io/react-coverflow/" />
+                                    <BoxerLabel>{boxerName}</BoxerLabel>
+                                </ProfileImgDiv>
+                            </>)
+                            })
+                        :[]
+                    }
 
-                    </Coverflow>
-                </CoverflowContainer>
-                <div style={{display: 'flex',flexDirection:'row'}}>
-                    <ProfileAside 
-                        boxers={boxers} 
-                        selectedBoxer={selectedBoxer} 
-                        handleStarDivClick={handleStarDivClick}
-                        handleStarsSubmit={handleStarsSubmit}
-                    />
-                    <MapDiv> 
-                        <Typography variant='overline'>Hometown</Typography>
-                        <MapContainer style={{width: '100%',height: '325px'}} center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
-                            <TileLayer
-                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                />
-                            <Marker position={[51.505, -0.09]}>
-                                <Popup>
-                                A pretty CSS3 popup. <br /> Easily customizable.
-                                </Popup>
-                            </Marker>
-                        </MapContainer>
-                        <Last5Container>
-                            <div>
-                                <Typography variant="overline">Last 5 Opponents</Typography>
-                            </div>
-                            <div style={{display: 'flex'}}>
-                                <Last5 />
-                            </div>
-                        </Last5Container>
-                    </MapDiv>
-                </div>
-                   
-                {/* <RankingsContainer>
-                    <RatingReviewContainer>
-                        <p>Reviews here</p>
-                    </RatingReviewContainer>
-                    <RatingContainer>
-                    <SocialsContainer>
-                        <p>socials</p>
-                    </SocialsContainer>
-                    </RatingContainer>
-                </RankingsContainer> */}
-
+                </Coverflow>
+            </CoverflowContainer>
+            <div style={{display: 'flex',flexDirection:'row'}}>
+                <ProfileAside 
+                    boxers={boxers} 
+                    selectedBoxer={selectedBoxer} 
+                    handleStarDivClick={handleStarDivClick}
+                    handleStarsSubmit={handleStarsSubmit}
+                />
+                <MapDiv> 
+                    <Typography variant='overline'>Hometown</Typography>
+                    <MapContainer style={{width: '100%',height: '325px'}} center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
+                        <TileLayer
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+                        <Marker position={[51.505, -0.09]}>
+                            <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                            </Popup>
+                        </Marker>
+                    </MapContainer>
+                    <Last5Container>
+                        <div>
+                            <Typography variant="overline">Last 5 Opponents</Typography>
+                        </div>
+                        <div style={{display: 'flex'}}>
+                            <Last5 />
+                        </div>
+                    </Last5Container>
+                    <BoxerSocials boxerTwitter={boxerTwitter} />
+                </MapDiv>
+            </div>
         </BoxerPageContainer>
     );
 }

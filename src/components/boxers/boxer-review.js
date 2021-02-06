@@ -1,5 +1,5 @@
 import React from 'react'
-import {ThumbDiv,BoxerReviewText,BoxerReviewerName,BoxerReviewContainer,BoxerReviewBody,BoxerReviewHeader,BoxerReviewCard,AvatarImg} from '../../css/boxers'
+import {HeroText,ThumbDiv,BoxerReviewText,BoxerReviewerName,BoxerReviewContainer,BoxerReviewBody,BoxerReviewHeader,BoxerReviewCard,AvatarImg} from '../../css/boxers'
 import {Typography} from '@material-ui/core'
 import {shortenTitle} from '../../helpers'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -10,6 +10,7 @@ const BoxerReviews = () => {
 
     return (
         <BoxerReviewContainer>
+            <HeroText>Reviews</HeroText>
             <BoxerReviewCard>
                 <BoxerReviewHeader>
                     <AvatarImg src='/boxer_in_ring.jpg' />
@@ -23,9 +24,10 @@ const BoxerReviews = () => {
                         {shortenTitle(reviewText)}
                     </BoxerReviewText>
                     <ThumbDiv>
-                        <ThumbUpIcon style={{marginLeft:'1rem'}} color='action'/>
-                        <p style={{margin:'0.7rem'}}>Like</p>
-                        <ShareIcon style={{marginLeft:'1.5rem'}} color='action' />
+                        <ThumbUpIcon style={{cursor: 'pointer'}} color='action'/>
+                        <p style={{margin:'0.7rem',marginRight:'0.3rem'}}>Like</p>
+                        <p>1.4K</p>
+                        <ShareIcon style={{cursor: 'pointer',marginLeft:'1.5rem'}} color='action' />
                         <p style={{margin:'0.7rem'}}>Share</p>
                     </ThumbDiv>
                 </BoxerReviewBody>
