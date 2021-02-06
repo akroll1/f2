@@ -6,9 +6,13 @@ import { TwitterTimelineEmbed, TwitterShareButton } from 'react-twitter-embed';
 import { getSelectedBoxer, makeImagesArr, makeLabelsArr } from '../helpers'
 import {B as Button,PagesTitleH1, TitleSpan, Loader, Spinner} from '../css/core'
 import {MapContainer, Marker, TileLayer, Popup} from 'react-leaflet'
-import {RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerProfile,BoxerLabel} from '../css/boxers'
+import {Last5Container,SocialsContainer,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerLabel} from '../css/boxers'
 import {HeroText} from '../css/home'
 import 'leaflet/dist/leaflet.css';
+import Stars from '../components/stars'
+import {Typography} from '@material-ui/core'
+import Last5 from '../components/last5'
+import ProfileAside from '../components/boxers/profile-aside'
 
 // import * as Query from '../../graphql/queries.js';
 // import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton } from 'react-twitter-embed';
@@ -21,7 +25,8 @@ const Boxers = () => {
         boxerWins: 21,
         boxerLosses: 0,
         boxerDraws: 0,
-        boxerHometown:'LA, California',
+        boxerKos: 18,
+        boxerHometown:'LA, California, USA',
         boxerProfileImg: '/garcia-vs-campbell.png'
     },{
         boxerName: 'Luke Campbell',
@@ -29,35 +34,36 @@ const Boxers = () => {
         boxerWins: 2,
         boxerLosses: 4,
         boxerDraws: 0,
-        boxerHometown:'Yokshire, England',
+        boxerKos: 16,
+        boxerHometown:'Hull, Yokshire, United Kingdom',
         boxerProfileImg: '/boxer_in_ring.jpg'
+    }, {
+        boxerName: 'Mike Tyson',
+        boxerRingname: 'Iron',
+        boxerWins: 50,
+        boxerLosses: 6,
+        boxerDraws: 0,
+        boxerKos: 44,
+        boxerHometown:'Brooklyn, New York, USA',
+        boxerProfileImg: '/iron-mike.png'
     }]);
+    const [starValue, setStarValue] = useState(0);
+    const [attr, setAttr] = useState('');
+    const [rankings,setRankings] = useState({
+        speed:0,
+        power:0,
+        defense:0,
+        stamina:0,
+        ringGeneralship:0
+    });
 
-	const [selectedBoxer, setSelectedBoxer] = useState({});
+	const [selectedBoxer, setSelectedBoxer] = useState(boxers[0]);
     const [loading, setLoading] = useState(false);
 	const [userSub, setUserSub] = useState('');
-    const mapRef = useRef();
 	useEffect(() => {
         let rand = Math.floor(Math.random() * boxers.length);
         setSelectedBoxer(boxers[rand]);
     },[])
-	// 	const getListOfBoxers = async () => {
-	// 		await API.graphql(graphqlOperation(Query.listBoxers))
-	// 			.then(allBoxers => {
-	// 				let boxers = allBoxers.data.listBoxers.items;
-	// 				let rand = Math.floor(Math.random() * boxers.length);
-	// 				let selectedBoxer = boxers[rand];
-	// 				let index = rand;
-	// 				this.setState(state => ({
-	// 					boxers,
-	// 					selectedBoxer,
-	// 					index,
-	// 					loading: false
-	// 				}));
-	// 			})
-	// 			.catch(err =>
-	// 	}
-
 
 	// const makeImagesArr = boxers => {
 	// 	let arr = [];
@@ -69,7 +75,6 @@ const Boxers = () => {
 	// 	});
 	// };
 
-
     const handleCoverflowClick = (e) => {
         setSelectedBoxer(boxers[e.target.id])
     };
@@ -78,20 +83,39 @@ const Boxers = () => {
         let selectedBoxer = boxers[index];
         setSelectedBoxer(selectedBoxer);
     };
-  
+    const star = useRef();
+    star.current = starValue;
+    const starRating = rating => {
+        setStarValue(rating);
+    };
+    const handleStarDivClick = e => {
+        setAttr(e.currentTarget.id);
+        let t = e.currentTarget.id;
+        setTimeout(() => {
+            let val = star.current;
+            setRankings({...rankings,[t]:val});
+        },10)
+    }
+    // console.log('rankings: ',rankings);
+    const handleStarsSubmit = () => {
+        console.log('handleStarsSubmit: ',rankings);
+    }
+    // console.log('boxers; ',boxers);
+    // console.log('selectedBoxer: ',selectedBoxer)
     const {boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerProfileImg} = selectedBoxer;
     return (
-        <div style={{minHeight:'50rem'}}>
+        <BoxerPageContainer>
+            {/* <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader> */}
             <PagesTitleH1>Featured <TitleSpan> | </TitleSpan>Boxers</PagesTitleH1>
             {loading && <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader>}
-                <CoverflowContainer style={{height: '350px'}}>
+                <CoverflowContainer>
                     <Coverflow width="100%" height="350"
                         displayQuantityOfSide={1}
-                        navigation
-                        infiniteScroll
+                        // navigation
+                        // infiniteScroll
                         enableScroll
                         clickable
-                        active={0}>
+                        active={1}>
                         {boxers && boxers.length > 0 
                             ? boxers.map((boxer,i) => {
                                 let {boxerProfileImg, boxerRingname, boxerName} = boxer;
@@ -105,24 +129,19 @@ const Boxers = () => {
                                 })
                             :[]
                         }
-            
+
                     </Coverflow>
                 </CoverflowContainer>
-                <ProfileContainer>
-                    {boxers && boxers.length > 0 
-                        ?   <BoxerProfile>
-                                <ProfileImg style={{width:'100%'}} src={boxerProfileImg} />
-                                <ProfileP>{boxerName} <span>"{boxerRingname}"</span></ProfileP>
-                                <ProfileP>Wins: {boxerWins}</ProfileP>
-                                <ProfileP>Losses: {boxerLosses}</ProfileP>
-                                <ProfileP>Draws: {boxerDraws}</ProfileP>
-                                <ProfileP>{boxerHometown}</ProfileP>
-                            </BoxerProfile>
-                        : []
-                    }
-                    
-                    <MapDiv style={{}}> 
-                        <MapContainer style={{height: '100%'}} center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+                <div style={{display: 'flex',flexDirection:'row'}}>
+                    <ProfileAside 
+                        boxers={boxers} 
+                        selectedBoxer={selectedBoxer} 
+                        handleStarDivClick={handleStarDivClick}
+                        handleStarsSubmit={handleStarsSubmit}
+                    />
+                    <MapDiv> 
+                        <Typography variant='overline'>Hometown</Typography>
+                        <MapContainer style={{width: '100%',height: '325px'}} center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -133,12 +152,29 @@ const Boxers = () => {
                                 </Popup>
                             </Marker>
                         </MapContainer>
+                        <Last5Container>
+                            <div>
+                                <Typography variant="overline">Last 5 Opponents</Typography>
+                            </div>
+                            <div style={{display: 'flex'}}>
+                                <Last5 />
+                            </div>
+                        </Last5Container>
                     </MapDiv>
-                </ProfileContainer>
-                <RatingContainer>
-                    <HeroText>Fan Rankings</HeroText>
-                </RatingContainer>
-        </div>
+                </div>
+                   
+                {/* <RankingsContainer>
+                    <RatingReviewContainer>
+                        <p>Reviews here</p>
+                    </RatingReviewContainer>
+                    <RatingContainer>
+                    <SocialsContainer>
+                        <p>socials</p>
+                    </SocialsContainer>
+                    </RatingContainer>
+                </RankingsContainer> */}
+
+        </BoxerPageContainer>
     );
 }
 export default Boxers;
