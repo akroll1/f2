@@ -3,12 +3,11 @@ import {Typography} from '@material-ui/core'
 import {StarDiv} from '../css/boxers'
 import ReactStars from 'react-rating-stars-component';
 
-const Stars = ({starRating,handleStarDivClick, starArr}) => {
-  
-    const stars = (starArr,getStarValues) => {
-        return starArr.map((x,i) => {
+const Stars = ({starRating,handleStarDivClick}) => {
+    const star = ['speed','power','defense','stamina','ringGeneralship'];
+    const stars = (star,getStarValues) => {
+        return star.map((x,i) => {
             return (
-
                 <StarDiv 
                     onClick={handleStarDivClick}
                     key={i}
@@ -30,7 +29,7 @@ const Stars = ({starRating,handleStarDivClick, starArr}) => {
     return (
         <>
         {   
-            stars(starArr)
+            stars(star)
         }        
         </>
     )

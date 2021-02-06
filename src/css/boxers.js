@@ -1,6 +1,13 @@
 import styled from '@emotion/styled'
 import {Link} from 'react-router-dom'
 
+export const AvgRankingEl = styled.div`
+    width: 100%;
+    height: 0.5rem;
+    border: 2px solid #ffd700;
+    border-radius: 5px;
+    background: #ffd700;
+`;
 export const Last5Link = styled.a`
     text-decoration: none;
     color: #333;
@@ -14,7 +21,7 @@ export const Last5Img = styled.img`
     // object-fit: cover;
     // object-position: center center;
     // opacity: 1;
-    // transition: opacity 500ms ease 0s;
+    transition: opacity 500ms ease 5s;
 
     width: 100%;
     padding: 1rem auto;
@@ -34,17 +41,18 @@ export const Last5Description = styled.p`
     text-align: left;
 `;
 export const Last5Wrapper = styled.section`
-    display: flex;
+    width: 15%;
+    display: inline-flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     background: #FFF;
     padding: 0.5rem;
-    margin: 1rem auto;
+    margin: 0 auto;
     border-radius: 5px;
     border: 1px solid #ddd;
-    box-shadow: 0 0.05rem 0.15rem rgba(0,0,0,0.2);
+    box-shadow: 0 0.05rem 0.10rem rgba(0,0,0,0.2);
     &:hover {
         background: #f1f1f1;
         opacity: 0.9;
@@ -54,11 +62,11 @@ export const Last5Wrapper = styled.section`
 export const Last5Container = styled.div`
     position: relative; 
     cursor: pointer;
-    display: inline-flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 1.5rem 0.5rem auto;
+    // margin: 1.5rem 0.5rem auto;
     width: 100%;
     padding: 1rem;
     // border: 1px solid rgba(0,0,0,0.08);
@@ -120,11 +128,11 @@ export const StarDiv = styled.div`
     margin: 0.5rem;
 `;
 export const RatingContainer = styled.div`
-    width: 25%;
     margin: 1rem auto;
     margin-bottom: 10rem;
     padding: 1rem;
     background: #FFF;
+    margin-top: 3rem;
 `;
 export const RatingReviewContainer = styled.div`
     border: 1px solid #CACACA;
@@ -159,48 +167,93 @@ export const ProfileImgDiv = styled.div`
     justify-content: center;
     `;
 export const ProfileImg = styled.img`
+    width: 100%;
     border-radius: 3px;
     width: 100%;
     border-radius: 5px
     padding: 1rem;
 `;
 export const MapDiv = styled.div`
-    width: 55%;
-    // padding: 1rem;
-    // margin: 0.5rem auto;
+    width: 60%;
+    padding: 1rem;
+    margin: 0.5rem auto;
+    margin-top: 0;
     height: 100%; 
 `;
 export const CoverflowContainer = styled.div`
-    height: 200px;
+    height: 350px;
     width: 100%;
     // margin: auto;
     margin-bottom: 5rem;
     margin-top: 1.5rem;
 `
-export const ProfileContainer = styled.div`
+export const ProfileAsideContainer = styled.div`
+    overflow-y: scroll;
     height: auto;
-    // padding: 1rem;
+    // padding: 0.5rem;
     background: #FFF;
-    // margin: 1rem auto;
+    margin: 1rem auto;
     border-radius: 3px;
-    width: 100%;
+    width: 30%;
     // height: 350px;
     // margin: 0.5rem auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     margin-bottom: 3rem;
 `;
-export const BoxerProfile = styled.div`
-    // margin: 0.5rem;
-    border: 1px solid lightgray;
-    // padding: 1rem;
+export const BoxerProfileContainer = styled.div`
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 100%;
 `;
 export const SocialsContainer = styled.div`
     width: 30%;
 
+`;
+export const BoxerReviewContainer = styled.div`
+    height: 200px;
+    width: 100%;
+    margin-bottom: 10rem;
+`;
+export const BoxerReviewCard = styled.div`
+    // width: 100%;
+    border: 1px solid lightgray;
+`;
+export const BoxerReviewHeader = styled.div`
+    min-height: 75px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    border-bottom: 1px solid gray;
+`;
+export const BoxerReviewBody = styled.div`
+    width: 90%;
+    height: 70%;
+    padding: 0.5rem;
+`;
+export const AvatarImg = styled.img`
+    margin-left: 1rem;
+    width: 100%;
+    vertical-align: middle;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+`;
+export const BoxerReviewerName = styled.p`
+    margin: 0;
+    margin-left: 1rem
+`;
+export const BoxerReviewText = styled.p`
+    padding: 0.5rem;
+`;
+export const ThumbDiv = styled.div`
+    padding: 0.5rem;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 `;
