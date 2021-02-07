@@ -17,18 +17,9 @@ export const getGameType = (path) => {
 
 export const createMarkup = text => ({ __html: text });
 
-export const shortenTitle = (title) => {
-    if (title && title.length > 100){
-        title = title.slice(0,100);
-        title += '...';
-        return title;
-    }
-    return title;
-};
-
-export const shortenBody = (body) => {
-    if(body.length > 200){
-        body = body.slice(0,200);
+export const shortenText = (body, length) => {
+    if(body.length > length){
+        body = body.slice(0,length);
         body += '...';
         return body;
     }
