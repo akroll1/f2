@@ -16,7 +16,7 @@ const BoxerSocials = ({socialsArr}) => {
                     <HeroText style={{padding: '1rem'}}>Socials</HeroText>
                     <SocialsUl>
                         {socialsArr && socialsArr.length > 0
-                            ? socialsArr.map((social,i) => <SocialsA href={`https://twitter.com/${social.Twitter}`} target='_blank' rel="noopener noreferrer"><Socials key={i}><LinkOutlinedIcon htmlColor={'gray'} fontSize={'large'}/>&nbsp;&nbsp;Twitter</Socials></SocialsA>)
+                            ? socialsArr.map((social,i) => <SocialsA href={`${social.handle}`} target='_blank' rel="noopener noreferrer"><Socials key={i}><LinkOutlinedIcon htmlColor={'gray'} fontSize={'large'}/>&nbsp;&nbsp;{social.social}</Socials></SocialsA>)
                             : []
                         }
                     </SocialsUl>

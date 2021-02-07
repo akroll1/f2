@@ -22,7 +22,7 @@ const Boxers = () => {
     const geocodioBaseUrl = `https://api.geocod.io/v1.6/geocode?api_key=${geoApiKey}&limit=1&q=`;
     const [boxers, setBoxers] = useState([{
         boxerName: 'Ryan Garcia',
-        boxerRingname: 'King Ry',
+        boxerRingname: 'King Ryan',
         boxerWins: 21,
         boxerLosses: 0,
         boxerDraws: 0,
@@ -30,7 +30,7 @@ const Boxers = () => {
         boxerHometown:'LA, California, USA',
         boxerLatLong: [33.973951,-118.248405],
         boxerProfileImg: '/garcia-vs-campbell.png',
-        socialsArr: [{Twitter: ''}]
+        socialsArr: [{social: 'Twitter',handle: 'https://twitter.com',social: 'Facebook',handle:'https://facebook.com/kingryang',social: 'IG',handle:'https://instagram.com/kingryan'}]
     },{
         boxerName: 'Luke Campbell',
         boxerRingname: 'Coolhand',
@@ -41,7 +41,7 @@ const Boxers = () => {
         boxerHometown:'Hull, Yokshire, United Kingdom',
         boxerLatLong: [41.893642,-89.393714],
         boxerProfileImg: '/boxer_in_ring.jpg',
-        socialsArr: [{Twitter: 'luke11campbell'}]
+        socialsArr: [{social: 'Twitter', handle: 'https://twitter.com/luke11campbell'},{social: 'Facebook', handle:'https://facebook.com/LukeCampbellOfficial'},{social:'IG',handle:'https://instagram.com/luke11campbell'}]
     }, {
         boxerName: 'Mike Tyson',
         boxerRingname: 'Iron',
@@ -52,7 +52,7 @@ const Boxers = () => {
         boxerHometown:'Brooklyn, New York, USA',
         boxerLatLong: [40.63122,-73.941542],
         boxerProfileImg: '/iron-mike.png',
-        socialsArr: [{Twitter: 'MikeTyson'}]
+        socialsArr: [{social: 'Twitter',handle: 'https://twitter.com/MikeTyson',social: 'Facebook',handle:'https://facebook.com/miketyson',social: 'IG',handle:'https://instagram.com/miketyson'}]
     }]);
     const [selectedBoxer, setSelectedBoxer] = useState(boxers[0]);
     const [starValue, setStarValue] = useState(0);
