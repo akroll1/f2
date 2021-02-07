@@ -4,7 +4,7 @@ import { Heading, Loader,Spinner } from '../css/core';
 import {Form,NewsButton,SearchWrapper,NewsCard,NewsWrapper,Tag} from '../css/news'
 import {Typography} from '@material-ui/core'
 import axios from 'axios'
-import {shortenBody} from '../helpers'
+import {shortenText} from '../helpers'
 
 const News = () => {
 	const bingBaseUrl = `https://api.bing.microsoft.com/v7.0/news/search?count=30&q=boxing`;
@@ -118,7 +118,7 @@ const News = () => {
 							// alt={boxerPic}
 							src={story.image ? story.image.thumbnail.contentUrl : ''}
 							/>
-						<p style={{textAlign: 'left',color: '#333',margin: '0 auto'}}>{shortenBody(story.description)}</p>
+						<p style={{textAlign: 'left',color: '#333',margin: '0 auto'}}>{shortenText(story.description,200)}</p>
 						<h5 style={{textAlign: 'left',color: '#bf6f6d'}}>{story.provider ? story.provider[0].name : ''}</h5>
 					</div>
 				</a>

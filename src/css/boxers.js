@@ -147,7 +147,7 @@ export const StarDiv = styled.div`
 `;
 export const RatingContainer = styled.div`
     margin: 1rem auto;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     padding: 1rem;
     background: #FFF;
     margin-top: 3rem;
@@ -226,33 +226,75 @@ export const BoxerProfileContainer = styled.div`
     width: 100%;
 `;
 export const SocialsContainer = styled.div`
+    background: #FFF;
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 3rem 1rem auto;
-
+    margin: 3rem 0rem;
+`;
+export const SocialsListDiv = styled.div`
+    width: 100%;
+    height: auto;
+`;
+export const SocialsUl = styled.ul`
+    width: 100%;
+    list-style-type: none;
+`;
+export const Socials = styled.li`
+    font-weight: bold;
+    color: #d22509;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+`;
+export const SocialsA = styled.a`
+    text-decoration: none;
+`;
+export const SocialButtonsDiv = styled.div`
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: center;
 `;
 export const BoxerReviewContainer = styled.div`
-    height: 200px;
+    overflow: scroll;
+    height: 500px;
     width: 100%;
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
+`;
+export const BoxerReviewCardContainer = styled.div`
+    width: 100%;
+
 `;
 export const BoxerReviewCard = styled.div`
+    width: 90%;
+    margin: auto;
     padding: 0.5rem;
-    border-bottom: 1px solid lightgray;
-    margin-bottom: 3rem;
-    border-left: red;
+    position: relative;
+    box-shadow: 1px 1px 3px rgb(60 64 67 / 28%);
+    padding: 0.5rem;
+    border-bottom: 1px solid #A7A7A7;
+    margin-bottom: 1rem;
+    &:hover {
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgb(60 64 67 / 28%);
+    }
     &:before {
         content: '';
         display: block;
         position: absolute;
-        top: 25%;
-        height: 50%;
+        top: 20%;
+        height: 60%;
         left: 0;
-        border-left: 1px solid #bf6f6d;
+        border-left: 1px solid #ff2805;
     }
     &:last-child {
-        margin-bottom: 6rem;
+        margin-bottom: 3rem;
     }
 `;
 export const BoxerReviewHeader = styled.div`
@@ -263,7 +305,7 @@ export const BoxerReviewHeader = styled.div`
     align-items: center;
     width: 100%;
     height: 30%;
-    border: 1px solid lightgray;
+    border: 1px solid #e7e7e7;
 `;
 export const BoxerReviewBody = styled.div`
     width: 90%;

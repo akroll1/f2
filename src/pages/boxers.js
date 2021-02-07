@@ -12,12 +12,14 @@ import {Typography} from '@material-ui/core'
 import Last5 from '../components/last5'
 import ProfileAside from '../components/boxers/profile-aside'
 import BoxerSocials from '../components/boxers/boxer-socials'
+import axios from 'axios';
 
 // import * as Query from '../../graphql/queries.js';
-// import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton } from 'react-twitter-embed';
 // Storage.configure({ level: 'public' });
 
 const Boxers = () => {
+    const geoApiKey = process.env.REACT_APP_GEOCODIO_API_KEY;
+    const geocodioBaseUrl = `https://api.geocod.io/v1.6/geocode?api_key=${geoApiKey}&limit=1&q=`;
     const [boxers, setBoxers] = useState([{
         boxerName: 'Ryan Garcia',
         boxerRingname: 'King Ry',
@@ -26,8 +28,9 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 18,
         boxerHometown:'LA, California, USA',
+        boxerLatLong: [33.973951,-118.248405],
         boxerProfileImg: '/garcia-vs-campbell.png',
-        boxerTwitter: '',
+        socialsArr: [{Twitter: ''}]
     },{
         boxerName: 'Luke Campbell',
         boxerRingname: 'Coolhand',
@@ -36,8 +39,9 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 16,
         boxerHometown:'Hull, Yokshire, United Kingdom',
+        boxerLatLong: [41.893642,-89.393714],
         boxerProfileImg: '/boxer_in_ring.jpg',
-        boxerTwitter: 'luke11campbell',
+        socialsArr: [{Twitter: 'luke11campbell'}]
     }, {
         boxerName: 'Mike Tyson',
         boxerRingname: 'Iron',
@@ -46,9 +50,11 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 44,
         boxerHometown:'Brooklyn, New York, USA',
+        boxerLatLong: [40.63122,-73.941542],
         boxerProfileImg: '/iron-mike.png',
-        boxerTwitter: 'MikeTyson',
+        socialsArr: [{Twitter: 'MikeTyson'}]
     }]);
+    const [selectedBoxer, setSelectedBoxer] = useState(boxers[0]);
     const [starValue, setStarValue] = useState(0);
     const [attr, setAttr] = useState('');
     const [rankings,setRankings] = useState({
@@ -59,14 +65,19 @@ const Boxers = () => {
         ringGeneralship:0
     });
 
-	const [selectedBoxer, setSelectedBoxer] = useState(boxers[0]);
     const [loading, setLoading] = useState(false);
 	const [userSub, setUserSub] = useState('');
 	useEffect(() => {
         let rand = Math.floor(Math.random() * boxers.length);
         setSelectedBoxer(boxers[rand]);
     },[])
-
+    // const convertAddressToLatLong = async (address) => {
+    //     let url = `${geocodioBaseUrl}${address}`;
+    //     axios(url)
+    //         .then(res => console.log('res: ',res.data.results[0].location))
+    //         .catch(err => console.log('err: ',err));
+    // };
+    // convertAddressToLatLong(selectedBoxer.boxerHometown);
 	// const makeImagesArr = boxers => {
 	// 	let arr = [];
 	// 	return boxers.map(boxer => {
@@ -104,7 +115,7 @@ const Boxers = () => {
     }
     // console.log('boxers; ',boxers);
     // console.log('selectedBoxer: ',selectedBoxer)
-    const {boxerTwitter,boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerHometownLatLong,boxerProfileImg} = selectedBoxer;
+    const {socialsArr,boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerHometownLatLong,boxerProfileImg} = selectedBoxer;
     return (
         <BoxerPageContainer>
             {/* <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader> */}
@@ -162,7 +173,7 @@ const Boxers = () => {
                             <Last5 />
                         </div>
                     </Last5Container>
-                    <BoxerSocials boxerTwitter={boxerTwitter} />
+                    <BoxerSocials socialsArr={socialsArr} />
                 </MapDiv>
             </div>
         </BoxerPageContainer>
