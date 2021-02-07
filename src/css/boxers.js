@@ -22,7 +22,6 @@ export const Last5Img = styled.img`
     // object-position: center center;
     // opacity: 1;
     transition: opacity 500ms ease 5s;
-
     width: 100%;
     padding: 1rem auto;
     background: cover;
@@ -237,6 +236,7 @@ export const SocialsListDiv = styled.div`
     height: auto;
 `;
 export const SocialsUl = styled.ul`
+    display: flex;
     width: 100%;
     list-style-type: none;
 `;
