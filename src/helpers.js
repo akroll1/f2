@@ -18,6 +18,7 @@ export const getGameType = (path) => {
 export const createMarkup = text => ({ __html: text });
 
 export const shortenText = (body, length) => {
+    if(!body) return
     if(body.length > length){
         body = body.slice(0,length);
         body += '...';
