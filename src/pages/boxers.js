@@ -10,7 +10,7 @@ import {Typography} from '@material-ui/core'
 import Last5 from '../components/last5'
 import ProfileAside from '../components/boxers/profile-aside'
 import BoxerSocials from '../components/boxers/boxer-socials'
-import GoogleMap from '../components/boxers/google-map'
+import GMap from '../components/boxers/google-map'
 import axios from 'axios';
 
 // import * as Query from '../../graphql/queries.js';
@@ -154,7 +154,13 @@ const Boxers = () => {
                 />
                 <MapDiv> 
                     <Typography variant='overline'>Hometown</Typography>
-                    <GoogleMap boxerLatLong={boxerLatLong}/>
+                    <GMap 
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}
+                        isMarkerShown={true} 
+                        boxerLatLong={boxerLatLong}
+                        loadingElement={<div style={{ height: `100%` }} />}
+                        containerElement={<div style={{ height: `400px` }} />}
+                        mapElement={<div style={{ height: `100%` }} />}                    />
                     <Last5Container>
                         <div>
                             <Typography variant="overline">Last 5 Opponents</Typography>
