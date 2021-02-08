@@ -16,7 +16,7 @@ const BoxerReviews = () => {
             {
                 reviewArr && reviewArr.length > 0
                 ? reviewArr.map((review,i) => 
-                    (<BoxerReviewCardContainer>
+                    (<BoxerReviewCardContainer key={i}>
                     <BoxerReviewCard>
                         <BoxerReviewHeader>
                             <AvatarImg src='/boxer_in_ring.jpg' />

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Amplify, {API, Auth, graphqlOperation} from "aws-amplify";
-import {EditorInput as Input,Form, Button, Title, Text, Label, SaveDraftButton} from '../../css/editor'
+import {EditorInput as Input,SmallInput,Form, Button, Title} from '../../css/editor'
 import { Typography } from '@material-ui/core';
 
 const Boxer = ({selected, getTime}) => {
@@ -11,6 +11,7 @@ const Boxer = ({selected, getTime}) => {
         boxerWins: null,
         boxerLosses: null,
         boxerDraws: null,
+        boxerKos: null,
         boxerHometown:'',
         boxerProfileImg: '',
         boxerVideo: ''
@@ -26,7 +27,7 @@ const Boxer = ({selected, getTime}) => {
         e.preventDefault();
         console.log('submit');
     }
-    const {boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerProfileImg,boxerVideo} = boxer;
+    const {boxerInstagram,boxerTwitter,boxerFacebook,boxerKos,boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerProfileImg,boxerVideo} = boxer;
     return (
         <>
             <Title style={{margin: '1rem auto'}}>Create a Boxer Profile</Title>
@@ -50,8 +51,18 @@ const Boxer = ({selected, getTime}) => {
                     label="boxerRingname"
                     placeholder="Ring Name"
                 />
-                <Typography>Wins</Typography>
+                <Typography variant="overline">Hometown</Typography>
                 <Input
+                    id='boxerHometown'
+                    value={boxerHometown}
+                    type="text"
+                    onChange={handleChange}
+                    label="boxerHometown"
+                    placeholder="City, State, Country"
+                />
+
+                <Typography>Wins</Typography>
+                <SmallInput
                     id='boxerWins'
                     value={boxerWins}
                     type="text"
@@ -60,7 +71,7 @@ const Boxer = ({selected, getTime}) => {
                     placeholder="Wins"
                 />
                 <Typography variant="overline">Losses</Typography>
-                <Input
+                <SmallInput
                     id='boxerLosses'
                     value={boxerLosses}
                     type="text"
@@ -69,7 +80,7 @@ const Boxer = ({selected, getTime}) => {
                     placeholder="Losses"
                 />
                 <Typography variant="overline">Draws</Typography>
-                <Input
+                <SmallInput
                     id='boxerDraws'
                     value={boxerDraws}
                     type="text"
@@ -77,14 +88,41 @@ const Boxer = ({selected, getTime}) => {
                     label="boxerDraws"
                     placeholder="Draws"
                 />
-                <Typography variant="overline">Hometown</Typography>
-                <Input
-                    id='boxerHometown'
-                    value={boxerHometown}
+                <Typography variant="overline">KO's</Typography>
+                <SmallInput
+                    id='boxerKos'
+                    value={boxerKos}
                     type="text"
                     onChange={handleChange}
-                    label="boxerHometown"
-                    placeholder="Hometown"
+                    label="boxerKos"
+                    placeholder="KO's"
+                />
+                <Typography variant="overline">Instagram</Typography>
+                <SmallInput
+                    id='boxerInstagram'
+                    value={boxerInstagram}
+                    type="text"
+                    onChange={handleChange}
+                    label="boxerInstagram"
+                    placeholder="Instagram"
+                />
+                <Typography variant="overline">Twitter</Typography>
+                <SmallInput
+                    id='boxerTwitter'
+                    value={boxerTwitter}
+                    type="text"
+                    onChange={handleChange}
+                    label="boxerTwitter"
+                    placeholder="Twitter"
+                />
+                <Typography variant="overline">Facebook</Typography>
+                <SmallInput
+                    id='boxerFacebook'
+                    value={boxerFacebook}
+                    type="text"
+                    onChange={handleChange}
+                    label="boxerFacebook"
+                    placeholder="Facebook"
                 />
                 <Typography variant="overline">Image Upload</Typography>
                 <Input
