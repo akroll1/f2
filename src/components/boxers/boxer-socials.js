@@ -5,10 +5,13 @@ import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
 
 const BoxerSocials = ({socialsArr}) => {
     const [count,setCount] = useState(0);
+    const handle = socialsArr.filter(social => social.social === 'Twitter')
+        .map(twitter => twitter.handle);
+    console.log('handle: ',handle)
+    // const [handle, setHandle] = useState('');
     // useEffect(() => {
     //     setTwitter(boxerTwitter);
-    //     setCount(count => count +1);
-    // },[twitter])
+    // },[handle])
     return (
         <>
             <SocialsContainer>
@@ -16,7 +19,7 @@ const BoxerSocials = ({socialsArr}) => {
                     <HeroText style={{padding: '1rem'}}>Socials</HeroText>
                     <SocialsUl>
                         {socialsArr && socialsArr.length > 0
-                            ? socialsArr.map((social,i) => <SocialsA href={`${social.handle}`} target='_blank' rel="noopener noreferrer"><Socials key={i}><LinkOutlinedIcon htmlColor={'gray'} fontSize={'large'}/>&nbsp;&nbsp;{social.social}</Socials></SocialsA>)
+                            ? socialsArr.map((social,i) => <SocialsA  key={i} href={`${social.baseUrl}${social.handle}`} target='_blank' rel="noopener noreferrer"><Socials><LinkOutlinedIcon htmlColor={'gray'} fontSize={'large'}/>&nbsp;&nbsp;{social.social}</Socials></SocialsA>)
                             : []
                         }
                     </SocialsUl>
@@ -26,18 +29,18 @@ const BoxerSocials = ({socialsArr}) => {
                     <div style={{marginBottom: '0rem 1rem'}}>
                         <TwitterShareButton 
                             url={'https://fightcloud.live'}
-                            options={{text: socialsArr[0].Twitter + ' is the man!', via:'fightcloudlive'}}
+                            options={{text: `${handle}` + ` is the man!`, via:`fightcloudlive`}}
                         />
                     </div>
                     <div style={{marginBottom: '0rem 1rem'}}>
                         <TwitterFollowButton 
-                            screenName={socialsArr[0].Twitter}
+                            screenName={handle}
                         />
                     </div>
                 </SocialButtonsDiv>
                 <TwitterTimelineEmbed
                     sourceType="profile"
-                    screenName={socialsArr[0].Twitter}
+                    screenName={handle}
                     options={{height: 600}}
                 />
             </SocialsContainer>

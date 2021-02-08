@@ -65,13 +65,10 @@ export const Last5Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // margin: 1.5rem 0.5rem auto;
     width: 100%;
     padding: 1rem;
-    // border: 1px solid rgba(0,0,0,0.08);
     background-color:#fff;
-    // box-shadow: 0 5px 10px rgba(0,0,0,0.05);
-    border-radius: 12px;
+    border-radius: 2px;
     transition: box-shadow .15s linear;
    
     @media(max-width: 767px){
