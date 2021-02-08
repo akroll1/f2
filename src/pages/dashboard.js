@@ -12,7 +12,7 @@ import {
 	PhotoPicker,
 	S3Image
 } from '@aws-amplify/ui-react';
-// import { loader } from '../../Components/PageComponents/loader';
+import Review from '../components/forms/review'
 import Editor from '../components/forms/editor'
 import Podcast from '../components/forms/podcast'
 import Gym from '../components/forms/gyms'
@@ -50,6 +50,7 @@ const Dashboard = () => {
         // getUser();
     },[]);
     let options = [
+        { value: 'REVIEW', label: 'Post a Review', type: 'Review'},
         { value: 'ARTICLE', label: 'Publish an Article', type: 'Article' },
         { value: 'BOXER', label: 'Create a Boxer Profile', type: 'Boxer' },
         { value: 'GYM', label: 'Create a Gym Profile', type: 'Gym' },
@@ -89,6 +90,7 @@ const Dashboard = () => {
                     options={options}
                 />
             </SelectWrapper>
+            {value === 'REVIEW' && <Review />}
             {value === 'ARTICLE' && <Editor />}
             {value === 'LIVE' && <Podcast handleTimeSelect={handleTimeSelect}/>}
             {value === 'GYM' && <Gym />}
