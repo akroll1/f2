@@ -1,5 +1,19 @@
 import styled from '@emotion/styled';
 
+export const SmallInput = styled.input`
+  width: 50%;
+  border-radius: 3px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 2px;
+  margin-bottom: 1rem;
+  margin: auto;
+  padding: 0.5rem;
+  placeholder {
+    color: #888;
+  }
+`;
 export const FieldSet = styled.fieldset`
   border: medium none !important;
   margin: 0 0 10px;

@@ -18,6 +18,7 @@ const Editor = () => {
         articleTitle: '',
         articleSubtitle: '',
         articleAuthor: '',
+        boxerProfileImg: '',
         articleBody: ''
     })
 
@@ -31,7 +32,7 @@ const Editor = () => {
         console.log('handleChange, e: ',e.target.id);
         setArticle({...article,[e.target.id]: e.target.value})
     }
-    let {articleTitle,articleSubtitle,articleAuthor,articleBody} = article;
+    let {boxerProfileImg,articleTitle,articleSubtitle,articleAuthor,articleBody} = article;
     return (
         <div id="quill" style={{marginBottom: '5rem'}}>
           <Form>
@@ -63,9 +64,17 @@ const Editor = () => {
               onChange={handleChange}
               label="Author"
               placeholder="Author"
-            //   ref={input => (this.author = input)}
             />
-
+            <Typography variant="overline">Author Image Upload</Typography>
+                <Input
+                    style={{width: '50%'}}
+                    id='boxerProfileImg'
+                    value={boxerProfileImg}
+                    type="file"
+                    onChange={handleChange}
+                    label="boxerProfileImg"
+                    placeholder="Upload Image"
+                />
             <Label>Content</Label>
               <ReactQuill
                 id='quill'
