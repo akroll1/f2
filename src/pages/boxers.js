@@ -4,14 +4,13 @@ import { S3Album, S3Image } from 'aws-amplify';
 import Coverflow from 'react-coverflow';
 import { getSelectedBoxer, makeImagesArr, makeLabelsArr } from '../helpers'
 import {B as Button,PagesTitleH1, TitleSpan, Loader, Spinner} from '../css/core'
-import {MapContainer, Marker, TileLayer, Popup} from 'react-leaflet'
 import {SocialsContainer,Last5Container,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerLabel} from '../css/boxers'
-import 'leaflet/dist/leaflet.css';
 import Stars from '../components/stars'
 import {Typography} from '@material-ui/core'
 import Last5 from '../components/last5'
 import ProfileAside from '../components/boxers/profile-aside'
 import BoxerSocials from '../components/boxers/boxer-socials'
+import GoogleMap from '../components/boxers/google-map'
 import axios from 'axios';
 
 // import * as Query from '../../graphql/queries.js';
@@ -28,9 +27,9 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 18,
         boxerHometown:'LA, California, USA',
-        boxerLatLong: [33.973951,-118.248405],
+        boxerLatLong: [118.24,34.05],
         boxerProfileImg: '/garcia-vs-campbell.png',
-        socialsArr: [{social: 'Twitter',handle: 'https://twitter.com',social: 'Facebook',handle:'https://facebook.com/kingryang',social: 'IG',handle:'https://instagram.com/kingryan'}]
+        socialsArr: [{social: 'Twitter',baseUrl: 'https://twitter.com/',handle: ''},{social: 'Facebook',baseUrl:'https://facebook.com/',handle: 'kingryang',social: 'IG',baseUrl:'https://instagram.com/',handle:'kingryan'}]
     },{
         boxerName: 'Luke Campbell',
         boxerRingname: 'Coolhand',
@@ -39,9 +38,9 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 16,
         boxerHometown:'Hull, Yokshire, United Kingdom',
-        boxerLatLong: [41.893642,-89.393714],
+        boxerLatLong: [53.76,0.32],
         boxerProfileImg: '/boxer_in_ring.jpg',
-        socialsArr: [{social: 'Twitter', handle: 'https://twitter.com/luke11campbell'},{social: 'Facebook', handle:'https://facebook.com/LukeCampbellOfficial'},{social:'IG',handle:'https://instagram.com/luke11campbell'}]
+        socialsArr: [{social: 'Twitter', baseUrl: 'https://twitter.com/',handle: 'luke11campbell'},{social: 'Facebook', baseUrl:'https://facebook.com/', handle: 'LukeCampbellOfficial'},{social:'IG',baseUrl:'https://instagram.com/',handle: 'luke11campbell'}]
     }, {
         boxerName: 'Mike Tyson',
         boxerRingname: 'Iron',
@@ -50,9 +49,9 @@ const Boxers = () => {
         boxerDraws: 0,
         boxerKos: 44,
         boxerHometown:'Brooklyn, New York, USA',
-        boxerLatLong: [40.63122,-73.941542],
+        boxerLatLong: [-73.94,40.63],
         boxerProfileImg: '/iron-mike.png',
-        socialsArr: [{social: 'Twitter',handle: 'https://twitter.com/MikeTyson',social: 'Facebook',handle:'https://facebook.com/miketyson',social: 'IG',handle:'https://instagram.com/miketyson'}]
+        socialsArr: [{social: 'Twitter',baseUrl: 'https://twitter.com/', handle: 'MikeTyson'},{social: 'Facebook',baseUrl:'https://facebook.com/',handle: 'miketyson'},{social: 'IG',baseUrl: 'https://instagram.com/',handle: 'miketyson'}]
     }]);
     const [selectedBoxer, setSelectedBoxer] = useState(boxers[0]);
     const [starValue, setStarValue] = useState(0);
@@ -89,6 +88,7 @@ const Boxers = () => {
 	// };
 
     const handleCoverflowClick = (e) => {
+        console.log('coverflow e.target.id: ',e.target.id)
         setSelectedBoxer(boxers[e.target.id])
     };
     const getSelectedBoxer = index => {
@@ -115,7 +115,7 @@ const Boxers = () => {
     }
     // console.log('boxers; ',boxers);
     // console.log('selectedBoxer: ',selectedBoxer)
-    const {socialsArr,boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerHometownLatLong,boxerProfileImg} = selectedBoxer;
+    const {socialsArr,boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerLatLong,boxerProfileImg} = selectedBoxer;
     return (
         <BoxerPageContainer>
             {/* <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader> */}
@@ -154,17 +154,7 @@ const Boxers = () => {
                 />
                 <MapDiv> 
                     <Typography variant='overline'>Hometown</Typography>
-                    <MapContainer style={{width: '100%',height: '325px'}} center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
-                        <TileLayer
-                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            />
-                        <Marker position={[51.505, -0.09]}>
-                            <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
-                            </Popup>
-                        </Marker>
-                    </MapContainer>
+                    <GoogleMap boxerLatLong={boxerLatLong}/>
                     <Last5Container>
                         <div>
                             <Typography variant="overline">Last 5 Opponents</Typography>
