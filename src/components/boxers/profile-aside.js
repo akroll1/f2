@@ -1,12 +1,21 @@
-import React from 'react'
-import { AvgRankingSpan,BoxerReviewContainer, AvgRankingEl, RatingContainer,ProfileAsideContainer,AvgRankDiv,SubmitStarsButton} from '../../css/boxers'
+import React, {useState} from 'react'
+import { CreateReviewButton,AvgRankingSpan,BoxerReviewContainer, AvgRankingEl, RatingContainer,ProfileAsideContainer,AvgRankDiv,SubmitStarsButton} from '../../css/boxers'
 import {HeroText} from '../../css/home'
 import {Typography} from '@material-ui/core'
 import BoxerProfile from './boxer-profile'
-import Stars from '../stars'
+import Stars from './stars'
 import BoxerReviews from './boxer-review'
+import CreateIcon from '@material-ui/icons/Create';
+
 const ProfileAside = ({starRating,handleStarsSubmit,handleStarDivClick,starArr, selectedBoxer}) => {
-    
+    const [modal,setModal] = useState(false);
+    const toggle = () => setModal(!modal);
+    // const handleOpenReviewModal = (e) => {
+    //     e.preventDefault();
+    //     console.log('modal clicked.')
+    //     // setModal(x => !x);
+    // }
+    console.log('modal: ',modal)
    return (
     <ProfileAsideContainer>
         <BoxerProfile selectedBoxer={selectedBoxer}/>
@@ -18,8 +27,11 @@ const ProfileAside = ({starRating,handleStarsSubmit,handleStarDivClick,starArr, 
                         starArr={starArr} 
                         starRating={starRating}
                         handleStarDivClick={handleStarDivClick}
-                        />
-                    <SubmitStarsButton onClick={handleStarsSubmit}>Submit</SubmitStarsButton>
+                    />
+                    <div style={{width: '100%',display: 'flex',justifyContent:'center',alignItems: 'center'}}>
+                        <CreateReviewButton onClick={handleStarsSubmit}>Submit</CreateReviewButton>
+                    </div>
+
                 </div>
                 <AvgRankDiv>
                     <Typography style={{margin:'0'}} variant="h2" gutterBottom>4.3</Typography>
@@ -30,6 +42,10 @@ const ProfileAside = ({starRating,handleStarsSubmit,handleStarDivClick,starArr, 
                 </AvgRankDiv>
             </div>
         </RatingContainer>
+        <HeroText>Fan Reviews</HeroText>
+        <div style={{width: '100%',display: 'flex',justifyContent:'center',alignItems: 'center'}}>
+            <CreateReviewButton onClick={() => setModal(!modal)}><CreateIcon />&nbsp;Write a Review</CreateReviewButton>
+        </div>
         <BoxerReviews />
     </ProfileAsideContainer>
    )

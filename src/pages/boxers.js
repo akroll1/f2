@@ -4,13 +4,14 @@ import { S3Album, S3Image } from 'aws-amplify';
 import Coverflow from 'react-coverflow';
 import { getSelectedBoxer, makeImagesArr, makeLabelsArr } from '../helpers'
 import {B as Button,PagesTitleH1, TitleSpan, Loader, Spinner} from '../css/core'
-import {SocialsContainer,Last5Container,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerLabel} from '../css/boxers'
-import Stars from '../components/stars'
+import {HeroText,SocialsContainer,Last5Container,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerLabel} from '../css/boxers'
+import Stars from '../components/boxers/stars'
 import {Typography} from '@material-ui/core'
-import Last5 from '../components/last5'
+import Last5 from '../components/boxers/last5'
 import ProfileAside from '../components/boxers/profile-aside'
 import BoxerSocials from '../components/boxers/boxer-socials'
-import GMap from '../components/boxers/google-map'
+import SanctioningBodiesRankings from '../components/boxers/sanctioning-bodies-rankings'
+import Modal from 'react-modal';
 import axios from 'axios';
 
 // import * as Query from '../../graphql/queries.js';
@@ -96,8 +97,10 @@ const Boxers = () => {
         let selectedBoxer = boxers[index];
         setSelectedBoxer(selectedBoxer);
     };
+
     const star = useRef();
     star.current = starValue;
+
     const starRating = rating => {
         setStarValue(rating);
     };
@@ -110,12 +113,13 @@ const Boxers = () => {
         },10)
     }
     // console.log('rankings: ',rankings);
-    const handleStarsSubmit = () => {
+    const handleStarsSubmit = (e) => {
+        e.preventDefault();
         console.log('handleStarsSubmit: ',rankings);
     }
     // console.log('boxers; ',boxers);
     // console.log('selectedBoxer: ',selectedBoxer)
-    const {socialsArr,boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerLatLong,boxerProfileImg} = selectedBoxer;
+    const {socialsArr,boxerName, boxerRingname,boxerWins,boxerLosses,boxerDraws,boxerHometown,boxerLatLong,boxerProfileImg} = selectedBoxer && selectedBoxer.socialsArr ? selectedBoxer : {};
     return (
         <BoxerPageContainer>
             {/* <Loader><Spinner src={'./spinner.svg'} alt="Spinner" /></Loader> */}
@@ -154,21 +158,16 @@ const Boxers = () => {
                 />
                 <MapDiv> 
                     <Typography variant='overline'>Hometown</Typography>
-                    <GMap 
-                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}
-                        isMarkerShown={true} 
-                        boxerLatLong={boxerLatLong}
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `400px` }} />}
-                        mapElement={<div style={{ height: `100%` }} />}                    />
                     <Last5Container>
                         <div>
-                            <Typography variant="overline">Last 5 Opponents</Typography>
+                            <HeroText style={{margin: '0.5rem',textAlign:'left'}}>Last Five Opponents</HeroText>
+                            {/* <Typography variant="overline">Last 5 Opponents</Typography> */}
                         </div>
                         <div style={{display: 'flex'}}>
                             <Last5 />
                         </div>
                     </Last5Container>
+                    <SanctioningBodiesRankings />
                     <BoxerSocials socialsArr={socialsArr} />
                 </MapDiv>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Last5Link,Last5Img,Last5Publisher,Last5Title,Last5Description,Last5Wrapper,Last5Container} from '../css/boxers'
+import {Last5Link,Last5Img,Last5Publisher,Last5Title,Last5Description,Last5Wrapper,Last5Container} from '../../css/boxers'
 
 const Last5 = () => {
     return [1,2,3,4,5].map((el,i) => {

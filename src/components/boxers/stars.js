@@ -1,6 +1,6 @@
 import React from 'react'
 import {Typography} from '@material-ui/core'
-import {StarDiv} from '../css/boxers'
+import {StarDiv} from '../../css/boxers'
 import ReactStars from 'react-rating-stars-component';
 
 const Stars = ({starRating,handleStarDivClick}) => {
