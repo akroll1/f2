@@ -1,7 +1,13 @@
 import styled from '@emotion/styled'
 import {Link} from 'react-router-dom'
 
+export const SBRContainer = styled.div`
+    width: 100%;
+    background: #FFF;
+    border-radius: 3px;
+`;
 export const HeroText = styled.h1`
+    padding: 0.5rem auto;
     font-size: 3rem;
     margin: 0;
     @media(max-width: 425px){
@@ -121,12 +127,34 @@ export const SubmitStarsButton = styled(Link)`
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    width: 40%;
+    width: 50%;
     font-size: 1.2rem;
     height: 2rem;
     text-decoration: none;
     background: #d22509;
     color: #FFF;
+    &:hover {
+        background: #ff2805;
+        -webkit-transition: background 0.2s ease-in-out;
+        -moz-transition: background 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;
+        color: #FFF;
+    }
+`;
+export const CreateReviewButton = styled(Link)`
+    font-weight: bold;
+    margin: 1rem auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 50%;
+    font-size: 1rem;
+    height: 1.8rem;
+    text-decoration: none;
+    background: transparent;
+    color: gray;
+    border: 1px solid gray;
     &:hover {
         background: #ff2805;
         -webkit-transition: background 0.2s ease-in-out;
