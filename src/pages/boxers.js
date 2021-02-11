@@ -4,7 +4,7 @@ import { S3Album, S3Image } from 'aws-amplify';
 import Coverflow from 'react-coverflow';
 import { getSelectedBoxer, makeImagesArr, makeLabelsArr } from '../helpers'
 import {B as Button,PagesTitleH1, TitleSpan, Loader, Spinner} from '../css/core'
-import {HeroText,SocialsContainer,Last5Container,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MapDiv,CoverflowContainer,ProfileContainer,BoxerLabel} from '../css/boxers'
+import {HeroText,SocialsContainer,Last5Container,AvgRankDiv,RatingReviewContainer,BoxerPageContainer,SubmitStarsButton,RankingsContainer,RatingContainer,ProfileP,ProfileImgDiv,ProfileImg,MainDiv,CoverflowContainer,ProfileContainer,BoxerLabel} from '../css/boxers'
 import Stars from '../components/boxers/stars'
 import {Typography} from '@material-ui/core'
 import Last5 from '../components/boxers/last5'
@@ -132,7 +132,7 @@ const Boxers = () => {
                     // infiniteScroll
                     enableScroll
                     clickable
-                    active={1}>
+                    active={0}>
                     {boxers && boxers.length > 0 
                         ? boxers.map((boxer,i) => {
                             let {boxerProfileImg, boxerRingname, boxerName} = boxer;
@@ -156,7 +156,7 @@ const Boxers = () => {
                     handleStarDivClick={handleStarDivClick}
                     handleStarsSubmit={handleStarsSubmit}
                 />
-                <MapDiv> 
+                <MainDiv> 
                     <Typography variant='overline'>Hometown</Typography>
                     <Last5Container>
                         <div>
@@ -169,7 +169,7 @@ const Boxers = () => {
                     </Last5Container>
                     <SanctioningBodiesRankings />
                     <BoxerSocials socialsArr={socialsArr} />
-                </MapDiv>
+                </MainDiv>
             </div>
         </BoxerPageContainer>
     );

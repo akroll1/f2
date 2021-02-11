@@ -216,7 +216,7 @@ export const ProfileImg = styled.img`
     border-radius: 5px
     padding: 1rem;
 `;
-export const MapDiv = styled.div`
+export const MainDiv = styled.div`
     width: 60%;
     padding: 1rem;
     margin: 0.5rem auto;
